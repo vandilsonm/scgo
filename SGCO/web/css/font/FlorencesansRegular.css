@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'FlorencesansRegular';
+    src: url('florsn01-webfont.eot');
+    src: url('florsn01-webfont.eot?#iefix') format('eot'),
+         url('florsn01-webfont.woff') format('woff'),
+         url('florsn01-webfont.ttf') format('truetype'),
+         url('florsn01-webfont.svg#webfontdUkC2vnN') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
