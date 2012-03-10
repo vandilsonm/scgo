@@ -14,6 +14,7 @@ public class TOUsuario {
     private String _nome;
     private String _status;
     private String _email;
+    private String _celular;
     private String _login;
     private String _senha;
 
@@ -57,6 +58,20 @@ public class TOUsuario {
         this._nome = nome;
     }
 
+    /**
+     * @return the _nome
+     */
+    public String getCelular() {
+        return _celular;
+    }
+
+    /**
+     * @param nome the _nome to set
+     */
+    public void setCelular(String celular) {
+        this._celular = celular;
+    }
+    
     /**
      * @return the _status
      */

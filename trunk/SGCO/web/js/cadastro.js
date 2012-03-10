@@ -26,6 +26,7 @@ Cadastro.prototype = {
     _btnCadastroOnClick: function(value){
         if ($('#txtNome').val() == ''
             || $('#txtEmail').val() == ''
+            || $('#txtCelular').val() == ''
             || $('#txtLogin').val() == ''
             || $('#txtSenha').val() == ''
             || $('#txtConfSenha').val() == '') {
@@ -39,6 +40,7 @@ Cadastro.prototype = {
                 var str = {
                     nome: $('#txtNome').val(),
                     email: $('#txtEmail').val(),
+                    celular: $('#txtCelular').val(),
                     login: $('#txtLogin').val(),
                     senha: $('#txtSenha').val()
                 }

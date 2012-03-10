@@ -36,6 +36,7 @@ public class ServletCadastroUsuario extends HttpServlet {
 
             usuario.setEmail(request.getParameter("email"));
             usuario.setNome(request.getParameter("nome"));
+            usuario.setCelular(request.getParameter("celular"));
             usuario.setLogin(request.getParameter("login"));
             usuario.setSenha(request.getParameter("senha"));
             usuario.setStatus("A");
