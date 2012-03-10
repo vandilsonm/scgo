@@ -76,7 +76,7 @@ public class DAOJogador {
                     + " jog.jog_status, jog.jog_tipo, jog.tim_codigo, tim.tim_nome "
                     + " from sgc_jogador_jog jog inner join sgc_time_tim tim "
                     + " on jog.tim_codigo = tim.tim_codigo "
-                    + " where tim.cam_codigo = ?"
+                    + " where tim.cam_codigo = ? and jog.jog_status = 'A' "
                     + " order by tim.tim_nome, jog.jog_nome ";
 
         JSONArray ja = new JSONArray();

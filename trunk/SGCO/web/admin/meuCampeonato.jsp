@@ -34,8 +34,6 @@
                 <div id="header_submenu">
                     <ul class="breadcrumb">
                         <li><a href="index.jsp" title="Painel Administrativo">Painel Administrativo</a></li>
-                        <!--<li>&raquo;</li>
-                        <li><a href="meuCampeonato.jsp?id=1" title="Campeonato Brasileiro">Campeonato Brasileiro</a></li>-->
                     </ul>
                 </div>
 
