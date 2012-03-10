@@ -19,7 +19,7 @@ MeuCampeonato.prototype = {
         this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
     },
 
-    _teste:function (value) {
+    _exibeNomeCampeonato:function (value) {
         var dados = eval("(" + value + ")");
         $('#spanNomeCampeonato').html(dados.nome);
     },
@@ -29,7 +29,7 @@ MeuCampeonato.prototype = {
         var str = {
             id: getParameter("id")
         }
-        this.executeBind('../ServletSelecionaCamp', str, 'GET', this._teste);
+        this.executeBind('../ServletSelecionaCamp', str, 'GET', this._exibeNomeCampeonato);
     },
 
     _listaCampeonato: function (value) {

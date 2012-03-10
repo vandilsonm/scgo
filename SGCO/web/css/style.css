@@ -417,7 +417,7 @@ a {
 /* form grande unico */
 #adm_container_one_text_form {
     /*width: 750px;*/
-    margin: 0 auto;
+    margin: 0 0 10px 10px;
 }
 /* coluna unica */
 #adm_container_one_text {

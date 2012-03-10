@@ -24,7 +24,7 @@ Jogador.prototype = {
     },
 
     _listaCampeonato: function (value) {
-        alert(value);
+
         var listaCampeonato = eval(value);
 
         var htmlLinks = "<h2>Meus Campeonatos</h2>";
