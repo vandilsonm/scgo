@@ -35,27 +35,31 @@ Home.prototype = {
         var html = "<h2>Resultado dos Últimos Jogos</h2>";
 
         var camp = "";
-        for (var i = 0; i < listaJogos.length; i++ ) {
-            if (camp != listaJogos[i].codigoCampeonato) {
-                camp = listaJogos[i].codigoCampeonato;
+        if(listaJogos != null) {
+            html += "Nenhum jogo cadastrado.";
+        } else {
+            for (var i = 0; i < listaJogos.length; i++ ) {
+                if (camp != listaJogos[i].codigoCampeonato) {
+                    camp = listaJogos[i].codigoCampeonato;
 
-                html += "</tbody></table></div>";
-                html += "<div class=\"table\">";
-                html += "<table border=\"0\" cellpadding=\"6\" cellspacing=\"0\"><thead>";
-                html += "<tr><th colspan=\"7\"><h3>" + listaJogos[i].nomeCampeonato + "</h3></th></tr>";
-                html += "</thead><tbody>";
+                    html += "</tbody></table></div>";
+                    html += "<div class=\"table\">";
+                    html += "<table border=\"0\" cellpadding=\"6\" cellspacing=\"0\"><thead>";
+                    html += "<tr><th colspan=\"7\"><h3>" + listaJogos[i].nomeCampeonato + "</h3></th></tr>";
+                    html += "</thead><tbody>";
+                }
+
+                html += "<tr><td></td>";
+                html += "<td class=\"nomeTime\">" + listaJogos[i].timeNomeMandante + "</td>";
+                html += "<td><span class=\"placarJogo\">" + listaJogos[i].golsMandante + "</span></td>";
+                html += "<td>x</td>";
+                html += "<td><span class=\"placarJogo\">" + listaJogos[i].golsVisitante + "</span></td>";
+                html += "<td class=\"nomeTime\">" + listaJogos[i].timeNomeVisitante + "</td>";
+                html += "<td>" + listaJogos[i].dataHora + "</td></tr>";
             }
-
-            html += "<tr><td></td>";
-            html += "<td class=\"nomeTime\">" + listaJogos[i].timeNomeMandante + "</td>";
-            html += "<td><span class=\"placarJogo\">" + listaJogos[i].golsMandante + "</span></td>";
-            html += "<td>x</td>";
-            html += "<td><span class=\"placarJogo\">" + listaJogos[i].golsVisitante + "</span></td>";
-            html += "<td class=\"nomeTime\">" + listaJogos[i].timeNomeVisitante + "</td>";
-            html += "<td>" + listaJogos[i].dataHora + "</td></tr>";
+            html += "</tbody></table></div>";
+            $('#container_text_resultados').html(html);
         }
-        html += "</tbody></table></div>";
-        $('#container_text_resultados').html(html);
     },
 
 //    _dataBind_OnSuccess_Home: function(value) {
