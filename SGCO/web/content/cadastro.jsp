@@ -7,6 +7,7 @@
 <span class="legend">Cadastre-se</span>
 <label><span>Nome:</span> <input type="text" id="txtNome" value="" maxlength="70" /></label>
 <label><span>E-mail:</span> <input type="text" id="txtEmail" value="" maxlength="100" /></label>
+<label><span>Celular:</span> <input type="text" id="txtCelular" value="" maxlength="20" /></label>
 <label><span>Login:</span> <input type="text" id="txtLogin" value="" maxlength="100" /></label>
 <label><span>Senha:</span> <input type="password" id="txtSenha" value="" /></label>
 <label><span>Confere Senha:</span> <input type="password" id="txtConfSenha" value="" /></label>

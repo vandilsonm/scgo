@@ -20,11 +20,11 @@ public class DAOUsuario {
 
     public static void inserir (TOUsuario usuario, Connection c) throws Exception {
 
-        String sql = " insert into sgc_usuario_usu (usu_nome, usu_status, usu_email, usu_login, "
-                + " usu_senha) values (?, ?, ?, ?, ?)";
+        String sql = " insert into sgc_usuario_usu (usu_nome, usu_status, usu_celular, usu_email,  "
+                + " usu_login, usu_senha) values (?, ?, ?, ?, ?, ?)";
 
         Data.executeUpdate(c, sql, new Object[] {usuario.getNome(), usuario.getStatus(),
-                                usuario.getEmail(), usuario.getLogin(),
+                                usuario.getCelular(), usuario.getEmail(), usuario.getLogin(),
                                 usuario.getSenha()});
     }
 
