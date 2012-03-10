@@ -30,14 +30,15 @@ Home.prototype = {
     },
 
     _exibeUltimosJogos: function (value) {
+        
         var listaJogos = eval(value);
-
+        
         var html = "<h2>Resultado dos Últimos Jogos</h2>";
 
         var camp = "";
+        
+        // somente entra no for se não for nulo. evitar erros.
         if(listaJogos != null) {
-            html += "Nenhum jogo cadastrado.";
-        } else {
             for (var i = 0; i < listaJogos.length; i++ ) {
                 if (camp != listaJogos[i].codigoCampeonato) {
                     camp = listaJogos[i].codigoCampeonato;
