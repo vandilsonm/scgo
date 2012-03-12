@@ -45,10 +45,12 @@ public class ServletInsereEstadio extends HttpServlet {
             estadio.setCidade(request.getParameter("cidade"));
             estadio.setEstado(request.getParameter("estado"));
 
+            /*
             TOCampeonato campeonato = new TOCampeonato();
             campeonato.setCodigo(Integer.parseInt(session.getAttribute("campeonato").toString()));
             estadio.setCampeonato(campeonato);
-
+            */
+            
             BOEstadio.inserir(estadio);
 
             out.print("Cadastro realizado com sucesso.");

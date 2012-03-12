@@ -23,14 +23,13 @@ public class DAOEstadio {
     public static void inserir (TOEstadio estadio, Connection c) throws Exception {
 
         String sql = " insert into sgc_estadio_est (est_nome, est_end_logradouro, est_end_numero, "
-                   + " est_end_complemento, est_end_bairro, est_end_cidade, est_end_estado, "
-                   + " cam_codigo) values (?, ?, ?, ?, ?, ?, ?, ?)";
+                   + " est_end_complemento, est_end_bairro, est_end_cidade, est_end_estado) "
+                   + " values (?, ?, ?, ?, ?, ?, ?)";
 
         Data.executeUpdate(c, sql, new Object[] {estadio.getNome(), estadio.getLogradouro(),
                                                 estadio.getNumero(), estadio.getComplemento(),
                                                 estadio.getBairro(), estadio.getCidade(),
-                                                estadio.getEstado(),
-                                                estadio.getCampeonato().getCodigo()});
+                                                estadio.getEstado()});
     }
 
     public static void alterar (TOEstadio estadio, Connection c) throws Exception {
@@ -55,12 +54,12 @@ public class DAOEstadio {
     public static JSONArray obterTodos(TOCampeonato campeonato, Connection c) throws Exception {
         String sql = " select est_codigo, est_nome, est_end_logradouro, est_end_numero, "
                    + " est_end_complemento, est_end_bairro, est_end_cidade, est_end_estado "
-                   + " from sgc_estadio_est where cam_codigo = ? order by est_nome ";
+                   + " from sgc_estadio_est order by est_nome ";
 
 
         JSONArray ja = new JSONArray();
 
-        ResultSet rs = Data.executeQuery(c, sql, new Object[]{campeonato.getCodigo()});
+        ResultSet rs = Data.executeQuery(c, sql, new Object[]{});
             
         while (rs.next()) {
             JSONObject jo = new JSONObject();

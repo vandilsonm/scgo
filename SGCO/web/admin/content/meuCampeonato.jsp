@@ -5,11 +5,11 @@
     <div id="adm_container_one_text_form">
         <a href="time.jsp" class="linkGerenciar"><img src="img/cad/time.png" alt="Time" /></a>
         <a href="jogador.jsp" class="linkGerenciar"><img src="img/cad/jogador.png" alt="Jogador" /></a>
+        <a href="estadio.jsp" class="linkGerenciar"><img src="img/cad/estadio.png" alt="Estádio" /></a>
+        <a href="arbitragem.jsp" class="linkGerenciar"><img src="img/cad/arbitragem.png" alt="Arbitragem" /></a>
+        <a href="cartoes.jsp" class="linkGerenciar"><img src="img/cad/cartoes.png" alt="Cartões" /></a>
         <a href="jogos.jsp" class="linkGerenciar"><img src="img/cad/jogos.png" alt="Jogos" /></a>
         <a href="placar.jsp" class="linkGerenciar"><img src="img/cad/placar.png" alt="Placar" /></a>
         <a href="substituicao.jsp" class="linkGerenciar"><img src="img/cad/substituicao.png" alt="Substiruição" /></a>
-        <a href="cartoes.jsp" class="linkGerenciar"><img src="img/cad/cartoes.png" alt="Cartões" /></a>
-        <a href="arbitragem.jsp" class="linkGerenciar"><img src="img/cad/arbitragem.png" alt="Arbitragem" /></a>
-        <a href="estadio.jsp" class="linkGerenciar"><img src="img/cad/estadio.png" alt="Estádio" /></a>
     </div>
 </div>
