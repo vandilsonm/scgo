@@ -31,7 +31,7 @@ public class DAOJogo {
                 + " jgs_qtde_gols_mandante, "
                 + " jgs_qtde_gols_visitante, "
                 + " arb_codigo_juiz, "
-                + " arb_codigo_juiz_aux, "
+                + " arb_codigo_juiz_resv, "
                 + " arb_codigo_bandeirinha1, "
                 + " arb_codigo_bandeirinha2) "
                 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -60,7 +60,7 @@ public class DAOJogo {
                 + " jgs_qtde_gols_mandante = ?, "
                 + " jgs_qtde_gols_visitante = ?, "
                 + " arb_codigo_juiz = ?, "
-                + " arb_codigo_juiz_aux = ?, "
+                + " arb_codigo_juiz_resv = ?, "
                 + " arb_codigo_bandeirinha1 = ?, "
                 + " arb_codigo_bandeirinha2 = ? "
                 + " where jgs_codigo = ?";
@@ -132,7 +132,7 @@ public class DAOJogo {
                     + " jgs_qtde_gols_mandante,"
                     + " jgs_qtde_gols_visitante,"
                     + " arb_codigo_juiz,"
-                    + " arb_codigo_juiz_aux,"
+                    + " arb_codigo_juiz_resv,"
                     + " arb_codigo_bandeirinha1,"
                     + " arb_codigo_bandeirinha2 "
                     + " from sgc_jogos_jgs"
@@ -149,7 +149,7 @@ public class DAOJogo {
             jo.put("timeMandante", rs.getInt("tim_codigo_mandante"));
             jo.put("timeVisitante", rs.getInt("tim_codigo_visitante"));
             jo.put("juiz", rs.getInt("arb_codigo_juiz"));
-            jo.put("juizReserva", rs.getInt("arb_codigo_juiz_aux"));
+            jo.put("juizReserva", rs.getInt("arb_codigo_juiz_resv"));
             jo.put("bandeirinha1", rs.getInt("arb_codigo_bandeirinha1"));
             jo.put("bandeirinha2", rs.getInt("arb_codigo_bandeirinha2"));
             jo.put("dataHora", df.format(rs.getTimestamp("jgs_data_hora")));
