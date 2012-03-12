@@ -21,11 +21,10 @@ public class DAOArbitragem {
 
     public static void inserir (TOArbitragem arbitro, Connection c) throws Exception {
 
-        String sql = " insert into sgc_arbitragem_arb (arb_nome, arb_tipo, cam_codigo) "
-                   + " values (?, ?, ?)";
+        String sql = " insert into sgc_arbitragem_arb (arb_nome, arb_tipo) "
+                   + " values (?, ?)";
 
-        Data.executeUpdate(c, sql, new Object[] {arbitro.getNome(), arbitro.getTipo(),
-                                                arbitro.getCampeonato().getCodigo()});
+        Data.executeUpdate(c, sql, new Object[] {arbitro.getNome(), arbitro.getTipo()});
         
     }
 
@@ -45,11 +44,11 @@ public class DAOArbitragem {
 
     public static JSONArray obterTodos(TOCampeonato campeonato, Connection c) throws Exception {
         String sql = " select arb_codigo, arb_nome, arb_tipo "
-                   + " from sgc_arbitragem_arb where cam_codigo = ? order by arb_nome ";
+                   + " from sgc_arbitragem_arb order by arb_nome ";
 
         JSONArray ja = new JSONArray();
 
-        ResultSet rs = Data.executeQuery(c, sql, new Object[]{campeonato.getCodigo()});
+        ResultSet rs = Data.executeQuery(c, sql, new Object[]{});
 
         while (rs.next()) {
             JSONObject jo = new JSONObject();
