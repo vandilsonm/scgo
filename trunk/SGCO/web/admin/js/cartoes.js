@@ -4,8 +4,6 @@ Cartoes = function(){
     this._type = null;
     this._dataSource = null;
     this._handlerSuccess = null;
-    //this._idSelJogo = null;
-    //this._idSelJogador = null;
 }
 
 Cartoes.Load = function(){
@@ -135,11 +133,8 @@ Cartoes.prototype = {
 
     _excluirItemOnClick: function (value) {
         if (confirm("Deseja excluir o registro?")) {
-
             var str = {
-                idJogo: value.data.idJogoCodigo,
-                idTime: value.data.idTimeCodigo,
-                idJogador: value.data.idJogadorCodigo
+                idCartao: value.data.id
             };
 
             this.executeBind('../ServletExcluiCartao', str, 'GET', this._cadastroOnSuccess);

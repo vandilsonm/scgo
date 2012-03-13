@@ -36,18 +36,7 @@ public class ServletExcluiCartao extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             TOCartao cartao = new TOCartao();
-
-            TOJogo jogo = new TOJogo();
-            jogo.setCodigo(Integer.parseInt(request.getParameter("idJogo")));
-            cartao.setJogo(jogo);
-
-            TOTime time = new TOTime();
-            time.setCodigo(Integer.parseInt(request.getParameter("idTime")));
-            cartao.setTime(time);
-
-            TOJogador jogador = new TOJogador();
-            jogador.setCodigo(Integer.parseInt(request.getParameter("idJogador")));
-            cartao.setJogador(jogador);
+            cartao.setCodigo(Integer.parseInt(request.getParameter("idCartao")));
 
             BOCartao.excluir(cartao);
 

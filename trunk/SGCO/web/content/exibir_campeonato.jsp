@@ -19,7 +19,7 @@
                     <th><abbr title="Saldo de Gols">SG</abbr></th>
                 </thead>
                 <tbody>
-                <!-- loop do javascript aqui -->
+                <!-- loop do javascript aqui --
                     <tr>
                         <td>1</td>
                         <td>Cruzeiro</td>
@@ -56,7 +56,7 @@
                         <td>3</td>
                         <td>-2</td>
                     </tr>
-                <!-- fim: loop do javascript aqui -->
+                    fim: loop do javascript aqui -->
                 </tbody>
             </table>
         </div>

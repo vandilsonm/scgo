@@ -9,12 +9,5 @@
 <th class="alingCenter">Editar</th>
 <th class="alingCenter">Excluir</th>
 </tr>
-<tr>
-<td>Cruzeiro</td>
-<td><span id="placarTimeMandante">2</span> x <span id="placarTimeVisitante">0</span></td>
-<td>Clube Atlético Mineiro</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
 </table>
 </fieldset>

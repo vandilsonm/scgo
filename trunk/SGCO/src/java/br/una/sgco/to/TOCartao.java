@@ -14,6 +14,16 @@ public class TOCartao {
     private TOJogo _jogo;
     private TOTime _time;
     private TOJogador _jogador;
+    private int _codigo;
+
+    public int getCodigo() {
+        return _codigo;
+    }
+
+    public void setCodigo(int _codigo) {
+        this._codigo = _codigo;
+    }
+    
     private String _tipo;
 
     /**

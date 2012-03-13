@@ -50,11 +50,6 @@
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
                         <h2>Meus Campeonatos</h2>
-                        <ul class="linksCampeonatos">
-                            <li><a href="meuCampeonato.jsp?id=1">Campeonato Brasileiro</a></li>
-                            <li><a href="meuCampeonato.jsp?id=2">Copa Libertadores da América</a></li>
-                            <li><a href="meuCampeonato.jsp?id=3">Campeonato Mineiro de Futebol</a></li>
-                        </ul>
                     </div>
                     <div id="links_moldura">
                         <div id="adm_container_one_text">

@@ -7,20 +7,5 @@
 <th class="alingCenter">Editar</th>
 <th class="alingCenter">Excluir</th>
 </tr>
-<tr>
-<td>Mineirão</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
-<tr>
-<td>Pacaembu</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
-<tr>
-<td>Morumbi</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
 </table>
 </fieldset>

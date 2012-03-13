@@ -9,12 +9,5 @@
 <th class="alingCenter">Editar</th>
 <th class="alingCenter">Excluir</th>
 </tr>
-<tr>
-<td>Cruzeiro</td>
-<td>Tostão</td>
-<td>Rui</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
 </table>
 </fieldset>
