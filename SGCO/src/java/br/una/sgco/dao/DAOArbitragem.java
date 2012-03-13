@@ -21,11 +21,12 @@ public class DAOArbitragem {
 
     public static void inserir (TOArbitragem arbitro, Connection c) throws Exception {
 
-        String sql = " insert into sgc_arbitragem_arb (arb_nome, arb_tipo) "
-                   + " values (?, ?)";
+        String sql = " insert into sgc_arbitragem_arb (arb_codigo, arb_nome, arb_tipo) "
+                   + " values (?, ?, ?)";
 
-        Data.executeUpdate(c, sql, new Object[] {arbitro.getNome(), arbitro.getTipo()});
-        
+        Data.executeUpdate(c, sql, new Object[] {
+                            arbitro.getCodigo(), 
+                            arbitro.getNome(), arbitro.getTipo()});
     }
 
     public static void alterar (TOArbitragem arbitro, Connection c) throws Exception {

@@ -8,29 +8,5 @@
 <th class="alingCenter">Editar</th>
 <th class="alingCenter">Excluir</th>
 </tr>
-<tr>
-<td>Carlos Eugênio Simon</td>
-<td>Juiz</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
-<tr>
-<td>Marcio Rezende</td>
-<td>Juiz</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
-<tr>
-<td>Silvio Espinola</td>
-<td>Juiz Reserva</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
-<tr>
-<td>José Roberto Right</td>
-<td>Juiz</td>
-<td class="alingCenter"><a href="#" class="inputBotao icone editar"></a></td>
-<td class="alingCenter"><a href="#" class="inputBotao icone excluir"></a></td>
-</tr>
 </table>
 </fieldset>

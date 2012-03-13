@@ -21,10 +21,11 @@ public class DAOCartoes {
 
     public static void inserir (TOCartao cartao, Connection c) throws Exception {
 
-        String sql = " insert into sgc_cartoes_crt (jgs_codigo, tim_codigo, jog_codigo, crt_tipo)"
-                    + " values (?, ?, ?, ?)";
+        String sql = " insert into sgc_cartoes_crt (crt_codigo, jgs_codigo, tim_codigo, jog_codigo, crt_tipo)"
+                    + " values (?, ?, ?, ?, ?)";
 
-        Data.executeUpdate(c, sql, new Object[] {cartao.getJogo().getCodigo(),
+        Data.executeUpdate(c, sql, new Object[] {cartao.getCodigo(),
+                                                cartao.getJogo().getCodigo(),
                                                 cartao.getTime().getCodigo(),
                                                 cartao.getJogador().getCodigo(),
                                                 cartao.getTipo()});
@@ -33,22 +34,18 @@ public class DAOCartoes {
     public static void alterar (TOCartao cartao, Connection c) throws Exception {
 
         String sql = " update sgc_cartoes_crt set crt_tipo = ? "
-                    + " where jgs_codigo = ? and tim_codigo = ? and jog_codigo = ? ";
+                    + " where crt_codigo = ? and tim_codigo = ? ";
 
         Data.executeUpdate(c, sql, new Object[] {cartao.getTipo(),
-                                                    cartao.getJogo().getCodigo(),
+                                                    cartao.getCodigo(),
                                                     cartao.getTime().getCodigo(),
-                                                    cartao.getJogador().getCodigo()});
+                                                    });
     }
 
     public static void excluir (TOCartao cartao, Connection c) throws Exception {
-        String sql = " delete from sgc_cartoes_crt where jog_codigo = ? and tim_codigo = ? "
-                    + " and jgs_codigo = ?";
+        String sql = " delete from sgc_cartoes_crt where crt_codigo = ?";
 
-        Data.executeUpdate(c, sql, new Object[] {cartao.getJogador().getCodigo(),
-                                                    cartao.getTime().getCodigo(),
-                                                    cartao.getJogo().getCodigo()});
-
+        Data.executeUpdate(c, sql, new Object[] {cartao.getCodigo()});
     }
 
     public static JSONArray obterTodos(TOCampeonato campeonato, Connection c) throws Exception {
@@ -100,59 +97,4 @@ public class DAOCartoes {
 
         return jo;
     }
-
-
-//    public static ArrayList<TOCartao> obterCartoesJogo(TOJogo jogo, Connection c) throws Exception {
-//        String sql = " select jog_codigo, jgs_codigo, crt_tipo "
-//                    + " from sgc_cartoes_crt where jgs_codigo = ?";
-//
-//        ArrayList<TOCartao> lista = new ArrayList<TOCartao>();
-//
-//        try {
-//            ResultSet rs = Data.executeQuery(c, sql, new Object[]{jogo.getCodigo()});
-//
-//            while (rs.next()) {
-//                TOCartao item = new TOCartao();
-//                TOJogador jogador = new TOJogador();
-//                jogador.setCodigo(rs.getInt("jog_codigo"));
-//
-//                //item.setJogador(DAOJogador.obterUm(jogador, c));
-//                item.setJogo(DAOJogo.obterUm(jogo, c));
-//                item.setTipo(rs.getString("crt_tipo"));
-//
-//                lista.add(item);
-//            }
-//        } finally {
-//            if (c != null) c.close();
-//        }
-//
-//        return lista;
-//    }
-//
-//    public static ArrayList<TOCartao> obterCartoesJogador(TOJogador jogador, Connection c) throws Exception {
-//        String sql = " select jog_codigo, jgs_codigo, crt_tipo "
-//                    + " from sgc_cartoes_crt where jog_codigo = ?";
-//
-//        ArrayList<TOCartao> lista = new ArrayList<TOCartao>();
-//
-//        try {
-//            ResultSet rs = Data.executeQuery(c, sql, new Object[]{jogador.getCodigo()});
-//
-//            while (rs.next()) {
-//                TOCartao item = new TOCartao();
-//                TOJogo jogo = new TOJogo();
-//                jogo.setCodigo(rs.getInt("jgs_codigo"));
-//
-//                //item.setJogador(DAOJogador.obterUm(jogador, c));
-//                item.setJogo(DAOJogo.obterUm(jogo, c));
-//                item.setTipo(rs.getString("crt_tipo"));
-//
-//                lista.add(item);
-//            }
-//        } finally {
-//            if (c != null) c.close();
-//        }
-//
-//        return lista;
-//    }
 }

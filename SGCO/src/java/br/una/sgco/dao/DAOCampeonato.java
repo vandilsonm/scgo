@@ -69,13 +69,13 @@ public class DAOCampeonato {
         String sql = " select jog.jog_nome, tim.tim_nome, art.qtde"
                     + " from sgc_jogador_jog jog"
                     + " inner join ("
-                        + " select top 1 plc.jog_codigo, sum(plc_qtde_gols) as qtde"
+                        + " select plc.jog_codigo, sum(plc_qtde_gols) as qtde"
                         + " from sgc_jogos_jgs jgs"
                         + "   inner join sgc_placar_plc plc"
 				+ " on jgs.jgs_codigo = plc.jgs_codigo"
                         + " where jgs.cam_codigo = ?"
                         + " group by plc.jog_codigo"
-                        + " order by qtde desc) art"
+                        + " order by qtde desc limit 1) art"
                     + "   on art.jog_codigo = jog.jog_codigo"
                     + " inner join sgc_time_tim tim"
                     + "   on jog.tim_codigo = tim.tim_codigo";
@@ -143,7 +143,7 @@ public class DAOCampeonato {
                             + " inner join sgc_jogos_jgs jgs"
                                 + " on tim.tim_codigo = jgs.tim_codigo_mandante"
                         + " where tim.cam_codigo = ?"
-                            + " and jgs.jgs_data_hora < getdate()"
+                            + " and jgs.jgs_data_hora < CURRENT_TIMESTAMP()"
                         + " group by tim.tim_codigo"
                     + " union"
                         + " select tim.tim_codigo"
@@ -161,7 +161,7 @@ public class DAOCampeonato {
                             + " inner join sgc_jogos_jgs jgs"
                                 + " on tim.tim_codigo = jgs.tim_codigo_visitante"
                         + " where tim.cam_codigo = ?"
-                            + " and jgs.jgs_data_hora < getdate()"
+                            + " and jgs.jgs_data_hora < CURRENT_TIMESTAMP()"
                         + " group by tim.tim_codigo"
                     + " ) as time"
                         + " inner join sgc_time_tim tim"
@@ -222,12 +222,12 @@ public class DAOCampeonato {
                         + ", jgs.jgs_qtde_gols_mandante as gols_mandante"
                         + ", jgs.jgs_qtde_gols_visitante as gols_visitante"
                         + ", jgs.jgs_data_hora "
-                        + ", case when jgs.jgs_data_hora < getdate() then 1 else 0 end as jogo_aconteceu "
+                        + ", case when jgs.jgs_data_hora < CURRENT_TIMESTAMP() then 1 else 0 end as jogo_aconteceu "
                     + " from sgc_jogos_jgs jgs "
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
-                    + " where ((datediff(day, jgs.jgs_data_hora, getdate()) <= 7 and datediff(day, jgs.jgs_data_hora, getdate()) >= 0)"
-                    + " or (datediff(day, getdate(), jgs.jgs_data_hora) <= 7 and datediff(day, getdate(), jgs.jgs_data_hora) >= 0))"
+                    + " where ((datediff(day, jgs.jgs_data_hora, CURRENT_TIMESTAMP()) <= 7 and datediff(day, jgs.jgs_data_hora, CURRENT_TIMESTAMP()) >= 0)"
+                    + " or (datediff(day, CURRENT_TIMESTAMP(), jgs.jgs_data_hora) <= 7 and datediff(day, CURRENT_TIMESTAMP(), jgs.jgs_data_hora) >= 0))"
                     + " and jgs.cam_codigo = ?"
                     + " order by jgs.jgs_data_hora desc ";
                     
@@ -263,7 +263,7 @@ public class DAOCampeonato {
                         + " inner join sgc_jogos_jgs jgs on cam.cam_codigo = jgs.cam_codigo"
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
-                    + " where jgs.jgs_data_hora < getdate()"
+                    + " where jgs.jgs_data_hora < CURRENT_TIMESTAMP()"
                     + " order by jgs.jgs_data_hora desc, cam.cam_codigo ";
 
 
