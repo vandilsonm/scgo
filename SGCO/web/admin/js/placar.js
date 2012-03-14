@@ -142,7 +142,7 @@ Placar.prototype = {
 
     _listaJogador: function (value) {
         $('#ddlJogador').html('');
-
+        
         if ($('#ddlTime').val() != "0") {
             var str = {
                 codigoTime: $('#ddlTime').val()

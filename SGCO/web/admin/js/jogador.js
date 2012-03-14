@@ -77,10 +77,10 @@ Jogador.prototype = {
 
     _loadListaOnSuccess: function(value) {
         var listaJogador = eval(value);
-
+        
         $('#spanTitulo').html('Jogadores(s) Cadastrado(s)');
 
-        var html = "<tr><th>Time</th><th>Nome</th><th>Posição</th><th class=\"alingCenter\">Editar</th>";
+        var html = "<tr><th>Time</th><th>Nome</th><th>Posição</th><th>Celular</th><th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Inativar</th></tr>";
 
         $('#adm_container_one_text_form').html(html);
@@ -90,6 +90,7 @@ Jogador.prototype = {
             html += "<tr><td>" + listaJogador[i].Time + "</td>";
             html += "<td>" + listaJogador[i].Nome + "</td>";
             html += "<td>" + listaJogador[i].Posicao + "</td>";
+            html += "<td>" + listaJogador[i].Celular + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "</tr>";
@@ -130,6 +131,7 @@ Jogador.prototype = {
         $('#txtPosicao').attr("value", dados.posicao);
         $('#ddlTipo').attr("value", dados.tipo);
         $('#ddlTime').attr("value", dados.time);
+        $('#txtCelular').attr("value", dados.celular);
 
         $('#ddlTime').attr("disabled", "disabled");
     },
@@ -154,7 +156,8 @@ Jogador.prototype = {
                 nome: $('#txtNome').val(),
                 posicao: $('#txtPosicao').val(),
                 tipo: $('#ddlTipo').val(),
-                time: $('#ddlTime').val()
+                time: $('#ddlTime').val(),
+                celular: $('#txtCelular').val()
             }
             this.executeBind('../ServletInsereJogador', str, 'GET', this._cadastroOnSuccess);
         }
@@ -169,6 +172,7 @@ Jogador.prototype = {
                 posicao: $('#txtPosicao').val(),
                 tipo: $('#ddlTipo').val(),
                 time: $('#ddlTime').val(),
+                celular: $('#txtCelular').val(),
                 id: this._idSelecionado
             }
             this.executeBind('../ServletAlteraJogador', str, 'GET', this._cadastroOnSuccess);
@@ -176,7 +180,6 @@ Jogador.prototype = {
     },
 
     _cadastroOnSuccess: function(value) {
-        alert(value);
         this.executeBind('../ServletListaJogador', '', 'GET', this._loadListaOnSuccess);
     },
 

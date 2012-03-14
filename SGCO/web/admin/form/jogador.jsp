@@ -12,4 +12,7 @@
 <label><span>Time: </span>
     <select id="ddlTime">
     </select></label>
+<!-- campo celular -->
+<label><span>Celular: </span>
+    <input type="text" id="txtCelular" value="" maxlength="14" onkeypress="MascaraTelefone(this)"  /></label>
 <input id="btnCadastro" type="button" value="Salvar dados" class="botao inputBotao icone salvar" />

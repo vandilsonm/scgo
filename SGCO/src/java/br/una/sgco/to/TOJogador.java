@@ -16,6 +16,15 @@ public class TOJogador {
     private String _status;
     private String _tipo;
     private TOTime _time;
+    private String _celular;
+
+    public String getCelular() {
+        return _celular;
+    }
+
+    public void setCelular(String _celular) {
+        this._celular = _celular;
+    }
 
     public TOJogador () {
 
