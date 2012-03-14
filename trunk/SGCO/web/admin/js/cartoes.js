@@ -15,7 +15,7 @@ Cartoes.Load = function(){
 Cartoes.prototype = {
 
     initialize: function() {
-        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
+        alert('init'); this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
         this.executeBind('../ServletListaCartao', '', 'GET', this._loadListaOnSuccess);
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
@@ -28,7 +28,7 @@ Cartoes.prototype = {
 
     _loadListaOnSuccess: function(value) {
         var listaCartao = eval(value);
-
+        
         $('#spanTitulo').html('Cartão(ões) Cadastrado(s)');
 
         var html = "<tr><th>Jogo</th><th>Jogador</th><th>Tipo</th>"
@@ -58,6 +58,7 @@ Cartoes.prototype = {
             });
 
              var str = {
+                idCartao: listaCartao[i].idCartao,
                 idJogoCodigo: listaCartao[i].jogoCodigo,
                 idTimeCodigo: listaCartao[i].timeCodigo,
                 idJogadorCodigo: listaCartao[i].jogadorCodigo,
@@ -134,9 +135,8 @@ Cartoes.prototype = {
     _excluirItemOnClick: function (value) {
         if (confirm("Deseja excluir o registro?")) {
             var str = {
-                idCartao: value.data.id
-            };
-
+                idCartao: value.data.idCartao
+            };           
             this.executeBind('../ServletExcluiCartao', str, 'GET', this._cadastroOnSuccess);
         }
     },
@@ -233,7 +233,6 @@ Cartoes.prototype = {
     },
 
     _cadastroOnSuccess: function(value) {
-        alert(value);
         this.executeBind('../ServletListaCartao', '', 'GET', this._loadListaOnSuccess);
     },
 

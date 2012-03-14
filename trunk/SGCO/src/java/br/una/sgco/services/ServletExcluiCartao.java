@@ -35,8 +35,17 @@ public class ServletExcluiCartao extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            String idCartaoStr = request.getParameter("idCartao");
+            Integer idCartao = null;
+            try{
+                idCartao = Integer.parseInt(idCartaoStr);
+            }catch(NumberFormatException e){
+                out.print("Não é um numero valido.");
+                return;
+            }
+            System.out.println("id: "+idCartao);
             TOCartao cartao = new TOCartao();
-            cartao.setCodigo(Integer.parseInt(request.getParameter("idCartao")));
+            cartao.setCodigo(idCartao);
 
             BOCartao.excluir(cartao);
 
