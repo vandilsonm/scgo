@@ -49,7 +49,7 @@ public class DAOCartoes {
     }
 
     public static JSONArray obterTodos(TOCampeonato campeonato, Connection c) throws Exception {
-        String sql = " select crt.jog_codigo, crt.tim_codigo, crt.jgs_codigo, jog.jog_nome, "
+        String sql = " select crt.crt_codigo, crt.jog_codigo, crt.tim_codigo, crt.jgs_codigo, jog.jog_nome, "
                     + " tim1.tim_nome as time_mandante, tim2.tim_nome as time_visitante, crt.crt_tipo "
                     + " from sgc_cartoes_crt crt "
                     + "   inner join sgc_jogador_jog jog on crt.jog_codigo = jog.jog_codigo "
@@ -66,6 +66,7 @@ public class DAOCartoes {
 
         while (rs.next()) {
             JSONObject jo = new JSONObject();
+            jo.put("idCartao", rs.getInt("crt_codigo"));
             jo.put("jogoCodigo", rs.getInt("jgs_codigo"));
             jo.put("timeCodigo", rs.getInt("tim_codigo"));
             jo.put("jogadorCodigo", rs.getInt("jog_codigo"));
