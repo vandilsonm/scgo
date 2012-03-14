@@ -35,9 +35,7 @@
                     <ul class="breadcrumb">
                         <li><a href="index.jsp" title="Painel Administrativo">Painel Administrativo</a></li>
                         <li>&raquo;</li>
-                        <!--<li><a href="meuCampeonato.jsp?id=1" title="Campeonato">Campeonato Brasileiro</a></li>
-                        <li>&raquo;</li>-->
-                        <li><a href="jogador.jsp" title="Jogador">Jogador</a></li>
+                       <li><a href="jogador.jsp" title="Jogador">Jogador</a></li>
                     </ul>
                 </div>
 
@@ -87,5 +85,6 @@
         <script type="text/javascript" src="../js/loading.js"></script>
         <!-- javascript administrativo -->
         <script type="text/javascript" src="js/jogador.js"></script>
+        <script type="text/javascript" src="js/Mascara.js"></script>
     </body>
 </html>
