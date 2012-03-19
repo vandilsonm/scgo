@@ -60,7 +60,7 @@ public class BOPelada {
 
     }
 
-    public static JSONArray lista(TOPelada toPelada) throws Exception {
+    public static JSONArray listar(TOPelada toPelada) throws Exception {
         Connection connection = null;
         JSONArray jsonArrary;
 

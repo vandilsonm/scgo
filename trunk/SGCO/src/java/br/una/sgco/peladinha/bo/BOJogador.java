@@ -60,7 +60,7 @@ public class BOJogador {
 
     }
 
-    public static JSONArray lista(TOJogador toJogador) throws Exception {
+    public static JSONArray listar(TOJogador toJogador) throws Exception {
         Connection connection = null;
         JSONArray jsonArrary;
 

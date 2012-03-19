@@ -60,7 +60,7 @@ public class BOLocal {
 
     }
 
-    public static JSONArray lista(TOLocal toLocal) throws Exception {
+    public static JSONArray listar(TOLocal toLocal) throws Exception {
         Connection connection = null;
         JSONArray jsonArrary;
 
