@@ -213,6 +213,22 @@
         <servlet-name>ServletListaUltimosJogosCamp</servlet-name>
         <servlet-class>br.una.sgco.services.ServletListaUltimosJogosCamp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletInsereJogador_1</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirJogador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInserePelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirPelada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInsereLocal</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirLocal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInsereConfirmacao</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirConfirmacao</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCadastroUsuario</servlet-name>
         <url-pattern>/ServletCadastroUsuario</url-pattern>
@@ -416,6 +432,22 @@
     <servlet-mapping>
         <servlet-name>ServletListaUltimosJogosCamp</servlet-name>
         <url-pattern>/ServletListaUltimosJogosCamp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInsereJogador_1</servlet-name>
+        <url-pattern>/ServletInsereJogador_1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInserePelada</servlet-name>
+        <url-pattern>/ServletInserePelada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInsereLocal</servlet-name>
+        <url-pattern>/ServletInsereLocal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInsereConfirmacao</servlet-name>
+        <url-pattern>/ServletInsereConfirmacao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

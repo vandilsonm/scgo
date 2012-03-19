@@ -60,7 +60,7 @@ public class BOConfirmacao {
 
     }
 
-    public static JSONArray lista(TOConfirmacao toConfirmacao) throws Exception {
+    public static JSONArray listar(TOConfirmacao toConfirmacao) throws Exception {
         Connection connection = null;
         JSONArray jsonArrary;
 
