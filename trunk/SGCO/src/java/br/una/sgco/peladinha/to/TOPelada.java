@@ -5,6 +5,7 @@
 
 package br.una.sgco.peladinha.to;
 
+import br.una.sgco.to.TOUsuario;
 import java.sql.Time;
 
 /**
@@ -16,6 +17,24 @@ public class TOPelada {
     private String nome;
     private String descricao;
     private Time horario;
+    private TOLocal idLocal;
+    private TOUsuario criador;
+
+    public TOUsuario getCriador() {
+        return criador;
+    }
+
+    public void setCriador(TOUsuario criador) {
+        this.criador = criador;
+    }
+
+    public TOLocal getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(TOLocal idLocal) {
+        this.idLocal = idLocal;
+    }
 
     public String getDescricao() {
         return descricao;

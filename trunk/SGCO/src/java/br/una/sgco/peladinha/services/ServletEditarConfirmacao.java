@@ -45,7 +45,8 @@ public class ServletEditarConfirmacao extends HttpServlet {
             
             TOJogador toJogador = new TOJogador();
             toJogador.setId(Integer.parseInt(request.getParameter("idJogador").toString()));
-            toConfirmacao.setIdJogador(toJogador);            
+            toConfirmacao.setIdJogador(toJogador);   
+            
             BOConfirmacao.alterar(toConfirmacao);
 
             out.print("Alterações realizadas com sucesso.");

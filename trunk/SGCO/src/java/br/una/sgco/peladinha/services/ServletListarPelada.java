@@ -6,6 +6,7 @@ package br.una.sgco.peladinha.services;
 
 import br.una.sgco.peladinha.bo.BOPelada;
 import br.una.sgco.peladinha.to.TOPelada;
+import br.una.sgco.to.TOUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,10 +39,15 @@ public class ServletListarPelada extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try { 
+            HttpSession session = request.getSession();
+            
             TOPelada toPelada = new TOPelada();
-            toPelada.setId(Integer.parseInt(request.getParameter("id")));
-
-            out.print(BOPelada.listar(toPelada));
+            
+            TOUsuario toUsuario = new TOUsuario();
+            toUsuario.setCodigo(Integer.parseInt(session.getAttribute("usuario").toString()));
+            toPelada.setCriador(toUsuario);
+            
+            out.print(BOPelada.listarJogadores(toPelada));
         } catch (Exception e) {
             out.print(e.getMessage());
         } finally {

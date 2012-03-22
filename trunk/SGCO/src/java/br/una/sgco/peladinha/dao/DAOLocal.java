@@ -20,20 +20,20 @@ public class DAOLocal {
 
     public static void inserir (TOLocal toLocal, Connection connection) throws Exception {
 
-        String sql = " insert into sgc_local (idPelada, nome, endereco) "
-                    + " values (?, ?, ?)";
+        String sql = " insert into sgc_local (nome, endereco) "
+                    + " values (?, ?)";
 
         Data.executeUpdate(connection, sql, new Object[] {
-                            toLocal.getIdPelada().getId(), toLocal.getNome(),
+                            toLocal.getNome(),
                             toLocal.getEndereco()});
     }
 
     public static void alterar (TOLocal toLocal, Connection connection) throws Exception {
-        String sql = " update sgc_local set idPelada = ?, nome = ?, "
+        String sql = " update sgc_local set nome = ?, "
                 + " endereco = ? where id = ? ";
 
         Data.executeUpdate(connection, sql, new Object[] {
-                            toLocal.getIdPelada().getId(), toLocal.getNome(),
+                            toLocal.getNome(),
                             toLocal.getEndereco(), toLocal.getId()});
     }
 
@@ -46,7 +46,7 @@ public class DAOLocal {
 
     public static JSONObject get(TOLocal toLocal, Connection connection) throws Exception {
 
-       String sql = " select id, idPelada, nome, endereco from sgc_local where id = ?";
+       String sql = " select id, nome, endereco from sgc_local where id = ?";
 
         JSONObject jo = new JSONObject();
 
@@ -54,7 +54,6 @@ public class DAOLocal {
 
         if (rs.next()) {
             jo.put("id", rs.getInt("id"));
-            jo.put("idPelada", rs.getInt("idPelada"));
             jo.put("nome", rs.getString("nome"));
             jo.put("endereco", rs.getString("endereco"));
         }
@@ -66,7 +65,7 @@ public class DAOLocal {
 
     public static JSONArray lista(TOLocal toLocal, Connection connection) throws Exception {
 
-       String sql = " select id, idPelada, nome, endereco from sgc_local order by nome";
+       String sql = " select id, nome, endereco from sgc_local order by nome";
 
        JSONArray jsonArray = new JSONArray();
 
@@ -75,7 +74,6 @@ public class DAOLocal {
        while (rs.next()) {
             JSONObject jsonObejct = new JSONObject();
             jsonObejct.put("id", rs.getInt("id"));
-            jsonObejct.put("idPelada", rs.getInt("idPelada"));
             jsonObejct.put("nome", rs.getString("nome"));
             jsonObejct.put("endereco", rs.getString("endereco"));
             jsonArray.put(jsonObejct);

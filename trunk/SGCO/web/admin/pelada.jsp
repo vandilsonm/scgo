@@ -35,6 +35,8 @@
                 <div id="header_submenu">
                     <ul class="breadcrumb">
                         <li><a href="index.jsp" title="Painel Administrativo">Painel Administrativo</a></li>
+                        <li>&raquo;</li>
+                       <li><a href="jogador.jsp" title="Jogador">Jogador</a></li>
                     </ul>
                 </div>
 
@@ -46,9 +48,20 @@
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
-                        <h2>Meus Campeonatos</h2>
                     </div>
-                    <div id="links_moldura"></div>
+                    <div id="links_moldura">
+                        <div id="adm_container_one_text">
+                            <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo</a>
+                            <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
+                            <a href="meuCampeonato.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
+                            <h2>Gerenciando: <span class="corDestaque">Meus Campeonatos</span> // <span class="corDestaque">Jogador</span></h2>
+                            <fieldset>
+                                <span id="spanTitulo" class="legend"></span>
+                                <table width="540" border="1" cellspacing="2" cellpadding="2" id="adm_container_one_text_form" class="gridListagem">
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -72,6 +85,7 @@
         <script type="text/javascript" src="../js/util.js"></script>
         <script type="text/javascript" src="../js/loading.js"></script>
         <!-- javascript administrativo -->
-        <script type="text/javascript" src="js/home.js"></script>
+        <script type="text/javascript" src="js/jogador.js"></script>
+        <script type="text/javascript" src="js/Mascara.js"></script>
     </body>
 </html>

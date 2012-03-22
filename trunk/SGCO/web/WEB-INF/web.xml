@@ -445,9 +445,17 @@
         <servlet-name>ServletInsereLocal</servlet-name>
         <url-pattern>/ServletInsereLocal</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletListarPelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletListarPelada</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletInsereConfirmacao</servlet-name>
         <url-pattern>/ServletInsereConfirmacao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarPelada</servlet-name>
+        <url-pattern>/ServletListarPelada</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

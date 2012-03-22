@@ -39,10 +39,6 @@ public class ServletInserirLocal extends HttpServlet {
             toLocal.setNome(request.getParameter("nome"));
             toLocal.setEndereco(request.getParameter("endereco"));
 
-            TOPelada toPelada = new TOPelada();
-            toPelada.setId(Integer.parseInt(request.getParameter("idPelada").toString()));
-            toLocal.setIdPelada(toPelada);
-
             BOLocal.inserir(toLocal);
 
             out.print("Cadastro realizado com sucesso!");
