@@ -13,7 +13,6 @@ public class TOLocal {
     private int id;
     private String nome;
     private String endereco;
-    private TOPelada idPelada;
 
     public String getEndereco() {
         return endereco;
@@ -29,14 +28,6 @@ public class TOLocal {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public TOPelada getIdPelada() {
-        return idPelada;
-    }
-
-    public void setIdPelada(TOPelada idPelada) {
-        this.idPelada = idPelada;
     }
 
     public String getNome() {

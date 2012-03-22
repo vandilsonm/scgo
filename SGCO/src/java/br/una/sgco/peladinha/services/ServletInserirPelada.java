@@ -5,6 +5,7 @@
 package br.una.sgco.peladinha.services;
 
 import br.una.sgco.peladinha.bo.BOPelada;
+import br.una.sgco.peladinha.to.TOLocal;
 import br.una.sgco.peladinha.to.TOPelada;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,16 +39,23 @@ public class ServletInserirPelada extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            HttpSession session = request.getSession();
+                     
             String str = request.getParameter("horario");  
             SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");  
             Date data = formatador.parse(str);  
             Time time = new Time(data.getTime()); 
             
-            
             TOPelada toPelada = new TOPelada();
+            toPelada.getCriador().setCodigo(Integer.parseInt(session.getAttribute("usuario").toString()));
+            
             toPelada.setNome(request.getParameter("nome"));
             toPelada.setDescricao(request.getParameter("descricao"));
             toPelada.setHorario(time);
+            
+            TOLocal toLocal = new TOLocal();
+            toLocal.setId(Integer.parseInt(request.getParameter("idJogador").toString()));
+            toPelada.setIdLocal(toLocal);             
 
             BOPelada.inserir(toPelada);
 

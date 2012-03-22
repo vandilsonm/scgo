@@ -75,6 +75,22 @@ public class BOPelada {
 
         return jsonArrary;
     }
+    
+    public static JSONArray listarJogadores(TOPelada toPelada) throws Exception {
+        Connection connection = null;
+        JSONArray jsonArrary;
+
+        try {
+            connection = Data.openConnection();
+            jsonArrary = DAOPelada.getJogadores(toPelada, connection);
+
+        } finally {
+            if (connection != null)
+                connection.close();
+        }
+
+        return jsonArrary;
+    }
 
     public static JSONObject get(TOPelada toPelada) throws Exception {
         Connection connection = null;

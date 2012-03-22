@@ -20,21 +20,23 @@ public class DAOPelada {
     
     public static void inserir (TOPelada toPelada, Connection connection) throws Exception {
 
-        String sql = " insert into sgc_pelada (nome, descricao, horario) "
-                    + " values (?, ?, ?)";
+        String sql = " insert into sgc_pelada (nome, descricao, horario, idLocal, criador) "
+                    + " values (?, ?, ?, ?, ?)";
 
         Data.executeUpdate(connection, sql, new Object[] {
                             toPelada.getNome(), toPelada.getDescricao(),
-                            toPelada.getHorario()});
+                            toPelada.getHorario(), toPelada.getIdLocal().getId(),
+                            toPelada.getCriador().getCodigo()});
     }
 
     public static void alterar (TOPelada toPelada, Connection connection) throws Exception {
         String sql = " update sgc_pelada set nome = ?, descricao = ?, "
-                + " horario = ? where id = ? ";
+                + " horario = ?, idLocal = ?, criador = ? where id = ? ";
 
         Data.executeUpdate(connection, sql, new Object[] {
                             toPelada.getNome(), toPelada.getDescricao(),
-                            toPelada.getHorario(), toPelada.getId()});
+                            toPelada.getHorario(), toPelada.getId(),
+                            toPelada.getIdLocal().getId(), toPelada.getCriador().getCodigo()});
     }
 
     public static void excluir (TOPelada toPelada, Connection connection) throws Exception {
@@ -46,7 +48,7 @@ public class DAOPelada {
 
     public static JSONObject get(TOPelada toPelada, Connection connection) throws Exception {
 
-       String sql = " select id, nome, descricao, horario from sgc_pelada where id = ?";
+       String sql = " select id, nome, descricao, horario, idLocal, criador from sgc_pelada where id = ?";
 
         JSONObject jo = new JSONObject();
 
@@ -57,6 +59,8 @@ public class DAOPelada {
             jo.put("nome", rs.getString("nome"));
             jo.put("descricao", rs.getString("descricao"));
             jo.put("horario", rs.getTime("horario"));
+            jo.put("idLocal", rs.getInt("idLocal"));
+            jo.put("criador", rs.getInt("criador"));
         }
 
         rs.close();
@@ -66,11 +70,11 @@ public class DAOPelada {
 
     public static JSONArray lista(TOPelada toPelada, Connection connection) throws Exception {
 
-       String sql = " select id, nome, descricao, horario from sgc_pelada order by nome";
+       String sql = " select id, nome, descricao, horario, idLocal, criador from sgc_pelada order by nome";
 
        JSONArray jsonArray = new JSONArray();
 
-       ResultSet rs = Data.executeQuery(connection, sql, new Object[]{toPelada.getId()});
+       ResultSet rs = Data.executeQuery(connection, sql);
 
        while (rs.next()) {
             JSONObject jsonObejct = new JSONObject();
@@ -78,6 +82,31 @@ public class DAOPelada {
             jsonObejct.put("nome", rs.getString("nome"));
             jsonObejct.put("descricao", rs.getString("descricao"));
             jsonObejct.put("horario", rs.getTime("horario"));
+            jsonObejct.put("idLocal", rs.getInt("idLocal"));   
+            jsonObejct.put("criador", rs.getInt("criador"));
+            jsonArray.put(jsonObejct);
+        }
+
+        rs.close();
+        return jsonArray;
+    }
+    
+    public static JSONArray getJogadores(TOPelada toPelada, Connection connection) throws Exception {
+
+       String sql = " select id, nome, descricao, horario, idLocal, criador "
+               + "from sgc_pelada where criador = ? order by nome";
+       JSONArray jsonArray = new JSONArray();
+
+       ResultSet rs = Data.executeQuery(connection, sql, new Object[]{toPelada.getCriador()});
+
+       while (rs.next()) {
+            JSONObject jsonObejct = new JSONObject();
+            jsonObejct.put("id", rs.getInt("id"));
+            jsonObejct.put("nome", rs.getString("nome"));
+            jsonObejct.put("descricao", rs.getString("descricao"));
+            jsonObejct.put("horario", rs.getTime("horario"));
+            jsonObejct.put("idLocal", rs.getInt("idLocal"));   
+            jsonObejct.put("criador", rs.getInt("criador"));
             jsonArray.put(jsonObejct);
         }
 
