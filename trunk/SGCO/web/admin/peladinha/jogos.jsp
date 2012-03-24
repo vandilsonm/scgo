@@ -4,9 +4,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Painel Administrativo - GOLAÇO</title>
-        <link href="../css/reset-min.css" rel="stylesheet" type="text/css" />
-        <link href="../css/style.css" rel="stylesheet" type="text/css" />
-        <link href="../css/style-css3.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/reset-min.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/style-css3.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -19,14 +19,14 @@
 
                 <!-- logo -->
                 <div id="header_logo">
-                    <a href="../index.jsp" title="Página Inícial"><img src="../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
+                    <a href="../../index.jsp" title="Página Inícial"><img src="../../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
                 </div>
 
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
-                        <li><a href="sair.jsp" title="">Sair (logout)</a></li>
+                        <li><a href="../index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
+                        <li><a href="../sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
 
@@ -35,7 +35,9 @@
                     <ul class="breadcrumb">
                         <li><a href="index.jsp" title="Painel Administrativo">Painel Administrativo</a></li>
                         <li>&raquo;</li>
-                       <li><a href="jogador.jsp" title="Jogador">Jogador</a></li>
+                        <!--<li><a href="meuCampeonato.jsp?id=1" title="Campeonato">Campeonato Brasileiro</a></li>
+                        <li>&raquo;</li>-->
+                        <li><a href="jogos.jsp" title="Jogos">Jogos</a></li>
                     </ul>
                 </div>
 
@@ -47,13 +49,14 @@
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
+                        <h2>Meus Campeonatos</h2>
                     </div>
                     <div id="links_moldura">
                         <div id="adm_container_one_text">
                             <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo</a>
                             <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
-                            <a href="meuCampeonato.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
-                            <h2>Gerenciando: <span class="corDestaque">Meus Campeonatos</span> // <span class="corDestaque">Jogador</span></h2>
+                            <a href="index.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
+                            <h2>Gerenciando: <span class="corDestaque">Meus Campeonatos</span> // <span class="corDestaque">Jogos</span></h2>
                             <fieldset>
                                 <span id="spanTitulo" class="legend"></span>
                                 <table width="540" border="1" cellspacing="2" cellpadding="2" id="adm_container_one_text_form" class="gridListagem">
@@ -80,11 +83,11 @@
         </div>
 
         <!-- javascript global -->
-        <script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
-        <script type="text/javascript" src="../js/util.js"></script>
-        <script type="text/javascript" src="../js/loading.js"></script>
+        <script type="text/javascript" src="../../js/jquery-1.5.2.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.maskedinput-1.2.2.js"></script>
+        <script type="text/javascript" src="../../js/util.js"></script>
+        <script type="text/javascript" src="../../js/loading.js"></script>
         <!-- javascript administrativo -->
-        <script type="text/javascript" src="js/jogador.js"></script>
-        <script type="text/javascript" src="js/Mascara.js"></script>
+        <script type="text/javascript" src="js/jogos.js"></script>
     </body>
 </html>

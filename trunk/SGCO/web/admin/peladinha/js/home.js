@@ -15,26 +15,13 @@ Home.Load = function(){
 Home.prototype = {
 
     initialize: function() {
-        // Campeonatos
-        this.executeBind('content/home.jsp', '', 'GET', this._dataBind_OnSuccess);
         // Peladinha
-        this.executeBind('peladinha/content/home.jsp', '', 'GET', this._dataBind_Peladinha_OnSuccess);
-        // seleciona modulo
-        this.executeBind('content/modulo.jsp', '', 'GET', this._dataBind_Modulo_OnSuccess);
-    },
-
-    _dataBind_OnSuccess: function(value){
-        $('#links_moldura').html(value);
-        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._sucessoListaCampeonato);
+        this.executeBind('content/home_interno.jsp', '', 'GET', this._dataBind_Peladinha_OnSuccess);
     },
 
     _dataBind_Peladinha_OnSuccess: function(value){
         $('#peladinha_links_moldura').html(value);
         //this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._sucessoListaCampeonato);
-    },
-
-    _dataBind_Modulo_OnSuccess: function(value){
-        $('#seleciona_modulo').html(value);
     },
     
     _sucessoListaCampeonato: function(value){

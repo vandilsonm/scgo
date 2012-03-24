@@ -25,8 +25,6 @@
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Painel Administrativo">Painel Administrativo</a></li>
-                        <li><a href="pelada.jsp" class="selecionado" title="Peladinha">Peladinha</a></li>
                         <li><a href="sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
@@ -44,11 +42,23 @@
             <div id="container">
                 <!-- coluna unica -->
                 <div id="container_one_text">
-                    <h1>Painel Administrativo</h1>
-                    <div id="painel_links">
-                        <h2>Meus Campeonatos</h2>
+                    <div id="modulo_campeonato" style="display: none">
+                        <h1>Painel Administrativo: Campeonato</h1>
+                        <div id="painel_links">
+                            <h2>Meus Campeonatos</h2>
+                        </div>
+                        <div id="links_moldura"></div>
                     </div>
-                    <div id="links_moldura"></div>
+                    <div id="modulo_peladinha" style="display: none">
+                        <h1>Painel Administrativo: Peladinha</h1>
+                        <div id="peladinha_painel_links">
+                            <h2>Meus Jogos</h2>
+                        </div>
+                        <div id="peladinha_links_moldura"></div>
+                    </div>
+                    <div id="seleciona_modulo">
+                        
+                    </div>
                 </div>
             </div>
 

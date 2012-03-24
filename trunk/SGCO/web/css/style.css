@@ -388,7 +388,7 @@ a {
     width: 260px;
 }
 /* painel de controle */
-#painel_links{
+#painel_links, #peladinha_painel_links{
     display: inline-block;
     width: 200px;
     margin-right: 10px;
