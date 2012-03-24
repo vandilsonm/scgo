@@ -4,9 +4,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Painel Administrativo - GOLAÇO</title>
-        <link href="../css/reset-min.css" rel="stylesheet" type="text/css" />
-        <link href="../css/style.css" rel="stylesheet" type="text/css" />
-        <link href="../css/style-css3.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/reset-min.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/style-css3.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -19,14 +19,14 @@
 
                 <!-- logo -->
                 <div id="header_logo">
-                    <a href="../index.jsp" title="Página Inícial"><img src="../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
+                    <a href="../../index.jsp" title="Página Inícial"><img src="../../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
                 </div>
 
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
-                        <li><a href="sair.jsp" title="">Sair (logout)</a></li>
+                        <li><a href="../index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
+                        <li><a href="../sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
 
@@ -43,11 +43,13 @@
             <div id="container">
                 <!-- coluna unica -->
                 <div id="container_one_text">
-                    <h1>Painel Administrativo</h1>
-                    <div id="painel_links">
-                        <h2>Meus Campeonatos</h2>
+                    <div id="modulo_peladinha">
+                        <h1>Painel Administrativo: Peladinha</h1>
+                        <div id="peladinha_painel_links">
+                            <h2>Meus Jogos</h2>
+                        </div>
+                        <div id="peladinha_links_moldura"></div>
                     </div>
-                    <div id="links_moldura"></div>
                 </div>
             </div>
 
@@ -67,10 +69,10 @@
         </div>
 
         <!-- javascript global -->
-        <script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
-        <script type="text/javascript" src="../js/util.js"></script>
-        <script type="text/javascript" src="../js/loading.js"></script>
+        <script type="text/javascript" src="../../js/jquery-1.5.2.min.js"></script>
+        <script type="text/javascript" src="../../js/util.js"></script>
+        <script type="text/javascript" src="../../js/loading.js"></script>
         <!-- javascript administrativo -->
-        <script type="text/javascript" src="js/meuCampeonato.js"></script>
+        <script type="text/javascript" src="js/home.js"></script>
     </body>
 </html>
