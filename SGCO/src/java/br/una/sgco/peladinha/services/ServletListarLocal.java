@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,11 +35,25 @@ public class ServletListarLocal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            HttpSession session = request.getSession();
+            String idStr = session.getAttribute("usuario").toString();
+            Integer id = null;
+           
+            if(idStr != null){
+                try {
+                    id = Integer.parseInt(idStr);
+                } catch (Exception e) {}
+            }
+            
+            if(id == null)
+                 throw new Exception("Id invalido.");
+            
             TOLocal toLocal = new TOLocal();
-            toLocal.setId(Integer.parseInt(request.getParameter("id")));
+            toLocal.setIdUsuario(id);
 
             out.print(BOLocal.listar(toLocal));
         } catch (Exception e) {
+            System.out.println("msg"+e.getMessage());
             out.print(e.getMessage());
         } finally {
             out.close();

@@ -15,8 +15,7 @@ Local.Load = function(){
 Local.prototype = {
 
     initialize: function() {
-        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
-        this.executeBind('../ServletListaLocal', '', 'GET', this._sucessoLoadLista);
+        this._loadLista();
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
@@ -47,22 +46,22 @@ Local.prototype = {
     },
 
     _loadNovo: function() {
-        this.executeBind('form/estadio.jsp', '', 'GET', this._sucessoLoadNovo);
+        this.executeBind('form/local.jsp', '', 'GET', this._sucessoLoadNovo);
     },
 
     _sucessoLoadNovo: function(value) {
         $('#adm_container_one_text_form').html(value);
-        $('#spanTitulo').html('Cadastro de Estádio');
+        $('#spanTitulo').html('Cadastro de Local');
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroOnClick));
     },
 
     _loadLista: function() {
-        this.executeBind('../ServletListaLocal', '', 'GET', this._sucessoLoadLista);
+        this.executeBind('../../ServletListarLocal', '', 'GET', this._sucessoLoadLista);
     },
 
     _sucessoLoadLista: function(value) {
         var listaLocal = eval(value);
-
+        
         $('#spanTitulo').html('Estádios(s) Cadastrado(s)');
 
         var html = "<tr><th>Nome</th><th class=\"alingCenter\">Editar</th>";
@@ -82,7 +81,7 @@ Local.prototype = {
             });
 
              var str = {
-                id: listaLocal[i].codigo,
+                id: listaLocal[i].id,
                 index: i
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
@@ -92,22 +91,23 @@ Local.prototype = {
 
     _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
-        this.executeBind('form/estadio.jsp', '', 'GET', this._alterarOnSuccess);
+        this.executeBind('form/local.jsp', '', 'GET', this._alterarOnSuccess);
     },
 
     _alterarOnSuccess: function(value) {
         $('#spanTitulo').html('Alteração de Estádio');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
-
         var str = {
-            id: this._idSelecionado
+            idLocal: this._idSelecionado
         }
-        this.executeBind('../ServletListaUmLocal', str, 'GET', this._alterarLoadOnSuccess);
+        this.executeBind('../../ServletListaUmLocal', str, 'GET', this._alterarLoadOnSuccess);
     },
 
     _alterarLoadOnSuccess: function(value) {
-        var dados = eval("(" + value + ")");
+        
+        var json = eval(value);
+        
         $('#txtNome').attr("value", dados.nome);
         $('#txtLogradouro').attr("value", dados.logradouro);
         $('#txtNumero').attr("value", dados.numero);
@@ -118,14 +118,14 @@ Local.prototype = {
     },
 
     _excluirItemOnClick: function (value) {
-        if (confirm("Deseja excluir o registro?")) {
+        if (confirm("Deseja excluir o registro?"+value.data.id)) {
             this._idSelecionado = value.data.id;
 
             var str = {
-                id: this._idSelecionado
+                idLocal: this._idSelecionado
             };
 
-            this.executeBind('../ServletExcluiLocal', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../ServletExcluirLocal', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
@@ -133,17 +133,17 @@ Local.prototype = {
         if ($('#txtNome').val() == '') {
             alert("É obrigatório informar o nome.");
         }
+       
         else {
-            var str = {
-                nome: $('#txtNome').val(),
-                logradouro: $('#txtLogradouro').val(),
-                numero: $('#txtNumero').val(),
-                complemento: $('#txtComplemento').val(),
-                bairro: $('#txtBairro').val(),
-                cidade: $('#txtCidade').val(),
-                estado: $('#ddlEstado').val()
-            }
-            this.executeBind('../ServletInsereLocal', str, 'GET', this._cadastroOnSuccess);
+             var str = {nome: $('#txtNome').val(),
+            logradouro: $('#txtLogradouro').val(),
+            numero: $('#txtNumero').val(),
+            complemento: $('#txtComplemento').val(),
+            bairro: $('#txtBairro').val(),
+            cidade: $('#txtCidade').val(),
+            estado: $('#ddlEstado').val()};
+           
+           this.executeBind('../../ServletInserirLocal', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
@@ -169,7 +169,7 @@ Local.prototype = {
     _cadastroOnSuccess: function(value) {
         alert(value);
 
-        this.executeBind('../ServletListaLocal', '', 'GET', this._sucessoLoadLista);
+       this._loadLista();
     },
 
     executeBind: function(dataUrl, data, type, handlerSuccess) {
