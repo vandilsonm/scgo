@@ -66,6 +66,7 @@ public class Data {
 
     public static int executeUpdate(Connection conn, String query) throws SQLException {
         Statement stm = conn.createStatement();
+        System.out.println("sql: "+stm.toString());
         return stm.executeUpdate(query);
     }
 
@@ -76,6 +77,7 @@ public class Data {
         for (int i = 1; i <= parametros.length; i++) {
             pstmt.setObject(i, parametros[i - 1]);
         }
+        System.out.println("executeQuery: "+pstmt);
         return pstmt.executeQuery();
     }
 

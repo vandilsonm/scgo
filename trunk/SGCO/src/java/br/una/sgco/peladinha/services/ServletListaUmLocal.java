@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jana Louback
  */
-public class ServletExcluirLocal extends HttpServlet {
+public class ServletListaUmLocal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,39 +38,35 @@ public class ServletExcluirLocal extends HttpServlet {
             HttpSession session = request.getSession();
             String idStr = session.getAttribute("usuario").toString();
             String idLocalStr = request.getParameter("idLocal");
-           
-            //valida id Usuario
+            
             Integer id = null;
+           
             if(idStr != null){
                 try {
                     id = Integer.parseInt(idStr);
-                } catch (Exception e) {
-                    throw new Exception("id usuário não é um número.");
-                }
+                } catch (Exception e) {}
             }
+            
             if(id == null)
                  throw new Exception("Id invalido.");
             
-            //valida id Usuario
             Integer idLocal = null;
             if(idLocalStr != null){
                 try {
                     idLocal = Integer.parseInt(idLocalStr);
-                } catch (Exception e) {
-                    throw new Exception("id local não é um número.");
-                }
+                } catch (Exception e) {}
             }
+            
             if(idLocal == null)
-                 throw new Exception("id local invalido.");
+                 throw new Exception("Id usuario invalido.");
             
             TOLocal toLocal = new TOLocal();
-            toLocal.setId(idLocal);
             toLocal.setIdUsuario(id);
+            toLocal.setId(idLocal);
 
-            BOLocal.excluir(toLocal);
-
-            out.print("Registro excluído com sucesso.");
+            out.print(BOLocal.get(toLocal));
         } catch (Exception e) {
+            System.out.println("msg"+e.getMessage());
             out.print(e.getMessage());
         } finally {
             out.close();

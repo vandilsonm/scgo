@@ -6,13 +6,13 @@ package br.una.sgco.peladinha.services;
 
 import br.una.sgco.peladinha.bo.BOLocal;
 import br.una.sgco.peladinha.to.TOLocal;
-import br.una.sgco.peladinha.to.TOPelada;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,11 +35,68 @@ public class ServletEditarLocal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            
+              HttpSession session = request.getSession();
+            String idStr = session.getAttribute("usuario").toString();
+            String nome = request.getParameter("nome");
+            String logradouro  = request.getParameter("logradouro");
+            String numero  = request.getParameter("numero");
+            String complemento  = request.getParameter("complemento");
+            String bairro  = request.getParameter("bairro");
+            String cidade  = request.getParameter("cidade");
+            
+            //valida id Usuario
+            Integer id = null;
+            if(idStr != null){
+                try {
+                    id = Integer.parseInt(idStr);
+                } catch (Exception e) {
+                    throw new Exception("id usuário não é um número.");
+                }
+            }
+            if(id == null)
+                 throw new Exception("Id invalido.");
+            
+            // valida nome
+            if(nome == null || nome.equals(""))
+                throw new Exception("Campo nome vazio.");
+            
+            // valida endereco
+            if(logradouro == null || logradouro.equals(""))
+                throw new Exception("Campo logradouro vazio.");
+            
+            // valida endereco
+            if(numero == null || numero.equals(""))
+                throw new Exception("Campo numero vazio.");
+            
+            
+            // valida endereco
+            if(complemento == null || complemento.equals(""))
+                throw new Exception("Campo complemento vazio.");
+            
+            
+            // valida endereco
+            if(bairro == null || bairro.equals(""))
+                throw new Exception("Campo bairro vazio.");
+            
+            
+            // valida endereco
+            if(cidade == null || cidade.equals(""))
+                throw new Exception("Campo cidade vazio.");
+            
+            
+            
+           
             TOLocal toLocal = new TOLocal();
-            toLocal.setId(Integer.parseInt(request.getParameter("id")));
-            toLocal.setNome(request.getParameter("nome"));
-            toLocal.setEndereco(request.getParameter("endereco"));
-
+            toLocal.setNome(nome);
+            toLocal.setIdUsuario(id);
+            toLocal.setLogradouro(logradouro);
+            toLocal.setNumero(numero);
+            toLocal.setComplemento(complemento);
+            toLocal.setBairro(bairro);
+            toLocal.setCidade(cidade);
+            toLocal.setIdUsuario(id);
+        
             BOLocal.alterar(toLocal);
 
             out.print("Alterações realizadas com sucesso.");
