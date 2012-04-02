@@ -39,13 +39,13 @@ public class ServletExcluirLocal extends HttpServlet {
             String idStr = session.getAttribute("usuario").toString();
             String idLocalStr = request.getParameter("idLocal");
            
-            //valida id Usuario
+            //valida id Usuário
             Integer id = null;
             if(idStr != null){
                 try {
                     id = Integer.parseInt(idStr);
                 } catch (Exception e) {
-                    throw new Exception("id usuário não é um número.");
+                    throw new Exception("Id usuário não é um número.");
                 }
             }
             if(id == null)
