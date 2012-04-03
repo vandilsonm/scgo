@@ -36,26 +36,41 @@ public class ServletEditarLocal extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
-              HttpSession session = request.getSession();
-            String idStr = session.getAttribute("usuario").toString();
+            HttpSession session = request.getSession();
+            String idUsuarioStr = session.getAttribute("usuario").toString();
+            String idLocalStr = request.getParameter("id");
             String nome = request.getParameter("nome");
             String logradouro  = request.getParameter("logradouro");
             String numero  = request.getParameter("numero");
             String complemento  = request.getParameter("complemento");
             String bairro  = request.getParameter("bairro");
             String cidade  = request.getParameter("cidade");
+            String estado = request.getParameter("estado");
             
-            //valida id Usuario
-            Integer id = null;
-            if(idStr != null){
+            //valida id Usuário
+            Integer idUsuario = null;
+            if(idUsuarioStr != null){
                 try {
-                    id = Integer.parseInt(idStr);
+                    idUsuario = Integer.parseInt(idUsuarioStr);
                 } catch (Exception e) {
-                    throw new Exception("id usuário não é um número.");
+                    throw new Exception("Id usuário não é um número.");
                 }
             }
-            if(id == null)
-                 throw new Exception("Id invalido.");
+            if(idUsuario == null)
+                 throw new Exception("Id inválido.");
+            
+            
+            //valida id local
+            Integer idLocal = null;
+            if(idLocalStr != null){
+                try {
+                    idLocal = Integer.parseInt(idLocalStr);
+                } catch (Exception e) {
+                    throw new Exception("Id local não é um número.");
+                }
+            }
+            if(idLocal == null)
+                 throw new Exception("Id inválido.");
             
             // valida nome
             if(nome == null || nome.equals(""))
@@ -64,38 +79,26 @@ public class ServletEditarLocal extends HttpServlet {
             // valida endereco
             if(logradouro == null || logradouro.equals(""))
                 throw new Exception("Campo logradouro vazio.");
-            
-            // valida endereco
+
             if(numero == null || numero.equals(""))
                 throw new Exception("Campo numero vazio.");
-            
-            
-            // valida endereco
-            if(complemento == null || complemento.equals(""))
-                throw new Exception("Campo complemento vazio.");
-            
-            
-            // valida endereco
+
             if(bairro == null || bairro.equals(""))
                 throw new Exception("Campo bairro vazio.");
             
-            
-            // valida endereco
             if(cidade == null || cidade.equals(""))
                 throw new Exception("Campo cidade vazio.");
-            
-            
-            
            
             TOLocal toLocal = new TOLocal();
+            toLocal.setId(idLocal);
             toLocal.setNome(nome);
-            toLocal.setIdUsuario(id);
+            toLocal.setIdUsuario(idUsuario);
             toLocal.setLogradouro(logradouro);
             toLocal.setNumero(numero);
             toLocal.setComplemento(complemento);
             toLocal.setBairro(bairro);
             toLocal.setCidade(cidade);
-            toLocal.setIdUsuario(id);
+            toLocal.setEstado(estado);
         
             BOLocal.alterar(toLocal);
 

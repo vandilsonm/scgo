@@ -4,6 +4,7 @@ Local = function(){
     this._type = null;
     this._dataSource = null;
     this._handlerSuccess = null;
+    this._idSelecionado = null;
 }
 
 Local.Load = function(){
@@ -106,7 +107,7 @@ Local.prototype = {
 
     _alterarLoadOnSuccess: function(value) {
         
-        var json = eval(value);
+        var dados = eval("(" + value + ")");
         
         $('#txtNome').attr("value", dados.nome);
         $('#txtLogradouro').attr("value", dados.logradouro);
@@ -114,11 +115,11 @@ Local.prototype = {
         $('#txtComplemento').attr("value", dados.complemento);
         $('#txtBairro').attr("value", dados.bairro);
         $('#txtCidade').attr("value", dados.cidade);
-        $('#txtEstado').attr("value", dados.estado);
+        $('#ddlEstado').attr("value", dados.estado);
     },
 
     _excluirItemOnClick: function (value) {
-        if (confirm("Deseja excluir o registro?"+value.data.id)) {
+        if (confirm("Deseja excluir o registro? "+ value.data.id)) {
             this._idSelecionado = value.data.id;
 
             var str = {
@@ -162,7 +163,7 @@ Local.prototype = {
                 estado: $('#ddlEstado').val(),
                 id: this._idSelecionado
             }
-            this.executeBind('../ServletAlteraLocal', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../ServletEditarLocal', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
