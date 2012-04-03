@@ -25,7 +25,7 @@
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="../index.jsp" class="selecionado" title="Trocar Módulo">Trocar Modulo</a></li>
+                        <li><a href="../index.jsp" class="selecionado" title="Trocar Módulo">Trocar Módulo</a></li>
                         <li><a href="../sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
@@ -88,6 +88,6 @@
         <script type="text/javascript" src="../../js/util.js"></script>
         <script type="text/javascript" src="../../js/loading.js"></script>
         <!-- javascript administrativo -->
-        <script type="text/javascript" src="js/jogos.js"></script>
+        <script type="text/javascript" src="js/jogosPeladinha.js"></script>
     </body>
 </html>

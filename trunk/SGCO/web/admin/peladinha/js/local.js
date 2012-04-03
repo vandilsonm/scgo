@@ -119,7 +119,7 @@ Local.prototype = {
     },
 
     _excluirItemOnClick: function (value) {
-        if (confirm("Deseja excluir o registro? "+ value.data.id)) {
+        if (confirm("Deseja excluir o registro? ")) {
             this._idSelecionado = value.data.id;
 
             var str = {
@@ -148,7 +148,7 @@ Local.prototype = {
         }
     },
 
-    _btnCadastroAltOnClick: function (value) {
+    _btnCadastroAltOnClick: function () {
         if ($('#txtNome').val() == '') {
             alert("É obrigatório informar o nome.");
         }
@@ -168,9 +168,7 @@ Local.prototype = {
     },
 
     _cadastroOnSuccess: function(value) {
-        alert(value);
-
-       this._loadLista();
+        this._loadLista();
     },
 
     executeBind: function(dataUrl, data, type, handlerSuccess) {

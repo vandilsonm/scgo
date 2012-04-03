@@ -1,4 +1,4 @@
-Jogos = function(){
+JogosPeladinha = function(){
     this._data = null;
     this._dataUrl = null;
     this._type = null;
@@ -7,17 +7,16 @@ Jogos = function(){
     this._idSelecionado = null;
 }
 
-Jogos.Load = function(){
-    var _dados = new Jogos();
+JogosPeladinha.Load = function(){
+    var _dados = new JogosPeladinha();
     _dados.initialize();
     return _dados;
 }
 
-Jogos.prototype = {
+JogosPeladinha.prototype = {
 
     initialize: function() {
-        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
-        this.executeBind('../ServletListaJogo', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
@@ -47,14 +46,14 @@ Jogos.prototype = {
         $('#painel_links').html(htmlLinks);
     },
 
-    _listaEstadio: function (value) {
-        var listaEstadio = eval(value);
-        $('#ddlEstadio').html('');
+    _listaLocal: function (value) {
+        var listarLocal = eval(value);
+        $('#ddlLocal').html('');
 
-        for (var i = 0; i < listaEstadio.length; i++ ) {
-            $('#ddlEstadio').append('<option value="' +
-                listaEstadio[i].codigo + '">' +
-                listaEstadio[i].nome + '</option>');
+        for (var i = 0; i < listarLocal.length; i++ ) {
+            $('#ddlLocal').append('<option value="' +
+                listarLocal[i].id + '">' +
+                listarLocal[i].nome + '</option>');
         }
     },
 
@@ -106,40 +105,37 @@ Jogos.prototype = {
     },
 
     _loadNovo: function() {
-        this.executeBind('form/jogos.jsp', '', 'GET', this._loadNovoOnSuccess);
+        this.executeBind('form/peladinha.jsp', '', 'GET', this._loadNovoOnSuccess);
     },
 
     _loadNovoOnSuccess: function(value) {
-        $('#spanTitulo').html('Cadastro de Jogo');
+        $('#spanTitulo').html('Cadastro de Peladinha');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroOnClick));
-        this.executeBind('../ServletListaEstadio', '', 'GET', this._listaEstadio);
-        this.executeBind('../ServletListaTime', '', 'GET', this._listaTime);
-        this.executeBind('../ServletListaArbitragem', '', 'GET', this._listaArbitro);
-
-        $("#txtDataHora").mask("99/99/9999 99:99");
+        this.executeBind('../ServletListarLocal', '', 'GET', this._listaLocal);
     },
 
     _loadLista: function() {
-        this.executeBind('../ServletListaJogo', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
     _loadListaOnSuccess: function(value) {
-        var listaJogos = eval(value);
+        var listaPeladinha = eval(value);
 
-        $('#spanTitulo').html('Jogo(s) Cadastrado(s)');
+        $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
 
-        var html = "<tr><th>Time Mandante</th><th>Time Visitante</th><th>Data/hora</th>";
+        var html = "<tr><th>Nome</th><th>Descricao</th><th>Horário</th><th>Local</th>";
         html += "<th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
-        for (var i = 0; i < listaJogos.length; i++ ) {
+        for (var i = 0; i < listaPeladinha.length; i++ ) {
             html = "";
-            html += "<tr><td>" + listaJogos[i].timeMandante + "</td>";
-            html += "<td>" + listaJogos[i].timeVisitante + "</td>";
-            html += "<td>" + listaJogos[i].dataHora + "</td>";
+            html += "<tr><td>" + listaPeladinha[i].nome + "</td>";
+            html += "<td>" + listaPeladinha[i].descricao + "</td>";
+            html += "<td>" + listaPeladinha[i].horario + "</td>";
+            html += "<td>" + listaPeladinha[i].local + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "</tr>";
@@ -149,7 +145,7 @@ Jogos.prototype = {
             });
 
              var str = {
-                id: listaJogos[i].codigo,
+                id: listaPeladinha[i].id,
                 index: i
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
@@ -159,11 +155,11 @@ Jogos.prototype = {
 
     _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
-        this.executeBind('form/jogos.jsp', '', 'GET', this._alterarOnSuccess);
+        this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
     },
 
     _alterarOnSuccess: function(value) {
-        $('#spanTitulo').html('Alteração de Jogo');
+        $('#spanTitulo').html('Alteração da peladinha');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
 
@@ -188,71 +184,47 @@ Jogos.prototype = {
     },
 
     _btnCadastroOnClick: function() {
-        if ($('#ddlEstadio').val() == ''
-            || $('#ddlTimeMandante').val() == ''
-            || $('#ddlTimeVisitante').val() == ''
-            || $('#txtDataHora').val() == ''
-            || $('#ddlJuiz').val() == ''
-            || $('#ddlJuizReserva').val() == ''
-            || $('#ddlBandeirinha1').val() == ''
-            || $('#ddlBandeirinha2').val() == '')
+        if ($('#txtNome').val() == ''
+            || $('#txtDescricao').val() == ''
+            || $('#txtHorario').val() == ''
+            || $('#ddlLocal').val() == '')
 
             alert("É obrigatório informar todos os campos.");
         else {
-            if ($('#ddlTimeMandante').val() == $('#ddlTimeVisitante').val()) {
-                alert("O time visitante deve ser diferente do mandante.");
+            var str = {
+                nome: $('#txtNome').val(),
+                descricao: $('#txtDescricao').val(),
+                horario: $('#txtHorario').val(),
+                local: $('#ddlLocal').val()
             }
-            else {
-                var str = {
-                    estadio: $('#ddlEstadio').val(),
-                    timeMandante: $('#ddlTimeMandante').val(),
-                    timeVisitante: $('#ddlTimeVisitante').val(),
-                    dataHora: $('#txtDataHora').val(),
-                    juiz: $('#ddlJuiz').val(),
-                    juizReserva: $('#ddlJuizReserva').val(),
-                    bandeirinha1: $('#ddlBandeirinha1').val(),
-                    bandeirinha2: $('#ddlBandeirinha2').val()
-                }
-                this.executeBind('../ServletInsereJogo', str, 'GET', this._cadastroOnSuccess);
-            }
+            this.executeBind('../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
     _btnCadastroAltOnClick: function() {
-        if ($('#ddlEstadio').val() == ''
-            || $('#ddlTimeMandante').val() == ''
-            || $('#ddlTimeVisitante').val() == ''
-            || $('#txtDataHora').val() == ''
-            || $('#ddlJuiz').val() == ''
-            || $('#ddlJuizReserva').val() == ''
-            || $('#ddlBandeirinha1').val() == ''
-            || $('#ddlBandeirinha2').val() == '')
+        if ($('#txtNome').val() == ''
+            || $('#txtDescricao').val() == ''
+            || $('#txtHorario').val() == ''
+            || $('#ddlLocal').val() == '')
 
             alert("É obrigatório informar todos os campos.");
+            
         else {
-            if ($('#ddlTimeMandante').val() == $('#ddlTimeVisitante').val()) {
-                alert("O time visitante deve ser diferente do mandante.");
+            var str = {
+                nome: $('#txtNome').val(),
+                descricao: $('#txtDescricao').val(),
+                horario: $('#txtHorario').val(),
+                local: $('#ddlLocal').val(),
+                id: this._idSelecionado
             }
-            else {
-                var str = {
-                    estadio: $('#ddlEstadio').val(),
-                    timeMandante: $('#ddlTimeMandante').val(),
-                    timeVisitante: $('#ddlTimeVisitante').val(),
-                    dataHora: $('#txtDataHora').val(),
-                    juiz: $('#ddlJuiz').val(),
-                    juizReserva: $('#ddlJuizReserva').val(),
-                    bandeirinha1: $('#ddlBandeirinha1').val(),
-                    bandeirinha2: $('#ddlBandeirinha2').val(),
-                    id: this._idSelecionado
-                }
-                this.executeBind('../ServletAlteraJogo', str, 'GET', this._cadastroOnSuccess);
+                this.executeBind('../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
             }
-        }
+        
     },
 
     _cadastroOnSuccess: function(value) {
         alert(value);
-        this.executeBind('../ServletListaJogo', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
     _excluirItemOnClick: function (value) {
@@ -261,7 +233,7 @@ Jogos.prototype = {
                 idJogo: value.data.id
             };
 
-            this.executeBind('../ServletExcluiJogo', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../ServletExcluirPelada', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
@@ -292,5 +264,5 @@ Jogos.prototype = {
 }
 
 $(document).ready(function() {
-    Jogos.Load();
+    JogosPeladinha.Load();
 });
