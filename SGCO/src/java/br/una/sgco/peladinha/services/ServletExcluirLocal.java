@@ -39,7 +39,7 @@ public class ServletExcluirLocal extends HttpServlet {
             String idStr = session.getAttribute("usuario").toString();
             String idLocalStr = request.getParameter("idLocal");
            
-            //valida id Usuário
+            //valida id usuário
             Integer id = null;
             if(idStr != null){
                 try {
@@ -49,19 +49,19 @@ public class ServletExcluirLocal extends HttpServlet {
                 }
             }
             if(id == null)
-                 throw new Exception("Id invalido.");
+                 throw new Exception("Id inválido.");
             
-            //valida id Usuario
+            //valida id usuário
             Integer idLocal = null;
             if(idLocalStr != null){
                 try {
                     idLocal = Integer.parseInt(idLocalStr);
                 } catch (Exception e) {
-                    throw new Exception("id local não é um número.");
+                    throw new Exception("Id local não é um número.");
                 }
             }
             if(idLocal == null)
-                 throw new Exception("id local invalido.");
+                 throw new Exception("Id local inválido.");
             
             TOLocal toLocal = new TOLocal();
             toLocal.setId(idLocal);

@@ -48,7 +48,7 @@ public class ServletListaUmLocal extends HttpServlet {
             }
             
             if(id == null)
-                 throw new Exception("Id invalido.");
+                 throw new Exception("Id inválido.");
             
             Integer idLocal = null;
             if(idLocalStr != null){
@@ -58,7 +58,7 @@ public class ServletListaUmLocal extends HttpServlet {
             }
             
             if(idLocal == null)
-                 throw new Exception("Id usuario invalido.");
+                 throw new Exception("Id usuário inválido.");
             
             TOLocal toLocal = new TOLocal();
             toLocal.setIdUsuario(id);
@@ -66,7 +66,7 @@ public class ServletListaUmLocal extends HttpServlet {
 
             out.print(BOLocal.get(toLocal));
         } catch (Exception e) {
-            System.out.println("msg"+e.getMessage());
+            System.out.println("Mensagem - " + e.getMessage());
             out.print(e.getMessage());
         } finally {
             out.close();

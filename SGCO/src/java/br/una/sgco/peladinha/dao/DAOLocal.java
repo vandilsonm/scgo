@@ -20,8 +20,8 @@ public class DAOLocal {
 
     public static void inserir (TOLocal toLocal, Connection connection) throws Exception {
 
-        String sql = " insert into sgc_local (nome, logradouro, numero, complemento, bairro, cidade, USU_CODIGO) "
-                    + " values (?,?,?,?,?,?,?)";
+        String sql = " insert into sgc_local (nome, logradouro, numero, complemento, bairro, cidade, "
+                + " usu_codigo, estado) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Data.executeUpdate(connection, sql, new Object[] {
                             toLocal.getNome(),
@@ -30,12 +30,13 @@ public class DAOLocal {
                             toLocal.getComplemento(),
                             toLocal.getBairro(),
                             toLocal.getCidade(),
-                            toLocal.getIdUsuario()});
+                            toLocal.getIdUsuario(),
+                            toLocal.getEstado()});
     }
 
     public static void alterar (TOLocal toLocal, Connection connection) throws Exception {
-        String sql = " update sgc_local set nome = ?, logradouro=?, numero=?, complemento=?, bairro,?, cidade=? "
-                + " WHERE id = ? AND USU_CODIGO = ? ";
+        String sql = " update sgc_local set nome = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, "
+                + "cidade = ?, estado = ? WHERE id = ? AND USU_CODIGO = ? ";
 
         Data.executeUpdate(connection, sql, new Object[] {
                             toLocal.getNome(),
@@ -44,6 +45,7 @@ public class DAOLocal {
                             toLocal.getComplemento(),
                             toLocal.getBairro(),
                             toLocal.getCidade(),
+                            toLocal.getEstado(),
                             toLocal.getId(),
                             toLocal.getIdUsuario()});
     }
@@ -57,11 +59,12 @@ public class DAOLocal {
 
     public static JSONObject get(TOLocal toLocal, Connection connection) throws Exception {
 
-       String sql = " select * from sgc_local where id = ? ";
+       String sql = " select id, nome, logradouro, numero, complemento, bairro, cidade, estado "
+               + " from sgc_local where id = ? and usu_codigo = ?";
 
         JSONObject jo = new JSONObject();
 
-        ResultSet rs = Data.executeQuery(connection, sql, new Object[] {toLocal.getId()});
+        ResultSet rs = Data.executeQuery(connection, sql, new Object[] {toLocal.getId(), toLocal.getIdUsuario()});
 
         if (rs.next()) {
             jo.put("id", rs.getInt("id"));
@@ -71,6 +74,7 @@ public class DAOLocal {
             jo.put("complemento", rs.getString("complemento"));
             jo.put("bairro", rs.getString("bairro"));
             jo.put("cidade", rs.getString("cidade"));
+            jo.put("estado", rs.getString("estado"));
         }
 
         rs.close();
@@ -80,7 +84,8 @@ public class DAOLocal {
 
     public static JSONArray lista(TOLocal toLocal, Connection connection) throws Exception {
 
-       String sql = "SELECT * FROM sgc_local WHERE USU_CODIGO = ? ORDER BY nome";
+       String sql = "SELECT id, nome, logradouro, numero, complemento, bairro, cidade, estado"
+               + " FROM sgc_local WHERE USU_CODIGO = ? ORDER BY nome";
 
        JSONArray jsonArray = new JSONArray();
 
@@ -95,10 +100,10 @@ public class DAOLocal {
             jsonObejct.put("complemento", rs.getString("complemento"));
             jsonObejct.put("bairro", rs.getString("bairro"));
             jsonObejct.put("cidade", rs.getString("cidade"));
+            jsonObejct.put("estado", rs.getString("estado"));
             
             jsonArray.put(jsonObejct);
         }
-
         rs.close();
         return jsonArray;
     }

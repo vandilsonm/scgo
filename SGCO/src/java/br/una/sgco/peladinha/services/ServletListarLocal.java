@@ -46,7 +46,7 @@ public class ServletListarLocal extends HttpServlet {
             }
             
             if(id == null)
-                 throw new Exception("Id invalido.");
+                 throw new Exception("Id inválido.");
             
             TOLocal toLocal = new TOLocal();
             toLocal.setIdUsuario(id);

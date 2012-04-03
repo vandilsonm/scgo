@@ -17,8 +17,17 @@ public class TOLocal {
     private String complemento;
     private String bairro;
     private String cidade;
+    private String estado;
     private int idUsuario;
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+  
     public String getBairro() {
         return bairro;
     }
