@@ -16,7 +16,7 @@ JogosPeladinha.Load = function(){
 JogosPeladinha.prototype = {
 
     initialize: function() {
-        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
@@ -57,53 +57,6 @@ JogosPeladinha.prototype = {
         }
     },
 
-    _listaTime: function (value) {
-        var listaTime = eval(value);
-        $('#ddlTimeMandante').html('');
-        $('#ddlTimeVisitante').html('');
-
-        for (var i = 0; i < listaTime.length; i++ ) {
-            $('#ddlTimeMandante').append('<option value="' +
-                listaTime[i].Codigo + '">' +
-                listaTime[i].Nome + '</option>');
-            $('#ddlTimeVisitante').append('<option value="' +
-                listaTime[i].Codigo + '">' +
-                listaTime[i].Nome + '</option>');
-        }
-    },
-
-    _listaArbitro: function (value) {
-        var listaArbitro = eval(value);
-        $('#ddlJuiz').html('');
-        $('#ddlJuizReserva').html('');
-        $('#ddlBandeirinha1').html('');
-        $('#ddlBandeirinha2').html('');
-
-        for (var i = 0; i < listaArbitro.length; i++ ) {
-            switch (listaArbitro[i].tipo) {
-                case 'JZ': 
-                    $('#ddlJuiz').append('<option value="' +
-                        listaArbitro[i].codigo + '">' +
-                        listaArbitro[i].nome + '</option>');
-                    break;
-                case 'BD': 
-                    $('#ddlBandeirinha1').append('<option value="' +
-                        listaArbitro[i].codigo + '">' +
-                        listaArbitro[i].nome + '</option>');
-                    $('#ddlBandeirinha2').append('<option value="' +
-                        listaArbitro[i].codigo + '">' +
-                        listaArbitro[i].nome + '</option>');
-                    break;
-                case 'JR': 
-                    $('#ddlJuizReserva').append('<option value="' +
-                        listaArbitro[i].codigo + '">' +
-                        listaArbitro[i].nome + '</option>');
-                    break;
-                default: tipo = "Não especificado";
-            }
-        }
-    },
-
     _loadNovo: function() {
         this.executeBind('form/peladinha.jsp', '', 'GET', this._loadNovoOnSuccess);
     },
@@ -112,11 +65,11 @@ JogosPeladinha.prototype = {
         $('#spanTitulo').html('Cadastro de Peladinha');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroOnClick));
-        this.executeBind('../ServletListarLocal', '', 'GET', this._listaLocal);
+        this.executeBind('../../../ServletListarLocal', '', 'GET', this._listaLocal);
     },
 
     _loadLista: function() {
-        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
     _loadListaOnSuccess: function(value) {
@@ -124,7 +77,7 @@ JogosPeladinha.prototype = {
 
         $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
 
-        var html = "<tr><th>Nome</th><th>Descricao</th><th>Horário</th><th>Local</th>";
+        var html = "<tr><th>Nome</th><th>Descrição</th><th>Horário</th><th>Local</th>";
         html += "<th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th></tr>";
 
@@ -164,23 +117,19 @@ JogosPeladinha.prototype = {
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
 
         var str = {
-            id: this._idSelecionado
+            idPeladinha: this._idSelecionado
         }
-        this.executeBind('../ServletListaEstadio', '', 'GET', this._listaEstadio);
-        this.executeBind('../ServletListaTime', '', 'GET', this._listaTime);
-        this.executeBind('../ServletListaArbitragem', '', 'GET', this._listaArbitro);
-        this.executeBind('../ServletListaUmJogo', str, 'GET', this._alterarLoadOnSuccess);
+
+        this.executeBind('../../../ServletListarLocal', '', 'GET', this._listaLocal);
+        this.executeBind('../../../ServletListarUmaPeladinha', str, 'GET', this._alterarLoadOnSuccess);
     },
 
     _alterarLoadOnSuccess: function(value) {
         var dados = eval("(" + value + ")");
-        $('#ddlTimeMandante').attr("value", dados.timeMandante);
-        $('#ddlTimeVisitante').attr("value", dados.timeVisitante);
-        $('#txtDataHora').attr("value", dados.dataHora);
-        $('#ddlJuiz').attr("value", dados.juiz);
-        $('#ddlJuizReserva').attr("value", dados.juizReserva);
-        $('#ddlBandeirinha1').attr("value", dados.bandeirinha1);
-        $('#ddlBandeirinha2').attr("value", dados.bandeirinha2);
+        $('#txtNome').attr("value", dados.nome);
+        $('#txtDescricao').attr("value", dados.descricao);
+        $('#txtHorario').attr("value", dados.horario);
+        $('#ddlLocal').attr("value", dados.local);
     },
 
     _btnCadastroOnClick: function() {
@@ -195,9 +144,10 @@ JogosPeladinha.prototype = {
                 nome: $('#txtNome').val(),
                 descricao: $('#txtDescricao').val(),
                 horario: $('#txtHorario').val(),
-                local: $('#ddlLocal').val()
+                local: $('#ddlLocal').val(),
+                id: this._idSelecionado
             }
-            this.executeBind('../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
@@ -217,23 +167,23 @@ JogosPeladinha.prototype = {
                 local: $('#ddlLocal').val(),
                 id: this._idSelecionado
             }
-                this.executeBind('../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
+                this.executeBind('../../../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
             }
         
     },
 
     _cadastroOnSuccess: function(value) {
         alert(value);
-        this.executeBind('../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
     _excluirItemOnClick: function (value) {
         if (confirm("Deseja excluir o registro?")) {
             var str = {
-                idJogo: value.data.id
+                id: value.data.id
             };
 
-            this.executeBind('../ServletExcluirPelada', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../ServletExcluirPelada', str, 'GET', this._cadastroOnSuccess);
         }
     },
 

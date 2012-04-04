@@ -26,17 +26,17 @@ public class DAOPelada {
         Data.executeUpdate(connection, sql, new Object[] {
                             toPelada.getNome(), toPelada.getDescricao(),
                             toPelada.getHorario(), toPelada.getIdLocal().getId(),
-                            toPelada.getCriador().getCodigo()});
+                            toPelada.getCriador()});
     }
 
     public static void alterar (TOPelada toPelada, Connection connection) throws Exception {
         String sql = " update sgc_pelada set nome = ?, descricao = ?, "
-                + " horario = ?, idLocal = ?, criador = ? where id = ? ";
+                + " horario = ?, idLocal = ? where id = ? and criador = ?";
 
         Data.executeUpdate(connection, sql, new Object[] {
                             toPelada.getNome(), toPelada.getDescricao(),
-                            toPelada.getHorario(), toPelada.getId(),
-                            toPelada.getIdLocal().getId(), toPelada.getCriador().getCodigo()});
+                            toPelada.getHorario(), toPelada.getIdLocal().getId(), 
+                            toPelada.getId(), toPelada.getCriador()});
     }
 
     public static void excluir (TOPelada toPelada, Connection connection) throws Exception {
@@ -48,11 +48,12 @@ public class DAOPelada {
 
     public static JSONObject get(TOPelada toPelada, Connection connection) throws Exception {
 
-       String sql = " select id, nome, descricao, horario, idLocal, criador from sgc_pelada where id = ?";
+       String sql = " select id, nome, descricao, horario, idLocal, criador from sgc_pelada where id = ?"
+               + " and criador = ?";
 
         JSONObject jo = new JSONObject();
 
-        ResultSet rs = Data.executeQuery(connection, sql, new Object[] {toPelada.getId()});
+        ResultSet rs = Data.executeQuery(connection, sql, new Object[] {toPelada.getId(), toPelada.getCriador()});
 
         if (rs.next()) {
             jo.put("id", rs.getInt("id"));

@@ -40,23 +40,53 @@ public class ServletInserirPelada extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
-                     
-            String str = request.getParameter("horario");  
-            SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");  
-            Date data = formatador.parse(str);  
-            Time time = new Time(data.getTime()); 
+            String idUsuarioStr = session.getAttribute("usuario").toString();
+            String nome = request.getParameter("nome");
+            String descricao  = request.getParameter("descricao");
+            String horario  = request.getParameter("horario");
+            String local  = request.getParameter("local");
             
-            TOPelada toPelada = new TOPelada();
-            toPelada.getCriador().setCodigo(Integer.parseInt(session.getAttribute("usuario").toString()));
+            //Valida id usuário
+            Integer id = null;
             
-            toPelada.setNome(request.getParameter("nome"));
-            toPelada.setDescricao(request.getParameter("descricao"));
-            toPelada.setHorario(time);
+            if(idUsuarioStr != null){
+                try {
+                    id = Integer.parseInt(idUsuarioStr);
+                } catch (Exception e) {
+                    throw new Exception("Id usuário não é um número.");
+                }
+            }
+            if(id == null)
+                 throw new Exception("Id inválido.");
+        
+            
+            // valida nome
+            if(nome == null || nome.equals(""))
+                throw new Exception("Campo nome vazio.");
+
+            if(descricao == null || descricao.equals(""))
+                throw new Exception("Campo descrição vazio.");
+            
+            if(horario == null || horario.equals(""))
+                throw new Exception("Campo horário vazio.");
+            
+            if(local == null || local.equals(""))
+                throw new Exception("Campo local vazio.");
             
             TOLocal toLocal = new TOLocal();
-            toLocal.setId(Integer.parseInt(request.getParameter("idJogador").toString()));
-            toPelada.setIdLocal(toLocal);             
-
+            TOPelada toPelada = new TOPelada();            
+            toLocal.setId(Integer.parseInt(request.getParameter("local")));
+            toPelada.setIdLocal(toLocal);
+            
+            toPelada.setNome(nome);
+            toPelada.setDescricao(descricao);
+            toPelada.setCriador(id);
+            
+            SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");  
+            Date data = formatador.parse(horario);  
+            Time time = new Time(data.getTime()); 
+            toPelada.setHorario(time);
+        
             BOPelada.inserir(toPelada);
 
             out.print("Cadastro realizado com sucesso!");
@@ -66,7 +96,8 @@ public class ServletInserirPelada extends HttpServlet {
             out.close();
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

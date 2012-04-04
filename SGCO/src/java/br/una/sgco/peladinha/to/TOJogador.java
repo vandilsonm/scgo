@@ -14,6 +14,15 @@ public class TOJogador {
     private String nome;
     private String celular;
     private String email;
+    private int criador;
+
+    public int getCriador() {
+        return criador;
+    }
+
+    public void setCriador(int criador) {
+        this.criador = criador;
+    }
 
     public String getCelular() {
         return celular;

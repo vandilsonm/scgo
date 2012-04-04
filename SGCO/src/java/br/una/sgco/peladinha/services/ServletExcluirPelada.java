@@ -40,7 +40,7 @@ public class ServletExcluirPelada extends HttpServlet {
             TOPelada toPelada = new TOPelada();
             toPelada.setId(Integer.parseInt(request.getParameter("id")));
 
-            BOPelada.alterar(toPelada);
+            BOPelada.excluir(toPelada);
 
             out.print("Registro excluído com sucesso.");
         } catch (Exception e) {

@@ -37,7 +37,7 @@ public class ServletExcluirJogador extends HttpServlet {
             TOJogador toJogador = new TOJogador();
             toJogador.setId(Integer.parseInt(request.getParameter("id")));
 
-            BOJogador.alterar(toJogador);
+            BOJogador.excluir(toJogador);
 
             out.print("Registro excluído com sucesso.");
         } catch (Exception e) {

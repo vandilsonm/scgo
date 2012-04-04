@@ -84,7 +84,7 @@
         <script type="text/javascript" src="../../js/util.js"></script>
         <script type="text/javascript" src="../../js/loading.js"></script>
         <!-- javascript administrativo -->
-        <script type="text/javascript" src="js/jogador.js"></script>
-        <script type="text/javascript" src="js/Mascara.js"></script>
+        <script type="text/javascript" src="js/jogadorPeladinha.js"></script>
+        <script type="text/javascript" src="../js/Mascara.js"></script>
     </body>
 </html>

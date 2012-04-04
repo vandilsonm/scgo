@@ -18,13 +18,13 @@ public class TOPelada {
     private String descricao;
     private Time horario;
     private TOLocal idLocal;
-    private TOUsuario criador;
+    private int criador;
 
-    public TOUsuario getCriador() {
+    public int getCriador() {
         return criador;
     }
 
-    public void setCriador(TOUsuario criador) {
+    public void setCriador(int criador) {
         this.criador = criador;
     }
 

@@ -36,7 +36,11 @@ public class ServletInserirJogador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            HttpSession session = request.getSession();
+            String idUsuarioStr = session.getAttribute("usuario").toString();
+            
             TOJogador toJogador = new TOJogador();
+            toJogador.setCriador(Integer.parseInt(idUsuarioStr));
             toJogador.setNome(request.getParameter("nome"));
             toJogador.setCelular(request.getParameter("celular"));
             toJogador.setEmail(request.getParameter("email"));

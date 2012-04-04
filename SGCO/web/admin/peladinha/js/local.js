@@ -163,7 +163,7 @@ Local.prototype = {
                 estado: $('#ddlEstado').val(),
                 id: this._idSelecionado
             }
-            this.executeBind('../ServletEditarLocal', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../ServletEditarLocal', str, 'GET', this._cadastroOnSuccess);
         }
     },
 

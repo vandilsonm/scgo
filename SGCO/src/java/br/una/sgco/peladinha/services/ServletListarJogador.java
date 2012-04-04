@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,8 +35,10 @@ public class ServletListarJogador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            HttpSession session = request.getSession();
+            String idUsuarioStr = session.getAttribute("usuario").toString();
             TOJogador toJogador = new TOJogador();
-            toJogador.setId(Integer.parseInt(request.getParameter("id")));
+            toJogador.setCriador(Integer.parseInt(idUsuarioStr));
 
             out.print(BOJogador.listar(toJogador));
         } catch (Exception e) {
