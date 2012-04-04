@@ -253,6 +253,42 @@
         <servlet-name>ServleListarUmLocal</servlet-name>
         <servlet-class>br.una.sgco.peladinha.services.ServletListarUmLocal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletInserirPelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirPelada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarPelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletListarPelada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarUmaPeladinha</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletListarUmaPeladinha</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEditarPelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletEditarPelada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirPelada</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletExcluirPelada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarJogador</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletListarJogador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEditarJogador</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletEditarJogador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirJogador</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletExcluirJogador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInserirJogador</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletInserirJogador</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCadastroUsuario</servlet-name>
         <url-pattern>/ServletCadastroUsuario</url-pattern>
@@ -469,17 +505,9 @@
         <servlet-name>ServletInsereLocal</servlet-name>
         <url-pattern>/ServletInsereLocal</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletListarPelada</servlet-name>
-        <servlet-class>br.una.sgco.peladinha.services.ServletListarPelada</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ServletInsereConfirmacao</servlet-name>
         <url-pattern>/ServletInsereConfirmacao</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletListarPelada</servlet-name>
-        <url-pattern>/ServletListarPelada</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletListarLocal</servlet-name>
@@ -504,6 +532,42 @@
     <servlet-mapping>
         <servlet-name>ServleListarUmLocal</servlet-name>
         <url-pattern>/ServleListarUmLocal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInserirPelada</servlet-name>
+        <url-pattern>/ServletInserirPelada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarPelada</servlet-name>
+        <url-pattern>/ServletListarPelada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarUmaPeladinha</servlet-name>
+        <url-pattern>/ServletListarUmaPeladinha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEditarPelada</servlet-name>
+        <url-pattern>/ServletEditarPelada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirPelada</servlet-name>
+        <url-pattern>/ServletExcluirPelada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarJogador</servlet-name>
+        <url-pattern>/ServletListarJogador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEditarJogador</servlet-name>
+        <url-pattern>/ServletEditarJogador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirJogador</servlet-name>
+        <url-pattern>/ServletExcluirJogador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInserirJogador</servlet-name>
+        <url-pattern>/ServletInserirJogador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

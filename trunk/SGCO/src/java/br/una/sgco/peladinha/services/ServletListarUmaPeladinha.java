@@ -6,7 +6,6 @@ package br.una.sgco.peladinha.services;
 
 import br.una.sgco.peladinha.bo.BOPelada;
 import br.una.sgco.peladinha.to.TOPelada;
-import br.una.sgco.to.TOUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jana Louback
  */
-public class ServletListarPelada extends HttpServlet {
+public class ServletListarUmaPeladinha extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,21 +34,45 @@ public class ServletListarPelada extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try { 
+        try {
             HttpSession session = request.getSession();
+            String idStr = session.getAttribute("usuario").toString();
+            String idPeladinhaStr = request.getParameter("idPeladinha");
             
-            TOPelada toPelada = new TOPelada();
+            Integer id = null;
+           
+            if(idStr != null){
+                try {
+                    id = Integer.parseInt(idStr);
+                } catch (Exception e) {}
+            }
             
-            TOUsuario toUsuario = new TOUsuario();
-            toPelada.setCriador(Integer.parseInt(session.getAttribute("usuario").toString()));
+            if(id == null)
+                 throw new Exception("Id inválido.");
             
-            out.print(BOPelada.listar(toPelada));
+            Integer idPeladinha = null;
+            if(idPeladinhaStr != null){
+                try {
+                    idPeladinha = Integer.parseInt(idPeladinhaStr);
+                } catch (Exception e) {}
+            }
+            
+            if(idPeladinha == null)
+                 throw new Exception("Id usuário inválido.");
+            
+            TOPelada  toPelada = new TOPelada();
+            toPelada.setCriador(id);
+            toPelada.setId(idPeladinha);
+
+            out.print(BOPelada.get(toPelada));
         } catch (Exception e) {
+            System.out.println("Mensagem - " + e.getMessage());
             out.print(e.getMessage());
         } finally {
             out.close();
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP

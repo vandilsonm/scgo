@@ -1,4 +1,4 @@
-Jogador = function(){
+JogadorPeladinha = function(){
     this._data = null;
     this._dataUrl = null;
     this._type = null;
@@ -7,17 +7,16 @@ Jogador = function(){
     this._idSelecionado = null;
 }
 
-Jogador.Load = function(){
-    var _dados = new Jogador();
+JogadorPeladinha.Load = function(){
+    var _dados = new JogadorPeladinha();
     _dados.initialize();
     return _dados;
 }
 
-Jogador.prototype = {
+JogadorPeladinha.prototype = {
 
     initialize: function() {
-        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
-        this.executeBind('../ServletListaJogador', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaOnSuccess);
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
@@ -49,15 +48,13 @@ Jogador.prototype = {
     },
 
     _loadNovo: function() {
-        this.executeBind('form/jogador.jsp', '', 'GET', this._sucessoLoadNovo);
+        this.executeBind('form/jogadorPelada.jsp', '', 'GET', this._sucessoLoadNovo);
     },
 
    _sucessoLoadNovo: function(value) {
         $('#spanTitulo').html('Cadastro de Jogador');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroOnClick));
-
-        this.executeBind('../ServletListaTime', '', 'GET', this._sucessoLoadTime);
     },
 
      _sucessoLoadTime: function (value) {
@@ -72,7 +69,7 @@ Jogador.prototype = {
     },
 
     _loadLista: function() {
-        this.executeBind('../ServletListaJogador', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaOnSuccess);
     },
 
     _loadListaOnSuccess: function(value) {
@@ -80,17 +77,16 @@ Jogador.prototype = {
         
         $('#spanTitulo').html('Jogadores(s) Cadastrado(s)');
 
-        var html = "<tr><th>Time</th><th>Nome</th><th>Posição</th><th>Celular</th><th class=\"alingCenter\">Editar</th>";
+        var html = "<tr><th>Nome</th><th>Celular</th><th>E-mail</th><th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Inativar</th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
         for (var i = 0; i < listaJogador.length; i++ ) {
             html = "";
-            html += "<tr><td>" + listaJogador[i].Time + "</td>";
-            html += "<td>" + listaJogador[i].Nome + "</td>";
-            html += "<td>" + listaJogador[i].Posicao + "</td>";
-            html += "<td>" + listaJogador[i].Celular + "</td>";
+            html += "<tr><td>" + listaJogador[i].nome + "</td>";
+            html += "<td>" + listaJogador[i].celular + "</td>";
+            html += "<td>" + listaJogador[i].email + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "</tr>";
@@ -100,7 +96,7 @@ Jogador.prototype = {
             });
 
              var str = {
-                id: listaJogador[i].Codigo,
+                id: listaJogador[i].id,
                 index: i
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
@@ -110,7 +106,7 @@ Jogador.prototype = {
 
     _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
-        this.executeBind('form/jogador.jsp', '', 'GET', this._alterarOnSuccess);
+        this.executeBind('form/jogadorPeladinha.jsp', '', 'GET', this._alterarOnSuccess);
     },
 
     _alterarOnSuccess: function(value) {
@@ -137,50 +133,47 @@ Jogador.prototype = {
     },
 
     _excluirItemOnClick: function (value) {
-        if (confirm("Deseja inativar o jogador?")) {
+        if (confirm("Deseja excluir o jogador?")) {
             this._idSelecionado = value.data.id;
 
             var str = {
                 id: this._idSelecionado
             };
 
-            this.executeBind('../ServletInativaJogador', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../../ServletExcluirJogador', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
     _btnCadastroOnClick: function(value) {
-        if ($('#txtNome').val() == '' || $('#txtPosicao').val() == '')
+        if ($('#txtNome').val() == '' || $('#txtCelular').val() == '' || $('#txtEmail').val() == '')
             alert("É obrigatório informar todos os campos.");
         else {
             var str = {
                 nome: $('#txtNome').val(),
-                posicao: $('#txtPosicao').val(),
-                tipo: $('#ddlTipo').val(),
-                time: $('#ddlTime').val(),
-                celular: $('#txtCelular').val()
+                celular: $('#txtCelular').val(),
+                email: $('#txtEmail').val()
             }
-            this.executeBind('../ServletInsereJogador', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../../ServletInserirJogador', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
     _btnCadastroAltOnClick: function() {
-        if ($('#txtNome').val() == '' || $('#txtPosicao').val() == '')
+        if ($('#txtNome').val() == '' || $('#txtCelular').val() == '' 
+                    || $('#txtEmail').val() == '')
             alert("É obrigatório informar todos os campos.");
         else {
             var str = {
                 nome: $('#txtNome').val(),
-                posicao: $('#txtPosicao').val(),
-                tipo: $('#ddlTipo').val(),
-                time: $('#ddlTime').val(),
-                celular: $('#txtCelular').val(),
+                celular: $('#txtCelcuar').val(),
+                email: $('#txtEmail').val(),
                 id: this._idSelecionado
             }
-            this.executeBind('../ServletAlteraJogador', str, 'GET', this._cadastroOnSuccess);
+            this.executeBind('../../../ServletEditarJogador', str, 'GET', this._cadastroOnSuccess);
         }
     },
 
     _cadastroOnSuccess: function(value) {
-        this.executeBind('../ServletListaJogador', '', 'GET', this._loadListaOnSuccess);
+        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaOnSuccess);
     },
 
     executeBind: function(dataUrl, data, type, handlerSuccess) {
@@ -210,5 +203,5 @@ Jogador.prototype = {
 }
 
 $(document).ready(function() {
-    Jogador.Load();
+    JogadorPeladinha.Load();
 });

@@ -48,19 +48,19 @@ public class ServletEditarPelada extends HttpServlet {
             HttpSession session = request.getSession();
             
             TOPelada toPelada = new TOPelada();
-            toPelada.getCriador().setCodigo(Integer.parseInt(session.getAttribute("usuario").toString()));
+            toPelada.setCriador(Integer.parseInt(session.getAttribute("usuario").toString()));
             toPelada.setId(Integer.parseInt(request.getParameter("id")));
             toPelada.setNome(request.getParameter("nome"));
             toPelada.setDescricao(request.getParameter("descricao"));
             toPelada.setHorario(time);
 
             TOLocal toLocal = new TOLocal();
-            toLocal.setId(Integer.parseInt(request.getParameter("idJogador").toString()));
+            toLocal.setId(Integer.parseInt(request.getParameter("local").toString()));
             toPelada.setIdLocal(toLocal); 
             
             BOPelada.alterar(toPelada);
 
-            out.print("Registro excluído com sucesso.");
+            out.print("Registro alterado com sucesso.");
         } catch (Exception e) {
             out.print(e.getMessage());
         } finally {
