@@ -70,7 +70,7 @@ public class DAOLocal {
             jo.put("id", rs.getInt("id"));
             jo.put("nome", rs.getString("nome"));
             jo.put("logradouro", rs.getString("logradouro"));
-            jo.put("numero", rs.getString("numero"));
+            jo.put("numero", rs.getInt("numero"));
             jo.put("complemento", rs.getString("complemento"));
             jo.put("bairro", rs.getString("bairro"));
             jo.put("cidade", rs.getString("cidade"));
@@ -96,7 +96,7 @@ public class DAOLocal {
             jsonObejct.put("id", rs.getInt("id"));
             jsonObejct.put("nome", rs.getString("nome"));
             jsonObejct.put("logradouro", rs.getString("logradouro"));
-            jsonObejct.put("numero", rs.getString("numero"));
+            jsonObejct.put("numero", rs.getInt("numero"));
             jsonObejct.put("complemento", rs.getString("complemento"));
             jsonObejct.put("bairro", rs.getString("bairro"));
             jsonObejct.put("cidade", rs.getString("cidade"));

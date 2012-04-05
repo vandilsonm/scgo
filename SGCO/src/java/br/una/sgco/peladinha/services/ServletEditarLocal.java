@@ -94,7 +94,7 @@ public class ServletEditarLocal extends HttpServlet {
             toLocal.setNome(nome);
             toLocal.setIdUsuario(idUsuario);
             toLocal.setLogradouro(logradouro);
-            toLocal.setNumero(numero);
+            toLocal.setNumero(Integer.parseInt(numero));
             toLocal.setComplemento(complemento);
             toLocal.setBairro(bairro);
             toLocal.setCidade(cidade);

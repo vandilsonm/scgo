@@ -46,7 +46,7 @@ public class DAOJogador {
     
     public static JSONObject get(TOJogador toJogador, Connection connection) throws Exception {
 
-       String sql = " select id, nome, celular, email"
+       String sql = " select id, nome, celular, email, criador"
                     + " from sgc_jogador where id = ? and criador = ?";
 
         JSONObject jo = new JSONObject();
