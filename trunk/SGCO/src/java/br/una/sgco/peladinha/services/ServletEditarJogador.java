@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,11 +35,15 @@ public class ServletEditarJogador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            HttpSession session = request.getSession();
+            String idUsuarioStr = session.getAttribute("usuario").toString();
+            
             TOJogador toJogador = new TOJogador();
             toJogador.setId(Integer.parseInt(request.getParameter("id")));
             toJogador.setNome(request.getParameter("nome"));
             toJogador.setCelular(request.getParameter("celular"));
             toJogador.setEmail(request.getParameter("email"));
+            toJogador.setCriador(Integer.parseInt(idUsuarioStr));
 
             BOJogador.alterar(toJogador);
 

@@ -48,7 +48,7 @@ JogadorPeladinha.prototype = {
     },
 
     _loadNovo: function() {
-        this.executeBind('form/jogadorPelada.jsp', '', 'GET', this._sucessoLoadNovo);
+        this.executeBind('form/jogadorPeladinha.jsp', '', 'GET', this._sucessoLoadNovo);
     },
 
    _sucessoLoadNovo: function(value) {
@@ -117,19 +117,14 @@ JogadorPeladinha.prototype = {
         var str = {
             id: this._idSelecionado
         }
-        this.executeBind('../ServletListaTime', '', 'GET', this._sucessoLoadTime);
-        this.executeBind('../ServletListaUmJogador', str, 'GET', this._alterarLoadOnSuccess);
+        this.executeBind('../../../ServletListarUmJogador', str, 'GET', this._alterarLoadOnSuccess);
     },
 
     _alterarLoadOnSuccess: function(value) {
         var dados = eval("(" + value + ")");
         $('#txtNome').attr("value", dados.nome);
-        $('#txtPosicao').attr("value", dados.posicao);
-        $('#ddlTipo').attr("value", dados.tipo);
-        $('#ddlTime').attr("value", dados.time);
         $('#txtCelular').attr("value", dados.celular);
-
-        $('#ddlTime').attr("disabled", "disabled");
+        $('#txtEmail').attr("value", dados.email);
     },
 
     _excluirItemOnClick: function (value) {
@@ -164,7 +159,7 @@ JogadorPeladinha.prototype = {
         else {
             var str = {
                 nome: $('#txtNome').val(),
-                celular: $('#txtCelcuar').val(),
+                celular: $('#txtCelular').val(),
                 email: $('#txtEmail').val(),
                 id: this._idSelecionado
             }

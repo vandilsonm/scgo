@@ -63,7 +63,7 @@ Local.prototype = {
     _sucessoLoadLista: function(value) {
         var listaLocal = eval(value);
         
-        $('#spanTitulo').html('Estádios(s) Cadastrado(s)');
+        $('#spanTitulo').html('Local(is) cadastrado(s)');
 
         var html = "<tr><th>Nome</th><th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th></tr>";
@@ -96,7 +96,7 @@ Local.prototype = {
     },
 
     _alterarOnSuccess: function(value) {
-        $('#spanTitulo').html('Alteração de Estádio');
+        $('#spanTitulo').html('Alteração do local');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
         var str = {
