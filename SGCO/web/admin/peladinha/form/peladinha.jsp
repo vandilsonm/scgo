@@ -13,11 +13,11 @@
 
 <fieldset class="estiloJogadorPeladinha">
         <legend>Jogadores</legend>
-        <input type="checkbox" name="jogador" value="ON" />2<br/>
-        <input type="checkbox" name="jogador" value="ON" />jogador3<br/>
-        <input type="checkbox" name="jogador" value="ON" />jogador4<br/>
-        <input type="checkbox" name="jogador" value="ON" />jogador5<br/>
-        <input type="checkbox" name="jogador" value="ON" />jogador6<br/>
+        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 2 </label>
+        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 3 </label>
+        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 4 </label>
+        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 5 </label>
+        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 6 </label>
     </fieldset>
 
 
