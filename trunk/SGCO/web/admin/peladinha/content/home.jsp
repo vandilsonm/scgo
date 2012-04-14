@@ -4,6 +4,6 @@
     <div id="adm_container_one_text_form">
         <a href="peladinha/local.jsp" class="linkGerenciar"><img src="img/cad/local.png" alt="Local" /></a>
         <a href="peladinha/jogador.jsp" class="linkGerenciar"><img src="img/cad/jogador.png" alt="Jogador" /></a>
-        <a href="peladinha/jogos.jsp" class="linkGerenciar"><img src="img/cad/jogos.png" alt="Jogos" /></a>
+        <a href="peladinha/jogos.jsp" class="linkGerenciar"><img src="img/cad/modulo_peladinha.png" alt="Peladinha" /></a>
     </div>
 </div>
