@@ -9,4 +9,16 @@
 <label><span>Local: </span>
     <select id="ddlLocal">
     </select></label>
+
+
+<fieldset class="estiloJogadorPeladinha">
+        <legend>Jogadores</legend>
+        <input type="checkbox" name="jogador" value="ON" />2<br/>
+        <input type="checkbox" name="jogador" value="ON" />jogador3<br/>
+        <input type="checkbox" name="jogador" value="ON" />jogador4<br/>
+        <input type="checkbox" name="jogador" value="ON" />jogador5<br/>
+        <input type="checkbox" name="jogador" value="ON" />jogador6<br/>
+    </fieldset>
+
+
 <input type="button" id="btnCadastro" value="Salvar dados" class="botao inputBotao icone salvar" />
