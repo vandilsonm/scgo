@@ -71,7 +71,10 @@ public class DAOPelada {
 
     public static JSONArray lista(TOPelada toPelada, Connection connection) throws Exception {
 
-       String sql = " select id, nome, descricao, horario, idLocal, criador from sgc_pelada order by nome";
+       String sql = " select pel.id, pel.nome, pel.descricao, pel.horario, pel.idLocal, "
+               + "pel.criador, loc.nome as descricaoLocal "
+               + "from sgc_pelada pel left outer join sgc_local loc on loc.id = pel.idLocal "
+               + "order by pel.nome";
 
        JSONArray jsonArray = new JSONArray();
 
@@ -85,6 +88,7 @@ public class DAOPelada {
             jsonObejct.put("horario", rs.getTime("horario"));
             jsonObejct.put("idLocal", rs.getInt("idLocal"));   
             jsonObejct.put("criador", rs.getInt("criador"));
+            jsonObejct.put("descricaoLocal", rs.getString("descricaoLocal"));
             jsonArray.put(jsonObejct);
         }
 

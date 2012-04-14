@@ -74,6 +74,7 @@ JogosPeladinha.prototype = {
 
     _loadListaOnSuccess: function(value) {
         var listaPeladinha = eval(value);
+        alert(value);
 
         $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
 
@@ -88,7 +89,7 @@ JogosPeladinha.prototype = {
             html += "<tr><td>" + listaPeladinha[i].nome + "</td>";
             html += "<td>" + listaPeladinha[i].descricao + "</td>";
             html += "<td>" + listaPeladinha[i].horario + "</td>";
-            html += "<td>" + listaPeladinha[i].local + "</td>";
+            html += "<td>" + listaPeladinha[i].descricaoLocal + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "</tr>";
