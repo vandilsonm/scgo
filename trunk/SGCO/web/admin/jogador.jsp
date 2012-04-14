@@ -25,7 +25,7 @@
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
+                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Módulo</a></li>
                         <li><a href="sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
@@ -66,10 +66,7 @@
 
             <!-- rodapé -->
             <div id="footer">
-                <p>GOLAÇO<br />
-                    2011 - Andre Andrade, Heberth Moreira, Janaína Louback, Nathália Góes, Thiago Sinésio e Tiago Carmo.<br />
-                    2012 - Andre Andrade, Cleidison Alexsandro, Diego Marlon, Filipe Miranda, Heberth Moreira, Janaína Louback, Thiago Sinésio e Tiago Carmo.
-                </p>
+                <%@include file = "../rodape.jsp"%>
             </div>
 
         </div>
