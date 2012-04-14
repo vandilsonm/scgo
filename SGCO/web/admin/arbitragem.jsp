@@ -25,7 +25,7 @@
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Modulo</a></li>
+                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Módulo</a></li>
                         <li><a href="sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
