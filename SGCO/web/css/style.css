@@ -500,3 +500,26 @@ a {
 #container_text_resultados #tblClassificacao,
 #container_text_resultados #tblClassificacao td,
 #container_text_resultados #tblClassificacao th{text-align: center}
+
+/* 14/04/2012 */
+#container_one_text .estiloJogadorPeladinha{
+    padding: 10px;
+    width: 520px !important;
+    border-color: #EDF0DD;
+}
+
+#container_one_text .estiloJogadorPeladinha legend{
+    padding: 0 10px;
+    margin-bottom: 10px
+}
+#container_one_text .estiloJogadorPeladinha label{
+    display: block;
+    margin: 3px 0;
+    text-align: left !important;
+    vertical-align: top
+}
+#container_one_text .estiloJogadorPeladinha label input {
+    width: 20px !important;
+    text-align: left !important;
+    vertical-align: top
+}
