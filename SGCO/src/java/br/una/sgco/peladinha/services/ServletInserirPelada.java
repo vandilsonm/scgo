@@ -46,7 +46,7 @@ public class ServletInserirPelada extends HttpServlet {
             //if(idUsuarioObj==null)
                // throw new Exception("Sessão Expirada");
             
-            String idUsuarioStr = "";//idUsuarioObj.toString();    
+            String idUsuarioStr = idUsuarioObj.toString();    
             String nome = request.getParameter("nome");
             String descricao  = request.getParameter("descricao");
             String horario  = request.getParameter("horario");

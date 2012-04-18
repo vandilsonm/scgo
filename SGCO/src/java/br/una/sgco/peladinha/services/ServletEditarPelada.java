@@ -44,6 +44,7 @@ public class ServletEditarPelada extends HttpServlet {
             SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");  
             Date data = formatador.parse(str);  
             Time time = new Time(data.getTime()); 
+            String[] jogadores = request.getParameter("jogadores").split("---");
             
             HttpSession session = request.getSession();
             
@@ -53,6 +54,13 @@ public class ServletEditarPelada extends HttpServlet {
             toPelada.setNome(request.getParameter("nome"));
             toPelada.setDescricao(request.getParameter("descricao"));
             toPelada.setHorario(time);
+            
+            for(String s : jogadores){
+                TOJogador jogador = new TOJogador();
+                
+                jogador.setId(Integer.parseInt(s));
+                toPelada.listaJogadores.add(jogador);
+            }
 
             TOLocal toLocal = new TOLocal();
             toLocal.setId(Integer.parseInt(request.getParameter("local").toString()));

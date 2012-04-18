@@ -56,7 +56,7 @@ JogosPeladinha.prototype = {
     _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
         this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
-        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaJogadorOnSuccess);
+        
     },
     _btnCadastroOnClick: function() {
         /*if ($('#txtNome').val() == ''
@@ -103,12 +103,23 @@ JogosPeladinha.prototype = {
             alert("É obrigatório informar todos os campos.");
             
         else {
+            var listaSelecionados = $('input[name=jogador]');
+            var lista ="";
+            for(var i = 0; i<listaSelecionados.length;i++){
+                //lista += "{\"id\":\""+listaSelecionados[i].value+"\",\"value\":\""+listaSelecionados[i].checked+"\"},"
+                //alert(listaSelecionados[i].checked+"  "+listaSelecionados[i].value);
+                if(listaSelecionados[i].checked)
+                    lista += listaSelecionados[i].value+"---";
+            }
+            
+            
             var str = {
                 nome: $('#txtNome').val(),
                 descricao: $('#txtDescricao').val(),
                 horario: $('#txtHorario').val(),
                 local: $('#ddlLocal').val(),
-                id: this._idSelecionado
+                id: this._idSelecionado,
+                jogadores: lista
             }
             this.executeBind('../../../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
         }
@@ -165,10 +176,21 @@ JogosPeladinha.prototype = {
     },
       _loadListaJogadorOnSuccess: function(value) {
         var listaJogador = eval(value);
+        this._loadJogadores(listaJogador);
+    },
+    _loadJogadores: function(listaJogador) {
         var html = "";
-        
+        var checked = "checked";
+        var noChecked = "";
         for (var i = 0; i < listaJogador.length; i++ ) {
-            html += "<label> <input type=\"checkbox\" name=\"jogador\" value=\""+listaJogador[i].id+"\"/>"+listaJogador[i].nome+"</label>";
+            var str = "";
+            if(listaJogador[i].selecionado){
+                str = checked
+            }else{
+                str = noChecked
+            }
+                
+            html += "<label> <input type=\"checkbox\" name=\"jogador\" value=\""+listaJogador[i].id+"\" "+str+"/>"+listaJogador[i].nome+"</label>";
         }
         
         $('#listaJogador').html(html);
@@ -222,6 +244,7 @@ JogosPeladinha.prototype = {
     },
 
 _alterarOnSuccess: function(value) {
+        
         $('#spanTitulo').html('Alteração da peladinha');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
@@ -240,6 +263,9 @@ _alterarOnSuccess: function(value) {
         $('#txtDescricao').attr("value", dados.descricao);
         $('#txtHorario').attr("value", dados.horario);
         $('#ddlLocal').attr("value", dados.local);
+        
+        this._loadJogadores(dados.jogadores);
+        
     },
 
     

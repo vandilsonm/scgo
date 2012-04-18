@@ -63,7 +63,8 @@ public class Data {
         System.out.println("sql: "+pstmt.toString());
         return pstmt.executeUpdate();
     }
-
+    
+    
     public static int executeUpdate(Connection conn, String query) throws SQLException {
         Statement stm = conn.createStatement();
         System.out.println("sql: "+stm.toString());
