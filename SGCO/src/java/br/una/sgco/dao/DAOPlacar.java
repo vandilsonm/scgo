@@ -29,6 +29,25 @@ public class DAOPlacar {
                                                     placar.getJogador().getCodigo(),
                                                     placar.getQtdeGols()});
     }
+    
+    public static JSONObject get (TOPlacar placar, Connection c) throws Exception {
+
+        String sql = "select tim_codigo, plc_qtde_gols, jgs_codigo, jog_codigo from sgc_placar_plc"
+                + " where jgs_codigo = ? and jog_codigo = ?";
+
+        ResultSet rs = Data.executeQuery(c, sql, new Object[] {placar.getJogo().getCodigo(),
+                                                    placar.getJogador().getCodigo()});
+        
+        JSONObject jo = new JSONObject();
+        
+        if (rs.next()) {
+            jo.put("idJogador", rs.getInt("jgs_codigo"));
+            jo.put("idJogo", rs.getInt("jog_codigo"));          
+        }
+       
+        rs.close();
+        return jo;        
+    }    
 
     public static void excluir (TOPlacar placar, Connection c) throws Exception {
         String sql = " delete from sgc_placar_plc where jog_codigo = ? "

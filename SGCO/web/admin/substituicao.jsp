@@ -60,7 +60,7 @@
                         <div id="adm_container_one_text">
                             <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo</a>
                             <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
-                            <a href="meuCampeonato.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
+                            <a href="meuCampeonato.jsp?id=<%=request.getParameter("id")%>" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
                             <h2>Gerenciando: <span class="corDestaque">Meus Campeonatos</span> // <span class="corDestaque">Substituição</span></h2>
                             <fieldset>
                                 <span id="spanTitulo" class="legend"></span>
