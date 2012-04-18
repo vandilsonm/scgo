@@ -32,7 +32,21 @@ public class ServletListaClassificacao extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            String idStr = request.getParameter("id");
+            Integer id = null;
+            if(idStr != null){
+                try {
+                    id = Integer.parseInt(idStr);
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+            }
+            
+            if(id == null)
+                throw new Exception("id inválido.");
+            
             TOCampeonato campeonato = new TOCampeonato();
+            
             campeonato.setCodigo(Integer.parseInt(request.getParameter("id")));
 
             out.print(BOCampeonato.listaClassificacao(campeonato));

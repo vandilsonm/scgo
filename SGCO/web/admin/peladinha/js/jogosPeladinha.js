@@ -14,29 +14,177 @@ JogosPeladinha.Load = function(){
 }
 
 JogosPeladinha.prototype = {
-
+    /*==============================================================================
+    inicialize
+    ==============================================================================*/
     initialize: function() {
-        this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
-
+        
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._sucessoListaPeladinha);
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
+    },
+    _sucessoListaPeladinha: function(value){
+        this._loadListaOnSuccess(value);
+        var listaCam = eval(value);
+        var html = "<h2>Minhas Peladinhas</h2>";
+        if (listaCam.length > 0) {
+            html += "<ul class=\"linksCampeonatos\">";
+            for (var i = 0; i < listaCam.length; i++ ) {
+                var id = "altera"+i;
+                html += "<li><a href=\"#\" id = \"altera" + i + "\">"  +
+                listaCam[i].nome+"</a></li>";
+            }
+            html += "</ul>";
+        }
+        else {
+            html += "<br /><br />Não existe nenhum campeonato cadastrado.";
+        }
+        $('#painel_links').html(html);
+        for (var i = 0; i < listaCam.length; i++ ) {
+            var str2 = {
+                id: listaCam[i].id,
+                index: i
+            }
+            $('#altera'+i).bind('click', str2, $.createDelegate(this, this._alterarItemOnClick));
+        }
+    },
+    
+
+    /*==============================================================================
+    click
+    ==============================================================================*/
+    _alterarItemOnClick: function (value) {
+        this._idSelecionado = value.data.id;
+        this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
+        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaJogadorOnSuccess);
+    },
+    _btnCadastroOnClick: function() {
+        /*if ($('#txtNome').val() == ''
+            || $('#txtDescricao').val() == ''
+            || $('#txtHorario').val() == ''
+            || $('#ddlLocal').val() == '')
+
+            alert("É obrigatório informar todos os campos.");
+        else {*/
+          var listaSelecionados = $('input[name=jogador]');
+            var str = {
+                nome: $('#txtNome').val(),
+                descricao: $('#txtDescricao').val(),
+                horario: $('#txtHorario').val(),
+                local: $('#ddlLocal').val(),
+                id: this._idSelecionado
+            }
+            var lista ="";
+            for(var i = 0; i<listaSelecionados.length;i++){
+                //lista += "{\"id\":\""+listaSelecionados[i].value+"\",\"value\":\""+listaSelecionados[i].checked+"\"},"
+                //alert(listaSelecionados[i].checked+"  "+listaSelecionados[i].value);
+                if(listaSelecionados[i].checked)
+                    lista += listaSelecionados[i].value+"---";
+            }
+            
+          var str = {
+                nome: $('#txtNome').val(),
+                descricao: $('#txtDescricao').val(),
+                horario: $('#txtHorario').val(),
+                local: $('#ddlLocal').val(),
+                id: this._idSelecionado,
+                jogadores: lista
+            }
+            this.executeBind('../../../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
+        //}
+    },
+
+    _btnCadastroAltOnClick: function() {
+        if ($('#txtNome').val() == ''
+            || $('#txtDescricao').val() == ''
+            || $('#txtHorario').val() == ''
+            || $('#ddlLocal').val() == '')
+
+            alert("É obrigatório informar todos os campos.");
+            
+        else {
+            var str = {
+                nome: $('#txtNome').val(),
+                descricao: $('#txtDescricao').val(),
+                horario: $('#txtHorario').val(),
+                local: $('#ddlLocal').val(),
+                id: this._idSelecionado
+            }
+            this.executeBind('../../../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
+        }
+        
+    },
+     _excluirItemOnClick: function (value) {
+        if (confirm("Deseja excluir o registro?")) {
+            var str = {
+                id: value.data.id
+            };
+            this.executeBind('../../ServletExcluirPelada', str, 'GET', this._cadastroOnSuccess);
+        }
+    },
+    
+    
+    
+    
+    
+    /*==============================================================================
+    funcoes
+    ==============================================================================*/
+     _loadListaOnSuccess: function(value) {
+        var listaPeladinha = eval(value);
+        
+        $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
+
+        var html = "<tr><th>Nome</th><th>Descrição</th><th>Horário</th><th>Local</th>";
+        html += "<th class=\"alingCenter\">Editar</th>";
+        html += "<th class=\"alingCenter\">Excluir</th></tr>";
+
+        $('#adm_container_one_text_form').html(html);
+
+        for (var i = 0; i < listaPeladinha.length; i++ ) {
+            html = "";
+            html += "<tr><td>" + listaPeladinha[i].nome + "</td>";
+            html += "<td>" + listaPeladinha[i].descricao + "</td>";
+            html += "<td>" + listaPeladinha[i].horario + "</td>";
+            html += "<td>" + listaPeladinha[i].descricaoLocal + "</td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
+            html += "</tr>";
+
+            $('#adm_container_one_text_form').each(function(){
+                $(this).append(html);
+            });
+
+            var str = {
+                id: listaPeladinha[i].id,
+                index: i
+            }
+            $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
+            $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
+        }
+    },
+      _loadListaJogadorOnSuccess: function(value) {
+        var listaJogador = eval(value);
+        var html = "";
+        
+        for (var i = 0; i < listaJogador.length; i++ ) {
+            html += "<label> <input type=\"checkbox\" name=\"jogador\" value=\""+listaJogador[i].id+"\"/>"+listaJogador[i].nome+"</label>";
+        }
+        
+        $('#listaJogador').html(html);
     },
 
     _listaCampeonato: function (value) {
         var listaCampeonato = eval(value);
-
         var htmlLinks = "<h2>Meus Campeonatos</h2>";
-
         if (listaCampeonato.length > 0) {
             htmlLinks += "<ul class=\"linksCampeonatos\">";
-
             for (var i = 0; i < listaCampeonato.length; i++ ) {
                 htmlLinks += "<li><a href=\"meuCampeonato.jsp?id=" +
-                    listaCampeonato[i].codigo + "\">" +
-                    listaCampeonato[i].nome +
-                    "</a></li>";
+                listaCampeonato[i].codigo + "\">" +
+                listaCampeonato[i].nome +
+                "</a></li>";
             }
-
             htmlLinks += "</ul>";
         }
         else {
@@ -66,53 +214,14 @@ JogosPeladinha.prototype = {
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroOnClick));
         this.executeBind('../../../ServletListarLocal', '', 'GET', this._listaLocal);
+        this.executeBind('../../../ServletListarJogador', '', 'GET', this._loadListaJogadorOnSuccess);
     },
 
     _loadLista: function() {
         this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
-    _loadListaOnSuccess: function(value) {
-        var listaPeladinha = eval(value);
-        alert(value);
-
-        $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
-
-        var html = "<tr><th>Nome</th><th>Descrição</th><th>Horário</th><th>Local</th>";
-        html += "<th class=\"alingCenter\">Editar</th>";
-        html += "<th class=\"alingCenter\">Excluir</th></tr>";
-
-        $('#adm_container_one_text_form').html(html);
-
-        for (var i = 0; i < listaPeladinha.length; i++ ) {
-            html = "";
-            html += "<tr><td>" + listaPeladinha[i].nome + "</td>";
-            html += "<td>" + listaPeladinha[i].descricao + "</td>";
-            html += "<td>" + listaPeladinha[i].horario + "</td>";
-            html += "<td>" + listaPeladinha[i].descricaoLocal + "</td>";
-            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
-            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
-            html += "</tr>";
-
-            $('#adm_container_one_text_form').each(function(){
-               $(this).append(html);
-            });
-
-             var str = {
-                id: listaPeladinha[i].id,
-                index: i
-            }
-            $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
-            $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
-        }
-    },
-
-    _alterarItemOnClick: function (value) {
-        this._idSelecionado = value.data.id;
-        this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
-    },
-
-    _alterarOnSuccess: function(value) {
+_alterarOnSuccess: function(value) {
         $('#spanTitulo').html('Alteração da peladinha');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
@@ -133,60 +242,13 @@ JogosPeladinha.prototype = {
         $('#ddlLocal').attr("value", dados.local);
     },
 
-    _btnCadastroOnClick: function() {
-        if ($('#txtNome').val() == ''
-            || $('#txtDescricao').val() == ''
-            || $('#txtHorario').val() == ''
-            || $('#ddlLocal').val() == '')
-
-            alert("É obrigatório informar todos os campos.");
-        else {
-            var str = {
-                nome: $('#txtNome').val(),
-                descricao: $('#txtDescricao').val(),
-                horario: $('#txtHorario').val(),
-                local: $('#ddlLocal').val(),
-                id: this._idSelecionado
-            }
-            this.executeBind('../../../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
-        }
-    },
-
-    _btnCadastroAltOnClick: function() {
-        if ($('#txtNome').val() == ''
-            || $('#txtDescricao').val() == ''
-            || $('#txtHorario').val() == ''
-            || $('#ddlLocal').val() == '')
-
-            alert("É obrigatório informar todos os campos.");
-            
-        else {
-            var str = {
-                nome: $('#txtNome').val(),
-                descricao: $('#txtDescricao').val(),
-                horario: $('#txtHorario').val(),
-                local: $('#ddlLocal').val(),
-                id: this._idSelecionado
-            }
-                this.executeBind('../../../ServletEditarPelada', str, 'GET', this._cadastroOnSuccess);
-            }
-        
-    },
-
+    
     _cadastroOnSuccess: function(value) {
         alert(value);
         this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
-    _excluirItemOnClick: function (value) {
-        if (confirm("Deseja excluir o registro?")) {
-            var str = {
-                id: value.data.id
-            };
-
-            this.executeBind('../../ServletExcluirPelada', str, 'GET', this._cadastroOnSuccess);
-        }
-    },
+   
 
     executeBind: function(dataUrl, data, type, handlerSuccess) {
         this._type = type;

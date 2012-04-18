@@ -7,6 +7,8 @@ package br.una.sgco.peladinha.to;
 
 import br.una.sgco.to.TOUsuario;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +21,7 @@ public class TOPelada {
     private Time horario;
     private TOLocal idLocal;
     private int criador;
-
+    public List<TOJogador> listaJogadores = new ArrayList<TOJogador>();
     public int getCriador() {
         return criador;
     }
