@@ -15,7 +15,10 @@ MeuCampeonato.Load = function(){
 MeuCampeonato.prototype = {
 
     initialize: function() {
-        this.executeBind('content/meuCampeonato.jsp', '', 'GET', this._dataBind_OnSuccess);
+          var str = {
+            id: getParameter("id")
+        }
+        this.executeBind('content/meuCampeonato.jsp', str, 'GET', this._dataBind_OnSuccess);
         this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
     },
 

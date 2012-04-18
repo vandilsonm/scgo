@@ -26,7 +26,7 @@
                 <div id="header_menu">
                     <ul>
                         <li><a href="index.jsp" class="selecionado" title="Página Inicial">Home</a></li>
-                        <li><a href="campeonatos.jsp" title="Veja nossa lista de campeonatos ativos">Campeonatos</a></li>
+                        <li><a href="campeonatos.jsp" title="Lista de campeonatos ativos">Campeonatos</a></li>
                         <li><a href="cadastro.jsp" title="Cadastre-se e crie seu próprio campeonato">Cadastre-se</a></li>
                         <li><a href="ajuda.jsp" title="Ajuda">Ajuda</a></li>
                         <li><a href="sobre.jsp" title="Sobre o GOLAÇO">Sobre</a></li>

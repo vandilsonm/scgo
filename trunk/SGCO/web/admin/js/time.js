@@ -22,8 +22,18 @@ Time.prototype = {
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
     },
-
+    
+    _dataBind_OnSuccess: function(value){
+        $('#links_moldura').html(value);
+        var str = {
+            id: getParameter("id")
+        }
+        this.executeBind('../ServletSelecionaCamp', str, 'GET', this._exibeNomeCampeonato);
+    },
+    
     _listaCampeonato: function (value) {
+        
+        
         var listaCampeonato = eval(value);
 
         var htmlLinks = "<h2>Meus Campeonatos</h2>";

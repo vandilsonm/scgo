@@ -15,7 +15,7 @@ Cartoes.Load = function(){
 Cartoes.prototype = {
 
     initialize: function() {
-        alert('init'); this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
+        this.executeBind('../ServletListaCampeonatoUsuario', '', 'GET', this._listaCampeonato);
         this.executeBind('../ServletListaCartao', '', 'GET', this._loadListaOnSuccess);
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
