@@ -34,11 +34,18 @@ public class ServletListaPlacar extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
+            Object objCamp = session.getAttribute("campeonato");
+            String camp = request.getParameter("campeonato");
+            
+            if(objCamp != null)
+                camp = objCamp.toString();
+            
             TOCampeonato campeonato = new TOCampeonato();
-            campeonato.setCodigo(Integer.parseInt(session.getAttribute("campeonato").toString()));
+            campeonato.setCodigo(Integer.parseInt(camp));
 
             out.print(BOPlacar.lista(campeonato));
         } catch (Exception e) {
+            e.printStackTrace();;
             out.print(e.getMessage());
         } finally {
             out.close();
