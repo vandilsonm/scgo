@@ -169,6 +169,8 @@ public class DAOCampeonato {
                     + " group by tim.tim_codigo, tim.tim_nome"
                     + " order by total_pontos desc, saldo_gols desc, qtde_gols desc, qtde_gols_contra ";
 
+        
+        System.out.println("classificacao: "+sql);
         ResultSet rs = Data.executeQuery(c, sql, new Object[] {campeonato.getCodigo(),
                                                                campeonato.getCodigo()});
 

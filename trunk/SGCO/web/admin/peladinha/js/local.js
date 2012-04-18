@@ -25,7 +25,7 @@ Local.prototype = {
     _listaCampeonato: function (value) {
         var listaCampeonato = eval(value);
 
-        var htmlLinks = "<h2>Meus Campeonatos</h2>";
+        var htmlLinks = "<h2>Minhas Peladinhas</h2>";
 
         if (listaCampeonato.length > 0) {
             htmlLinks += "<ul class=\"linksCampeonatos\">";

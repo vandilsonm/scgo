@@ -13,12 +13,8 @@
 
 <fieldset class="estiloJogadorPeladinha">
         <legend>Jogadores</legend>
-        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 2 </label>
-        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 3 </label>
-        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 4 </label>
-        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 5 </label>
-        <label> <input type="checkbox" name="jogador" value="ON" />Jogador 6 </label>
-    </fieldset>
+        <div id="listaJogador"></div>
+</fieldset>
 
 
 <input type="button" id="btnCadastro" value="Salvar dados" class="botao inputBotao icone salvar" />

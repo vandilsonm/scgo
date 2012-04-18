@@ -5,6 +5,7 @@
 package br.una.sgco.peladinha.services;
 
 import br.una.sgco.peladinha.bo.BOPelada;
+import br.una.sgco.peladinha.to.TOJogador;
 import br.una.sgco.peladinha.to.TOLocal;
 import br.una.sgco.peladinha.to.TOPelada;
 import java.io.IOException;
@@ -40,11 +41,19 @@ public class ServletInserirPelada extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
-            String idUsuarioStr = session.getAttribute("usuario").toString();
+            Object idUsuarioObj = session.getAttribute("usuario");
+            
+            //if(idUsuarioObj==null)
+               // throw new Exception("Sessão Expirada");
+            
+            String idUsuarioStr = "";//idUsuarioObj.toString();    
             String nome = request.getParameter("nome");
             String descricao  = request.getParameter("descricao");
             String horario  = request.getParameter("horario");
             String local  = request.getParameter("local");
+            String[] jogadores = request.getParameter("jogadores").split("---");
+            
+            
             
             //Valida id usuário
             Integer id = null;
@@ -77,6 +86,14 @@ public class ServletInserirPelada extends HttpServlet {
             TOPelada toPelada = new TOPelada();            
             toLocal.setId(Integer.parseInt(request.getParameter("local")));
             toPelada.setIdLocal(toLocal);
+            
+            for(String s : jogadores){
+                TOJogador jogador = new TOJogador();
+                
+                jogador.setId(Integer.parseInt(s));
+                toPelada.listaJogadores.add(jogador);
+            }
+            
             
             toPelada.setNome(nome);
             toPelada.setDescricao(descricao);

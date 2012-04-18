@@ -45,7 +45,7 @@ public class Data {
         Statement sta = conn.createStatement();
         ResultSet rs = null;
         try {
-
+            System.out.println("sql: "+query);
             rs = sta.executeQuery(query);
         } catch (Exception err) {
             //Log.logar(err.getMessage(), Log.TYPE_INFORMATION);

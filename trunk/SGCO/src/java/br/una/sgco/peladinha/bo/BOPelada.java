@@ -24,6 +24,8 @@ public class BOPelada {
         try {
             connection = Data.openConnection();
             DAOPelada.inserir(toPelada, connection);
+            
+            
 
         } finally {
             if (connection != null)
