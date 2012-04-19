@@ -16,10 +16,40 @@ Local.Load = function(){
 Local.prototype = {
 
     initialize: function() {
+        // Peladinha
+        this.executeBind('content/home_interno.jsp', '', 'GET', this._dataBind_Peladinha_OnSuccess);
+        
         this._loadLista();
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
+    },
+    
+    _dataBind_Peladinha_OnSuccess: function(value){
+        $('#peladinha_links_moldura').html(value);
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._sucessoListaPeladinhas);
+    },
+    
+    _sucessoListaPeladinhas: function(value){
+        var listaPeladinhas = eval(value);
+        var html = "<h2>Minhas Peladinhas</h2>";
+        
+        if (listaPeladinhas.length > 0) {
+            html += "<ul class=\"linksCampeonatos\">";
+
+            for (var i = 0; i < listaPeladinhas.length; i++ ) {
+                html += "<li><a href=\"local.jsp?id=" +
+                        listaPeladinhas[i].id + "\">" +
+                        listaPeladinhas[i].nome +
+                        "</a></li>";
+            }
+            html += "</ul>";
+        }
+        else {
+            html += "<br /><br />Não existe nenhuma peladinha cadastrada.";
+        }
+        
+        $('#peladinha_painel_links').html(html);
     },
 
     _listaCampeonato: function (value) {

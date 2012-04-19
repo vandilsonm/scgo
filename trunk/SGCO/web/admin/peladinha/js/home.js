@@ -21,26 +21,26 @@ Home.prototype = {
 
     _dataBind_Peladinha_OnSuccess: function(value){
         $('#peladinha_links_moldura').html(value);
-        this.executeBind('../../../ServletListarPelada', '', 'GET', this._sucessoListaCampeonato);
+        this.executeBind('../../../ServletListarPelada', '', 'GET', this._sucessoListaPeladinhas);
     },
     
-    _sucessoListaCampeonato: function(value){
-        var listaCam = eval(value);
+    _sucessoListaPeladinhas: function(value){
+        var listaPeladinhas = eval(value);
         var html = "<h2>Minhas Peladinhas</h2>";
         
-        if (listaCam.length > 0) {
+        if (listaPeladinhas.length > 0) {
             html += "<ul class=\"linksCampeonatos\">";
 
-            for (var i = 0; i < listaCam.length; i++ ) {
+            for (var i = 0; i < listaPeladinhas.length; i++ ) {
                 html += "<li><a href=\"meuCampeonato.jsp?id=" +
-                        listaCam[i].id + "\">" +
-                        listaCam[i].nome +
+                        listaPeladinhas[i].id + "\">" +
+                        listaPeladinhas[i].nome +
                         "</a></li>";
             }
             html += "</ul>";
         }
         else {
-            html += "<br /><br />Não existe nenhum campeonato cadastrado.";
+            html += "<br /><br />Não existe nenhuma peladinha cadastrada.";
         }
         
         $('#peladinha_painel_links').html(html);

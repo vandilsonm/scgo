@@ -47,6 +47,7 @@
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
+                    <h2>Minhas Peladinhas</h2>
                     </div>
                     <div id="links_moldura">
                         <div id="adm_container_one_text">
