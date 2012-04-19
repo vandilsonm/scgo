@@ -47,9 +47,12 @@
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
+                        
                     </div>
                     <div id="links_moldura">
+                        
                         <div id="adm_container_one_text">
+
                             <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo1</a>
                             <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
                             <a href="index.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
