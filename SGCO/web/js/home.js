@@ -21,9 +21,9 @@ Home.prototype = {
 
     _dataBind_OnSuccess: function(value){
         $('#container').html(value)
-        //this.executeBind('_servlets/home.jsp', '', 'GET', this._dataBind_OnSuccess_Home);
+       // this.executeBind('_servlets/home.jsp', '', 'GET', this._dataBind_OnSuccess_Home);
         this.executeBind('form/login.jsp', '', 'GET', this._dataBind_OnSuccess_Login);
-        //this.executeBind('form/pesquisa.jsp', '', 'GET', this._dataBind_OnSuccess_Pesquisa);
+       // this.executeBind('form/pesquisa.jsp', '', 'GET', this._dataBind_OnSuccess_Pesquisa);
         this.executeBind('_servlets/share.jsp', '', 'GET', this._dataBind_OnSuccess_Share);
 
         this.executeBind('ServletListaUltimosJogos', '', 'GET', this._exibeUltimosJogos);
@@ -63,9 +63,9 @@ Home.prototype = {
         }
     },
 
-//    _dataBind_OnSuccess_Home: function(value) {
-//        $('#container_text_resultados').html(value);
-//    },
+    _dataBind_OnSuccess_Home: function(value) {
+        $('#container_text_resultados').html(value);
+    },
 
     _dataBind_OnSuccess_Login: function(value) {
         $('#container_right_form').html(value);

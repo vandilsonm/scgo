@@ -23,6 +23,7 @@ JogosPeladinha.prototype = {
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
     },
+    
     _sucessoListaPeladinha: function(value){
         this._loadListaOnSuccess(value);
         var listaCam = eval(value);
@@ -45,7 +46,7 @@ JogosPeladinha.prototype = {
                 id: listaCam[i].id,
                 index: i
             }
-            $('#altera'+i).bind('click', str2, $.createDelegate(this, this._alterarItemOnClick));
+            $('#altera'+i).bind('click', str2, $.createDelegate(this, this.alterarItemOnClick));
         }
     },
     
@@ -53,7 +54,7 @@ JogosPeladinha.prototype = {
     /*==============================================================================
     click
     ==============================================================================*/
-    _alterarItemOnClick: function (value) {
+    alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
         this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
         

@@ -28,6 +28,40 @@ public class DAOPlacar {
                                                     placar.getTime().getCodigo(),
                                                     placar.getJogador().getCodigo(),
                                                     placar.getQtdeGols()});
+        alterarJogo(placar, c);
+    }
+    
+    public static void alterarJogo (TOPlacar toPlacar, Connection c) throws Exception {        
+        int codJogo = toPlacar.getJogo().getCodigo();
+        int codTime = toPlacar.getTime().getCodigo();
+        int qtdeGols = toPlacar.getQtdeGols();
+        
+        int time = 0;
+        String sqlTime = "";
+        String sqlGols = "";
+        String sql1 = "select jgs_codigo, tim_codigo_mandante, tim_codigo_visitante"
+                + " from sgc_jogos_jgs where jgs_codigo = ?";
+        
+        ResultSet rs = Data.executeQuery(c, sql1, new Object[] {codJogo});
+        rs.next();
+        if (rs.getInt("tim_codigo_mandante") == codTime){
+            time = rs.getInt("tim_codigo_mandante");
+            sqlTime = "tim_codigo_mandante = ?";
+            sqlGols = "jgs_qtde_gols_mandante = ? ";
+        }else if (rs.getInt("tim_codigo_visitante") == codTime){
+            time = rs.getInt("tim_codigo_visitante");
+            sqlTime = "tim_codigo_visitante = ?";
+            sqlGols = "jgs_qtde_gols_visitante = ? ";
+        }
+        
+        String sql = " update sgc_jogos_jgs set "
+                + sqlGols
+                + " where jgs_codigo = ? and "
+                + sqlTime;
+
+        Data.executeUpdate(c, sql, new Object[] {
+                qtdeGols, codJogo, time
+        });
     }
     
     public static JSONObject get (TOPlacar placar, Connection c) throws Exception {

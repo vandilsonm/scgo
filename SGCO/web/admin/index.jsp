@@ -46,13 +46,14 @@
                         <h1>Painel Administrativo: Campeonato</h1>
                         <div id="painel_links">
                             <h2>Meus Campeonatos</h2>
+                            tsete
                         </div>
                         <div id="links_moldura"></div>
                     </div>
                     <div id="modulo_peladinha" style="display: none">
                         <h1>Painel Administrativo: Peladinha</h1>
                         <div id="peladinha_painel_links">
-                            <h2>Meus Jogos</h2>
+                            <!--<h2>Minhas peladinhas</h2>-->
                         </div>
                         <div id="peladinha_links_moldura"></div>
                     </div>

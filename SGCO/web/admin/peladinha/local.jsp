@@ -47,7 +47,7 @@
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
                     <div id="painel_links">
-                        
+                    <!--<h2>Minhas Peladinhas</h2>-->
                     </div>
                     <div id="links_moldura">
                         
@@ -56,7 +56,7 @@
                             <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo1</a>
                             <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
                             <a href="index.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
-                            <h2>Gerenciando: <span class="corDestaque">Minhas Peladinhas</span> // <span class="corDestaque">Estádio</span></h2>
+                            <h2>Gerenciando: <span class="corDestaque">Minhas Peladinhas</span> // <span class="corDestaque">Local</span></h2>
                             <fieldset>
                                 <span id="spanTitulo" class="legend"></span>
                                 <table width="540" border="1" cellspacing="2" cellpadding="2" id="adm_container_one_text_form" class="gridListagem">
