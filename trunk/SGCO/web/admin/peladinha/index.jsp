@@ -45,9 +45,9 @@
                 <div id="container_one_text">
                     <div id="modulo_peladinha">
                         <h1>Painel Administrativo: Peladinha</h1>
-                        <div id="peladinha_painel_links">
+                        <!--<div id="peladinha_painel_links">
                             <h2>Minhas Peladinhas</h2>
-                        </div>
+                        </div>-->
                         <div id="peladinha_links_moldura"></div>
                     </div>
                 </div>

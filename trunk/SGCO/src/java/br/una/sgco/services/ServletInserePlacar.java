@@ -56,7 +56,7 @@ public class ServletInserePlacar extends HttpServlet {
             out.print("Cadastro realizado com sucesso.");
             
         } catch(Exception e) {
-            out.print(e.getMessage());
+            out.print("Placar já foi cadastrado!");
         } finally {
             out.close();
         }

@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="adm_container_one_text">
-    <h2>Gerenciando: <span class="corDestaque">Meus Jogos</span></h2>
+    <h2>Gerenciando: <span class="corDestaque">Minhas peladinhas</span></h2>
     <div id="adm_container_one_text_form">
         <a href="local.jsp" title="Gerenciar Local" class="linkGerenciar"><img src="../img/cad/local.png" alt="Local" /></a>
         <a href="jogador.jsp" title="Gerenciar Jogador" class="linkGerenciar"><img src="../img/cad/jogador.png" alt="Jogador" /></a>

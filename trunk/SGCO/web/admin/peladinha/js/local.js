@@ -16,13 +16,39 @@ Local.Load = function(){
 Local.prototype = {
 
     initialize: function() {
-        // Peladinha
+        //this.executeBind('../../../ServletListarPelada', '', 'GET', this._sucessoListaPeladinha);
         this.executeBind('content/home_interno.jsp', '', 'GET', this._dataBind_Peladinha_OnSuccess);
         
         this._loadLista();
 
         $('#btnNovo').bind('click', '', $.createDelegate(this, this._loadNovo));
         $('#btnLista').bind('click', '', $.createDelegate(this, this._loadLista));
+    },
+    
+    _sucessoListaPeladinha: function(value){
+        this._loadListaOnSuccess(value);
+        var listaCam = eval(value);
+        var html = "<h2>Minhas Peladinhas</h2>";
+        if (listaCam.length > 0) {
+            html += "<ul class=\"linksCampeonatos\">";
+            for (var i = 0; i < listaCam.length; i++ ) {
+                var id = "altera"+i;
+                html += "<li><a href=\"#\" id = \"altera" + i + "\">"  +
+                listaCam[i].nome+"</a></li>";
+            }
+            html += "</ul>";
+        }
+        else {
+            html += "<br /><br />Não existe nenhum campeonato cadastrado.";
+        }
+        $('#painel_links').html(html);
+        for (var i = 0; i < listaCam.length; i++ ) {
+            var str2 = {
+                id: listaCam[i].id,
+                index: i
+            }
+           // $('#altera'+i).bind('click', str2, $.createDelegate(this, this._alterarItemOnClick));
+        }
     },
     
     _dataBind_Peladinha_OnSuccess: function(value){

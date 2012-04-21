@@ -65,9 +65,7 @@ Campeonatos.prototype = {
     },
 
     _listaCampeonato: function (value) {
-        alert(value);
         var listaCampeonato = eval(value);
-
         var htmlLinks = "";
 
         if (listaCampeonato.length > 0) {

@@ -228,8 +228,8 @@ public class DAOCampeonato {
                     + " from sgc_jogos_jgs jgs "
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
-                    + " where ((datediff(day, jgs.jgs_data_hora, CURRENT_TIMESTAMP()) <= 7 and datediff(day, jgs.jgs_data_hora, CURRENT_TIMESTAMP()) >= 0)"
-                    + " or (datediff(day, CURRENT_TIMESTAMP(), jgs.jgs_data_hora) <= 7 and datediff(day, CURRENT_TIMESTAMP(), jgs.jgs_data_hora) >= 0))"
+                    + " where (date(jgs.jgs_data_hora) - date( CURRENT_TIMESTAMP()) <= 7 and date(jgs.jgs_data_hora) - date(CURRENT_TIMESTAMP()) >= 0) "
+                    + " or ( date(CURRENT_TIMESTAMP()) - date(jgs.jgs_data_hora) <= 7 and date(CURRENT_TIMESTAMP() - date(jgs.jgs_data_hora) >= 0)) "
                     + " and jgs.cam_codigo = ?"
                     + " order by jgs.jgs_data_hora desc ";
                     
@@ -254,7 +254,7 @@ public class DAOCampeonato {
     public static JSONArray listaUltimosJogos(Connection c) throws Exception {
         JSONArray ja = new JSONArray();
 
-        String sql = "select top 3 tim_mandante.tim_nome as time_nome_mandante"
+        String sql = "select tim_mandante.tim_nome as time_nome_mandante"
                         + ", tim_visitante.tim_nome as time_nome_visitante"
                         + ", jgs.jgs_qtde_gols_mandante as gols_mandante"
                         + ", jgs.jgs_qtde_gols_visitante as gols_visitante"
@@ -266,7 +266,7 @@ public class DAOCampeonato {
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
                     + " where jgs.jgs_data_hora < CURRENT_TIMESTAMP()"
-                    + " order by jgs.jgs_data_hora desc, cam.cam_codigo ";
+                    + " order by jgs.jgs_data_hora desc, cam.cam_codigo limit 3";
 
 
         ResultSet rs = Data.executeQuery(c, sql);
