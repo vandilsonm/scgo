@@ -48,7 +48,7 @@
                 <!-- coluna unica -->
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
-                    <div id="painel_links">
+                    <div id="painel_links" title="Gerenciar Peladinha">
                         <h2>Minhas Peladinhas</h2>
                     </div>
                     <div id="links_moldura">

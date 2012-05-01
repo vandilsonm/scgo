@@ -38,7 +38,6 @@
                         <li><a href="estadio.jsp" title="Estádio">Estádio</a></li>
                     </ul>
                 </div>
-
             </div>
 
             <!-- conteudo -->
