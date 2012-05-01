@@ -40,7 +40,7 @@ public class ServletExcluiJogo extends HttpServlet {
             out.print("Registro excluído com sucesso.");
 
         } catch (Exception e) {
-            out.print(e.getMessage());
+            out.print("Impossível excluir!  Existem placares realcionados.");
         } finally {
             out.close();
         }
