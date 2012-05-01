@@ -39,7 +39,8 @@ public class DAOPlacar {
         int time = 0;
         String sqlTime = "";
         String sqlGols = "";
-        String sql1 = "select jgs_codigo, tim_codigo_mandante, tim_codigo_visitante"
+        String sql1 = "select jgs_codigo, tim_codigo_mandante, tim_codigo_visitante,"
+                + " jgs_qtde_gols_mandante, jgs_qtde_gols_visitante"
                 + " from sgc_jogos_jgs where jgs_codigo = ?";
         
         ResultSet rs = Data.executeQuery(c, sql1, new Object[] {codJogo});
@@ -48,10 +49,12 @@ public class DAOPlacar {
             time = rs.getInt("tim_codigo_mandante");
             sqlTime = "tim_codigo_mandante = ?";
             sqlGols = "jgs_qtde_gols_mandante = ? ";
+            qtdeGols += rs.getInt("jgs_qtde_gols_mandante");
         }else if (rs.getInt("tim_codigo_visitante") == codTime){
             time = rs.getInt("tim_codigo_visitante");
             sqlTime = "tim_codigo_visitante = ?";
             sqlGols = "jgs_qtde_gols_visitante = ? ";
+            qtdeGols += rs.getInt("jgs_qtde_gols_visitante");
         }
         
         String sql = " update sgc_jogos_jgs set "

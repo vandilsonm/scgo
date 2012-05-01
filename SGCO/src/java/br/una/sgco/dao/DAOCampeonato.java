@@ -223,11 +223,12 @@ public class DAOCampeonato {
                         + ", tim_visitante.tim_nome as time_nome_visitante"
                         + ", jgs.jgs_qtde_gols_mandante as gols_mandante"
                         + ", jgs.jgs_qtde_gols_visitante as gols_visitante"
-                        + ", jgs.jgs_data_hora "
+                        + ", jgs.jgs_data_hora, estadio.est_nome as estadio"
                         + ", case when jgs.jgs_data_hora < CURRENT_TIMESTAMP() then 1 else 0 end as jogo_aconteceu "
                     + " from sgc_jogos_jgs jgs "
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
+                        + " inner join sgc_estadio_est estadio on jgs.est_codigo = estadio.est_codigo"
                     + " where (date(jgs.jgs_data_hora) - date( CURRENT_TIMESTAMP()) <= 7 and date(jgs.jgs_data_hora) - date(CURRENT_TIMESTAMP()) >= 0) "
                     + " or ( date(CURRENT_TIMESTAMP()) - date(jgs.jgs_data_hora) <= 7 and date(CURRENT_TIMESTAMP() - date(jgs.jgs_data_hora) >= 0)) "
                     + " and jgs.cam_codigo = ?"
@@ -236,15 +237,16 @@ public class DAOCampeonato {
 
         ResultSet rs = Data.executeQuery(c, sql, new Object[] {campeonato.getCodigo()});
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM HH:mm"); 
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm"); 
         while (rs.next()) {
             JSONObject jo = new JSONObject();
             jo.put("timeNomeMandante", rs.getString("time_nome_mandante"));
             jo.put("timeNomeVisitante", rs.getString("time_nome_visitante"));
             jo.put("dataHora", df.format(rs.getTimestamp("jgs_data_hora")));
             jo.put("golsMandante", rs.getInt("gols_mandante"));
-            jo.put("golsVisitante", rs.getString("gols_visitante"));
+            jo.put("golsVisitante", rs.getInt("gols_visitante"));
             jo.put("jogoAconteceu", rs.getInt("jogo_aconteceu"));
+            jo.put("estadio", rs.getString("estadio"));
             ja.put(jo);
         }
         rs.close();
@@ -271,7 +273,7 @@ public class DAOCampeonato {
 
         ResultSet rs = Data.executeQuery(c, sql);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         while (rs.next()) {
             JSONObject jo = new JSONObject();
             jo.put("timeNomeMandante", rs.getString("time_nome_mandante"));
