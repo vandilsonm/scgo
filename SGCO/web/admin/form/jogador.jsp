@@ -14,5 +14,7 @@
     </select></label>
 <!-- campo celular -->
 <label><span>Celular: </span>
-    <input type="text" id="txtCelular" value="" maxlength="14" onkeypress="MascaraTelefone(this)"  /></label>
+    <input type="text" id="txtCelular" value="" maxlength="14" onkeypress="MascaraTelefone(this)"/></label>
+<label><span>E-mail: </span>
+    <input type="text" id="txtEmail" value="" maxlength="100"  /></label>
 <input id="btnCadastro" type="button" value="Salvar dados" class="botao inputBotao icone salvar" />

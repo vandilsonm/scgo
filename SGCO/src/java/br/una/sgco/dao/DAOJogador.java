@@ -12,7 +12,6 @@ import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,22 +24,24 @@ public class DAOJogador {
     public static void inserir (TOJogador jogador, Connection c) throws Exception {
 
         String sql = " insert into sgc_jogador_jog (jog_nome, jog_posicao, jog_status, "
-                    + " jog_tipo, tim_codigo, jog_celular)"
-                    + " values (?, ?, ?, ?, ?, ?)";
+                    + " jog_tipo, tim_codigo, jog_celular, email)"
+                    + " values (?, ?, ?, ?, ?, ?, ?)";
 
         Data.executeUpdate(c, sql, new Object[] {jogador.getNome(), jogador.getPosicao(),
                                 jogador.getStatus(), jogador.getTipo(), 
-                                jogador.getTime().getCodigo(), jogador.getCelular()});
+                                jogador.getTime().getCodigo(), jogador.getCelular(),
+                                jogador.getEmail()});
     }
 
     public static void alterar (TOJogador jogador, Connection c) throws Exception {
         String sql = " update sgc_jogador_jog set jog_nome = ?, jog_posicao = ?, "
-                + " jog_status = ?, jog_tipo = ?, jog_celular = ? "
+                + " jog_status = ?, jog_tipo = ?, jog_celular = ?, email = ? "
                 + " where jog_codigo = ? ";
 
         Data.executeUpdate(c, sql, new Object[] {jogador.getNome(), jogador.getPosicao(),
                                 jogador.getStatus(), jogador.getTipo(), 
-                                jogador.getCelular(), jogador.getCodigo()});
+                                jogador.getCelular(), 
+                                jogador.getEmail(), jogador.getCodigo()});
     }
 
     public static void inativar (TOJogador jogador, Connection c) throws Exception {
@@ -106,8 +107,8 @@ public class DAOJogador {
 
     public static JSONObject obterUm(TOJogador jogador, Connection c) throws Exception {
 
-       String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular "
-                    + " from sgc_jogador_jog where jog_codigo = ?";
+       String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular, "
+                    + " email from sgc_jogador_jog where jog_codigo = ?";
 
         JSONObject jo = new JSONObject();
 
@@ -121,6 +122,7 @@ public class DAOJogador {
             jo.put("tipo", rs.getString("jog_tipo"));
             jo.put("time", rs.getInt("tim_codigo"));
             jo.put("celular", rs.getString("jog_celular"));
+            jo.put("email", rs.getString("email"));
         }
 
         rs.close();
@@ -153,6 +155,4 @@ public class DAOJogador {
         rs.close();
         return ja;
     }
-
-
 }

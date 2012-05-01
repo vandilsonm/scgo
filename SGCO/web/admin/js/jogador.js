@@ -132,6 +132,7 @@ Jogador.prototype = {
         $('#ddlTipo').attr("value", dados.tipo);
         $('#ddlTime').attr("value", dados.time);
         $('#txtCelular').attr("value", dados.celular);
+        $('#txtEmail').attr("value", dados.email);
 
         $('#ddlTime').attr("disabled", "disabled");
     },
@@ -149,7 +150,7 @@ Jogador.prototype = {
     },
 
     _btnCadastroOnClick: function(value) {
-        if ($('#txtNome').val() == '' || $('#txtPosicao').val() == '')
+        if ($('#txtNome').val() == '' || $('#txtPosicao').val() == '' || $('#txtEmail').val() == '')
             alert("É obrigatório informar todos os campos.");
         else {
             var str = {
@@ -157,7 +158,8 @@ Jogador.prototype = {
                 posicao: $('#txtPosicao').val(),
                 tipo: $('#ddlTipo').val(),
                 time: $('#ddlTime').val(),
-                celular: $('#txtCelular').val()
+                celular: $('#txtCelular').val(),
+                email: $('#txtEmail').val()
             }
             this.executeBind('../ServletInsereJogador', str, 'GET', this._cadastroOnSuccess);
         }
@@ -173,6 +175,7 @@ Jogador.prototype = {
                 tipo: $('#ddlTipo').val(),
                 time: $('#ddlTime').val(),
                 celular: $('#txtCelular').val(),
+                email: $('#txtEmail').val(),
                 id: this._idSelecionado
             }
             this.executeBind('../ServletAlteraJogador', str, 'GET', this._cadastroOnSuccess);
