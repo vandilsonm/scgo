@@ -22,7 +22,7 @@ public class DAOJogadorPelada {
     
     public static void inserir (List<TOJogadorPelada> tOJogadorPelada, Connection connection) throws Exception {
 
-        String sql = " insert into sgc_jogadorpelada (idPelada,idJogador) VALUE"
+        String sql = " insert into sgc_jogadorpelada (idPelada,idJogador) "
                     + " values (?, ?)";
         
         Object[] dados = new Object[tOJogadorPelada.size()];
