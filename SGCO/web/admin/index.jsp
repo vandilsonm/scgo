@@ -44,7 +44,7 @@
                 <div id="container_one_text">
                     <div id="modulo_campeonato" style="display: none">
                         <h1>Painel Administrativo: Campeonato</h1>
-                        <div id="painel_links">
+                        <div id="painel_links" title="Gerenciar Campeonato">
                             <h2>Meus Campeonatos</h2>
                             tsete
                         </div>
