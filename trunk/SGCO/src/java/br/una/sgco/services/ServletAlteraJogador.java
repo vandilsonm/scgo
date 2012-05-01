@@ -39,6 +39,7 @@ public class ServletAlteraJogador extends HttpServlet {
             jogador.setPosicao(request.getParameter("posicao"));
             jogador.setTipo(request.getParameter("tipo"));
             jogador.setCelular(request.getParameter("celular"));
+            jogador.setEmail(request.getParameter("email"));
             jogador.setStatus("A");
 
             TOTime time = new TOTime();
