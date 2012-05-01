@@ -10,16 +10,32 @@ package br.una.sgco.to;
  */
 public class TOJogadorJogo {
     
-    private String idJogador;
-    private String idJogo;
-    private String idTime;
+    private int idJogador;
+    private int idJogo;
+    private int idTime;
     private boolean confirmacao;
 
-    public String getIdTime() {
+    public int getIdJogador() {
+        return idJogador;
+    }
+
+    public void setIdJogador(int idJogador) {
+        this.idJogador = idJogador;
+    }
+
+    public int getIdJogo() {
+        return idJogo;
+    }
+
+    public void setIdJogo(int idJogo) {
+        this.idJogo = idJogo;
+    }
+
+    public int getIdTime() {
         return idTime;
     }
 
-    public void setIdTime(String idTime) {
+    public void setIdTime(int idTime) {
         this.idTime = idTime;
     }
 
@@ -31,19 +47,4 @@ public class TOJogadorJogo {
         this.confirmacao = confirmacao;
     }
 
-    public String getIdJogador() {
-        return idJogador;
-    }
-
-    public void setIdJogador(String idJogador) {
-        this.idJogador = idJogador;
-    }
-
-    public String getIdJogo() {
-        return idJogo;
-    }
-
-    public void setIdJogo(String idJogo) {
-        this.idJogo = idJogo;
-    }
 }

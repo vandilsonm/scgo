@@ -15,8 +15,17 @@ public class TOJogador {
     private String _posicao;
     private String _status;
     private String _tipo;
+    private String _email;
     private TOTime _time;
     private String _celular;
+
+    public String getEmail() {
+        return _email;
+    }
+
+    public void setEmail(String _email) {
+        this._email = _email;
+    }
 
     public String getCelular() {
         return _celular;
