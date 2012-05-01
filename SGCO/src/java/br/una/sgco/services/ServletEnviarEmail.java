@@ -4,7 +4,11 @@
  */
 package br.una.sgco.services;
 
-import br.una.sgco.framework.Email;
+import br.una.sgco.bo.BOJogador;
+import br.una.sgco.bo.BOJogo;
+import br.una.sgco.to.TOJogador;
+import br.una.sgco.to.TOJogo;
+import br.una.sgco.to.TOTime;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -13,12 +17,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
  * @author Jana Louback
  */
-public class ServletEnviaEmail extends HttpServlet {
+public class ServletEnviarEmail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,11 +41,27 @@ public class ServletEnviaEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
-             Email.send("teste", "recebeu este e-mail?", "janaina.magalhaes@aorta.com.br", true);
-             System.out.println("email enviado com sucesso!");
-             
-        } finally {            
+            TOJogo toJogo = new TOJogo();
+            toJogo.setCodigo(Integer.parseInt(request.getParameter("idJogo")));
+
+            JSONObject json = BOJogo.obterUm(toJogo);
+            int timMandante = json.getInt("timeMandante");
+            int timVisitante = json.getInt("timeVisitante");
+
+            TOTime toTimeMandante = new TOTime();
+            toTimeMandante.setCodigo(timMandante);
+            JSONArray jsonJogMan = BOJogador.obterTodosTime(toTimeMandante);
+            for (int i = 0; i < jsonJogMan.length(); i++) {
+            }
+
+            TOTime toTimeVisitante = new TOTime();
+            toTimeVisitante.setCodigo(timVisitante);
+            JSONArray jsonJogVis = BOJogador.obterTodosTime(toTimeVisitante);
+            for (int i = 0; i < jsonJogVis.length(); i++) {
+            }
+
+            //Email.send("teste", "recebeu este e-mail?", "janaina.magalhaes@aorta.com.br", true);
+        } finally {
             out.close();
         }
     }
@@ -60,7 +82,7 @@ public class ServletEnviaEmail extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ServletEnviaEmail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletEnviarEmail.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,7 +101,7 @@ public class ServletEnviaEmail extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ServletEnviaEmail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletEnviarEmail.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

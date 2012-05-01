@@ -39,14 +39,14 @@ public class ServletInserirJogadorJogo extends HttpServlet {
         try {
             TOJogadorJogo to = new TOJogadorJogo();
             
-            to.setIdJogador(request.getParameter("idJogador"));
-            to.setIdJogo(request.getParameter("idJogo"));
-            to.setIdTime(request.getParameter("idTime"));
+            to.setIdJogador(Integer.parseInt(request.getParameter("idJogador")));
+            to.setIdJogo(Integer.parseInt(request.getParameter("idJogo")));
+            to.setIdTime(Integer.parseInt(request.getParameter("idTime")));
             to.setConfirmacao(true);
 
             BOJogadorJogo.inserir(to);
 
-            out.print("Confirmação realizado com sucesso! ");
+            out.print("Confirmação realizada com sucesso! ");
         } finally {            
             out.close();
         }
