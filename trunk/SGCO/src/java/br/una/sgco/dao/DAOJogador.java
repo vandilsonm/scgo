@@ -50,9 +50,9 @@ public class DAOJogador {
 
     }
 
-    public static JSONArray obterTodosTime(TOTime time, Connection c) throws Exception {
-        String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular"
-                    + " from sgc_jogador_jog where tim_codigo = ? and jog_status = 'A' order by jog_nome ";
+    public static JSONArray  obterTodosTime(TOTime time, Connection c) throws Exception {
+        String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular, "
+                    + " email from sgc_jogador_jog where tim_codigo = ? and jog_status = 'A' order by jog_nome ";
 
         JSONArray ja = new JSONArray();
 
@@ -67,6 +67,7 @@ public class DAOJogador {
             jo.put("Tipo", rs.getString("jog_tipo"));
             jo.put("Time", rs.getInt("tim_codigo"));
             jo.put("Celular", rs.getString("jog_celular"));
+            jo.put("Email", rs.getString("email"));
             ja.put(jo);
         }
 

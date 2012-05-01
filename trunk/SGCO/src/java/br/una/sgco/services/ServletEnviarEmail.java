@@ -6,17 +6,20 @@ package br.una.sgco.services;
 
 import br.una.sgco.bo.BOJogador;
 import br.una.sgco.bo.BOJogo;
+import br.una.sgco.framework.Email;
 import br.una.sgco.to.TOJogador;
 import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.tomcat.dbcp.jocl.JOCLContentHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -41,8 +44,14 @@ public class ServletEnviarEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            String message = "Prezado(a),<br/><br/>";
+                   message += "Para confirmar sua presença no jogo, clique no link abaixo:<br/><br/>";
+                   
+            String link = "http://localhost:8084/ServletInserirJogadorJogo?";
+            
             TOJogo toJogo = new TOJogo();
             toJogo.setCodigo(Integer.parseInt(request.getParameter("idJogo")));
+            link += "idJogo=" + toJogo.getCodigo() + "&";
 
             JSONObject json = BOJogo.obterUm(toJogo);
             int timMandante = json.getInt("timeMandante");
@@ -51,16 +60,34 @@ public class ServletEnviarEmail extends HttpServlet {
             TOTime toTimeMandante = new TOTime();
             toTimeMandante.setCodigo(timMandante);
             JSONArray jsonJogMan = BOJogador.obterTodosTime(toTimeMandante);
+            
             for (int i = 0; i < jsonJogMan.length(); i++) {
+                JSONObject jso = jsonJogMan.getJSONObject(i);
+                int idTime = jso.getInt("Time");
+                int idJogador = jso.getInt("Codigo");
+                String email = jso.getString("Email");
+                 
+                link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
+                message += link;
+                
+                //Email.send("Confirmação de presença", message, email, true);
             }
 
             TOTime toTimeVisitante = new TOTime();
             toTimeVisitante.setCodigo(timVisitante);
             JSONArray jsonJogVis = BOJogador.obterTodosTime(toTimeVisitante);
+            
             for (int i = 0; i < jsonJogVis.length(); i++) {
+                JSONObject jso = jsonJogVis.getJSONObject(i);
+                int idTime = jso.getInt("Time");
+                int idJogador = jso.getInt("Codigo");
+                String email = jso.getString("Email");
+                 
+                link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
+                message += link;
+                
+                //Email.send("Confirmação de presença", message, email, true);                
             }
-
-            //Email.send("teste", "recebeu este e-mail?", "janaina.magalhaes@aorta.com.br", true);
         } finally {
             out.close();
         }
