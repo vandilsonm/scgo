@@ -41,11 +41,12 @@ public class ServletInserirJogadorJogo extends HttpServlet {
             
             to.setIdJogador(request.getParameter("idJogador"));
             to.setIdJogo(request.getParameter("idJogo"));
+            to.setIdTime(request.getParameter("idTime"));
             to.setConfirmacao(true);
 
             BOJogadorJogo.inserir(to);
 
-            out.print("Cadastro realizado com sucesso ");
+            out.print("Confirmação realizado com sucesso! ");
         } finally {            
             out.close();
         }

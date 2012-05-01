@@ -12,7 +12,16 @@ public class TOJogadorJogo {
     
     private String idJogador;
     private String idJogo;
+    private String idTime;
     private boolean confirmacao;
+
+    public String getIdTime() {
+        return idTime;
+    }
+
+    public void setIdTime(String idTime) {
+        this.idTime = idTime;
+    }
 
     public boolean isConfirmacao() {
         return confirmacao;

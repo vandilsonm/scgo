@@ -16,11 +16,11 @@ public class DAOJogadorJogo {
 
     public static void inserir(TOJogadorJogo jogadorJogo, Connection c) throws Exception {
 
-        String sql = " insert into sgc_jogador_jog (jog_nome, jog_posicao, jog_status, "
-                + " jog_tipo, tim_codigo, jog_celular)"
-                + " values (?, ?, ?, ?, ?, ?)";
+        String sql = " insert into sgc_jogadorjogo (idJogador, idJogo, idTime, confirmacao)"
+                + " values (?, ?, ?, ?)";
 
-        Data.executeUpdate(c, sql, new Object[]{jogadorJogo.getIdJogador(), jogadorJogo.getIdJogo(),
-                    jogadorJogo.isConfirmacao()});
+        Data.executeUpdate(c, sql, new Object[]{jogadorJogo.getIdJogador(), 
+                            jogadorJogo.getIdJogo(), jogadorJogo.getIdTime(),
+                            jogadorJogo.isConfirmacao()});
     }
 }
