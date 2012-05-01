@@ -50,8 +50,8 @@ public class Email extends Thread {
 
                 if (!sendTo.trim().equals("")) {
                     String host = "smtp.gmail.com";
-                    String username = "mail@inteligencia.mobi";
-                    String password = "M4m4m14001";
+                    String username = "pqlouback@gmail.com";
+                    String password = "";
 
                     Properties props = new Properties();
                     props.put("mail.smtps.auth", "true");
@@ -67,7 +67,7 @@ public class Email extends Thread {
 
                     msg.setContent(message, "text/html; charset=ISO-8859-1");
                     // set the message content here
-                    Transport t = session.getTransport("smtps");
+                    Transport t = session.getTransport("smtp");
                     try {
                         t.connect(host, username, password);
                         t.sendMessage(msg, msg.getAllRecipients());

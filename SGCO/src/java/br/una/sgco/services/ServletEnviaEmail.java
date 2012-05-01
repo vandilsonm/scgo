@@ -4,8 +4,11 @@
  */
 package br.una.sgco.services;
 
+import br.una.sgco.framework.Email;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jana Louback
  */
-public class ServletEnviarEmail extends HttpServlet {
+public class ServletEnviaEmail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -28,11 +31,14 @@ public class ServletEnviarEmail extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-           
+            
+             Email.send("teste", "recebeu este e-mail?", "janaina.magalhaes@aorta.com.br", true);
+             System.out.println("email enviado com sucesso!");
+             
         } finally {            
             out.close();
         }
@@ -51,7 +57,11 @@ public class ServletEnviarEmail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ServletEnviaEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +76,11 @@ public class ServletEnviarEmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ServletEnviaEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
