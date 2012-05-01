@@ -25,7 +25,7 @@
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
-                        <li><a href="index.jsp" class="selecionado" title="Trocar Modulo">Trocar Módulo</a></li>
+                        <li><a href="index.jsp" class="selecionado" title="Trocar Módulo">Trocar Módulo</a></li>
                         <li><a href="sair.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
@@ -48,7 +48,7 @@
                 <!-- coluna unica -->
                 <div id="container_one_text">
                     <h1>Painel Administrativo</h1>
-                    <div id="painel_links">
+                    <div id="painel_links" title="Gerenciar Campeonato">
                         <h2>Meus Campeonatos</h2>
                     </div>
                     <div id="links_moldura">
