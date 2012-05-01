@@ -9,7 +9,6 @@ import br.una.sgco.dao.DAOJogador;
 import br.una.sgco.framework.Data;
 import br.una.sgco.to.TOCampeonato;
 import br.una.sgco.to.TOJogador;
-import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.sql.Connection;
 import org.json.JSONArray;
