@@ -6,20 +6,16 @@ package br.una.sgco.services;
 
 import br.una.sgco.bo.BOJogador;
 import br.una.sgco.bo.BOJogo;
-import br.una.sgco.framework.Email;
-import br.una.sgco.to.TOJogador;
 import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.tomcat.dbcp.jocl.JOCLContentHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
