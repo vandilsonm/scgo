@@ -8,6 +8,7 @@ import br.una.sgco.bo.BOJogador;
 import br.una.sgco.bo.BOJogo;
 import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
+import br.una.sgco.framework.Email;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -40,8 +41,8 @@ public class ServletEnviarEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String message = "Prezado(a),<br/><br/>";
-                   message += "Para confirmar sua presença no jogo, clique no link abaixo:<br/><br/>";
+            String message = "Prezado(a),</br></br>";
+                   message += "Para confirmar sua presença no jogo, clique no link abaixo:</br></br>";
                    
             String link = "http://localhost:8084/ServletInserirJogadorJogo?";
             
@@ -64,9 +65,10 @@ public class ServletEnviarEmail extends HttpServlet {
                 String email = jso.getString("Email");
                  
                 link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                message += link;
+                message += link + "</br></br>Bom jogo!<br/>Equipe Golaço";
                 
-                //Email.send("Confirmação de presença", message, email, true);
+                Email semail = new Email();
+                semail.sendMail("sgc.golaco", email, "Confirmação de presença", message);
             }
 
             TOTime toTimeVisitante = new TOTime();
@@ -82,7 +84,8 @@ public class ServletEnviarEmail extends HttpServlet {
                 link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
                 message += link;
                 
-                //Email.send("Confirmação de presença", message, email, true);                
+                Email semail = new Email();
+                semail.sendMail("sgc.golaco", email, "Confirmação de presença", message);                
             }
         } finally {
             out.close();
