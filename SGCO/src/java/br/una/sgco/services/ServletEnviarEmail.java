@@ -41,8 +41,9 @@ public class ServletEnviarEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String message = "Prezado(a),</br></br>";
-                   message += "Para confirmar sua presença no jogo, clique no link abaixo:</br></br>";
+            String message = "Prezado(a),"
+                    + ""; 
+                   message += "Para confirmar sua presença no jogo, clique no link abaixo:<br/><br/>";
                    
             String link = "http://localhost:8084/ServletInserirJogadorJogo?";
             
@@ -59,16 +60,18 @@ public class ServletEnviarEmail extends HttpServlet {
             JSONArray jsonJogMan = BOJogador.obterTodosTime(toTimeMandante);
             
             for (int i = 0; i < jsonJogMan.length(); i++) {
+                String messageMan = message;
+                String linkMan = link;
                 JSONObject jso = jsonJogMan.getJSONObject(i);
                 int idTime = jso.getInt("Time");
                 int idJogador = jso.getInt("Codigo");
                 String email = jso.getString("Email");
                  
-                link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                message += link + "</br></br>Bom jogo!<br/>Equipe Golaço";
+                linkMan += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
+                messageMan += linkMan + "<br/><br/>Bom jogo!<br/>Equipe Golaço";
                 
                 Email semail = new Email();
-                semail.sendMail("sgc.golaco", email, "Confirmação de presença", message);
+                semail.sendMail("sgc.golaco", email, "Confirmação de presença", messageMan);
             }
 
             TOTime toTimeVisitante = new TOTime();
@@ -76,17 +79,21 @@ public class ServletEnviarEmail extends HttpServlet {
             JSONArray jsonJogVis = BOJogador.obterTodosTime(toTimeVisitante);
             
             for (int i = 0; i < jsonJogVis.length(); i++) {
+                String messageVis = message;
+                String linkVis = link;
                 JSONObject jso = jsonJogVis.getJSONObject(i);
                 int idTime = jso.getInt("Time");
                 int idJogador = jso.getInt("Codigo");
                 String email = jso.getString("Email");
                  
-                link += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                message += link;
+                linkVis += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
+                messageVis += linkVis + "<br/><br/>Bom jogo!<br/>Equipe Golaço";
                 
                 Email semail = new Email();
-                semail.sendMail("sgc.golaco", email, "Confirmação de presença", message);                
+                semail.sendMail("sgc.golaco", email, "Confirmação de presença", messageVis);
             }
+            
+            out.println("E-mail enviado com sucesso!");
         } finally {
             out.close();
         }
