@@ -41,8 +41,7 @@ public class ServletEnviarEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String message = "Prezado(a),"
-                    + ""; 
+            String message = "Prezado(a),<br/><br/>";
                    message += "Para confirmar sua presença no jogo, clique no link abaixo:<br/><br/>";
                    
             String link = "http://localhost:8084/ServletInserirJogadorJogo?";
@@ -68,7 +67,8 @@ public class ServletEnviarEmail extends HttpServlet {
                 String email = jso.getString("Email");
                  
                 linkMan += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                messageMan += linkMan + "<br/><br/>Bom jogo!<br/>Equipe Golaço";
+                messageMan += "<a href="+ linkMan + ">Clique aqui para confirmar sua presença </a>";
+                messageMan += "<br/><br/>Bom jogo!<br/>Equipe Golaço";
                 
                 Email semail = new Email();
                 semail.sendMail("sgc.golaco", email, "Confirmação de presença", messageMan);
@@ -87,7 +87,8 @@ public class ServletEnviarEmail extends HttpServlet {
                 String email = jso.getString("Email");
                  
                 linkVis += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                messageVis += linkVis + "<br/><br/>Bom jogo!<br/>Equipe Golaço";
+                messageVis += "<a href="+ linkVis + ">Confirmar presença </a>";
+                messageVis += "<br/><br/>Bom jogo!<br/>Equipe Golaço";
                 
                 Email semail = new Email();
                 semail.sendMail("sgc.golaco", email, "Confirmação de presença", messageVis);
