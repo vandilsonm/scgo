@@ -6,9 +6,9 @@ package br.una.sgco.services;
 
 import br.una.sgco.bo.BOJogador;
 import br.una.sgco.bo.BOJogo;
+import br.una.sgco.framework.Email;
 import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
-import br.una.sgco.framework.Email;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
