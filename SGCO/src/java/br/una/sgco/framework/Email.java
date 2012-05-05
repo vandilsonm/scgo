@@ -169,7 +169,7 @@ public class Email {
             //Setando o assunto  
             msg.setSubject(subject);
             //Setando o conteúdo/corpo do email  
-            msg.setContent(message, "text/plain");
+            msg.setContent(message, "text/html; charset=ISO-8859-1");
 
         } catch (Exception e) {
             System.out.println(">> Erro: Completar Mensagem");
