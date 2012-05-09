@@ -79,6 +79,12 @@ public class DAOPelada {
                             toPelada.getNome(), toPelada.getDescricao(),
                             toPelada.getHorario(), toPelada.getIdLocal().getId(), 
                             toPelada.getId(), toPelada.getCriador()});
+        
+        System.out.println("-------");
+        
+        excluirRelacional(toPelada,connection);
+        inserirRelacional(toPelada, connection);
+        
     }
 
     public static void excluir (TOPelada toPelada, Connection connection) throws Exception {
