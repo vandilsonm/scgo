@@ -53,7 +53,9 @@ public class BOLocal {
             connection = Data.openConnection();
             DAOLocal.excluir(toLocal, connection);
 
-        } finally {
+        } catch (Exception e){
+            System.out.println("Não é possível excluir");
+        }finally {
             if (connection != null)
                 connection.close();
         }

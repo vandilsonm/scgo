@@ -71,7 +71,7 @@ public class ServletExcluirLocal extends HttpServlet {
 
             out.print("Registro excluído com sucesso.");
         } catch (Exception e) {
-            out.print(e.getMessage());
+            out.print("Não é possível excluir");
         } finally {
             out.close();
         }

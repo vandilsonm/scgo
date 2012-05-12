@@ -53,7 +53,7 @@ public class DAOLocal {
     public static void excluir (TOLocal toLocal, Connection connection) throws Exception {
         String sql = " delete from sgc_local where id = ? and USU_CODIGO = ?";
 
-        Data.executeUpdate(connection, sql, new Object[] {toLocal.getId(),toLocal.getIdUsuario()});
+        Data.executeUpdate(connection, sql, new Object[] {toLocal.getId(), toLocal.getIdUsuario()});
 
     }
 
