@@ -46,7 +46,7 @@ JogosPeladinha.prototype = {
                 id: listaCam[i].id,
                 index: i
             }
-            $('#altera'+i).bind('click', str2, $.createDelegate(this, this.alterarItemOnClick));
+            $('#altera'+i).bind('click', str2, $.createDelegate(this, this._alterarItemOnClick));
         }
     },
     
@@ -54,7 +54,7 @@ JogosPeladinha.prototype = {
     /*==============================================================================
     click
     ==============================================================================*/
-    alterarItemOnClick: function (value) {
+    _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
         this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
         
