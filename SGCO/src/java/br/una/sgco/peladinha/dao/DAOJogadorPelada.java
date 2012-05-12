@@ -39,7 +39,6 @@ public class DAOJogadorPelada {
             if((i+1)!=tOJogadorPelada.size()){
                 sql+=",";
             }
-            
         }
         System.out.println(tOJogadorPelada.getClass().getSimpleName()+"   ->   "+sql);
         Data.executeUpdate(connection, sql, dados);
