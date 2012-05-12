@@ -34,19 +34,16 @@ public class DAOPelada {
         ResultSet set = Data.executeQuery(connection, sqlId);
         set.next();
         Integer idPelada = set.getInt("ID");
-        toPelada.setId(idPelada);        
+        toPelada.setId(idPelada);       
+        
         excluirRelacional(toPelada,connection);
         inserirRelacional(toPelada, connection);
-        
-       
-        
     }
     
     private static void excluirRelacional(TOPelada toPelada, Connection connection)throws Exception{
           String sql = " DELETE FROM sgc_jogadorpelada where idPelada=?";
         
         Data.executeUpdate(connection, sql, new Object[]{toPelada.getId()});
-    
     }
 
     private static void inserirRelacional(TOPelada toPelada, Connection connection)throws Exception{
