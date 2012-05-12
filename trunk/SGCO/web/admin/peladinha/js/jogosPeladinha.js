@@ -54,11 +54,6 @@ JogosPeladinha.prototype = {
     /*==============================================================================
     click
     ==============================================================================*/
-    _alterarItemOnClick: function (value) {
-        this._idSelecionado = value.data.id;
-        this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
-        
-    },
     _btnCadastroOnClick: function() {
         /*if ($('#txtNome').val() == ''
             || $('#txtDescricao').val() == ''
@@ -67,32 +62,32 @@ JogosPeladinha.prototype = {
 
             alert("É obrigatório informar todos os campos.");
         else {*/
-          var listaSelecionados = $('input[name=jogador]');
-            var str = {
-                nome: $('#txtNome').val(),
-                descricao: $('#txtDescricao').val(),
-                horario: $('#txtHorario').val(),
-                local: $('#ddlLocal').val(),
-                id: this._idSelecionado
-            }
-            var lista ="";
-            for(var i = 0; i<listaSelecionados.length;i++){
-                //lista += "{\"id\":\""+listaSelecionados[i].value+"\",\"value\":\""+listaSelecionados[i].checked+"\"},"
-                //alert(listaSelecionados[i].checked+"  "+listaSelecionados[i].value);
-                if(listaSelecionados[i].checked)
-                    lista += listaSelecionados[i].value+"---";
-            }
+        var listaSelecionados = $('input[name=jogador]');
+        var str = {
+            nome: $('#txtNome').val(),
+            descricao: $('#txtDescricao').val(),
+            horario: $('#txtHorario').val(),
+            local: $('#ddlLocal').val(),
+            id: this._idSelecionado
+        }
+        var lista ="";
+        for(var i = 0; i<listaSelecionados.length;i++){
+            //lista += "{\"id\":\""+listaSelecionados[i].value+"\",\"value\":\""+listaSelecionados[i].checked+"\"},"
+            //alert(listaSelecionados[i].checked+"  "+listaSelecionados[i].value);
+            if(listaSelecionados[i].checked)
+                lista += listaSelecionados[i].value+"---";
+        }
             
-          var str = {
-                nome: $('#txtNome').val(),
-                descricao: $('#txtDescricao').val(),
-                horario: $('#txtHorario').val(),
-                local: $('#ddlLocal').val(),
-                id: this._idSelecionado,
-                jogadores: lista
-            }
-            this.executeBind('../../../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
-        //}
+        var str = {
+            nome: $('#txtNome').val(),
+            descricao: $('#txtDescricao').val(),
+            horario: $('#txtHorario').val(),
+            local: $('#ddlLocal').val(),
+            id: this._idSelecionado,
+            jogadores: lista
+        }
+        this.executeBind('../../../ServletInserirPelada', str, 'GET', this._cadastroOnSuccess);
+    //}
     },
 
     _btnCadastroAltOnClick: function() {
@@ -126,7 +121,7 @@ JogosPeladinha.prototype = {
         }
         
     },
-     _excluirItemOnClick: function (value) {
+    _excluirItemOnClick: function (value) {
         if (confirm("Deseja excluir o registro?")) {
             var str = {
                 id: value.data.id
@@ -142,7 +137,7 @@ JogosPeladinha.prototype = {
     /*==============================================================================
     funcoes
     ==============================================================================*/
-     _loadListaOnSuccess: function(value) {
+    _loadListaOnSuccess: function(value) {
         var listaPeladinha = eval(value);
         
         $('#spanTitulo').html('Peladinha(s) Cadastrada(s)');
@@ -175,7 +170,13 @@ JogosPeladinha.prototype = {
             $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
         }
     },
-      _loadListaJogadorOnSuccess: function(value) {
+    
+    _alterarItemOnClick: function (value) {
+        this._idSelecionado = value.data.id;
+        this.executeBind('form/peladinha.jsp', '', 'GET', this._alterarOnSuccess);
+        
+    },
+    _loadListaJogadorOnSuccess: function(value) {
         var listaJogador = eval(value);
         this._loadJogadores(listaJogador);
     },
@@ -244,7 +245,7 @@ JogosPeladinha.prototype = {
         this.executeBind('../../../ServletListarPelada', '', 'GET', this._loadListaOnSuccess);
     },
 
-_alterarOnSuccess: function(value) {
+    _alterarOnSuccess: function(value) {
         
         $('#spanTitulo').html('Alteração da peladinha');
         $('#adm_container_one_text_form').html(value);
