@@ -229,8 +229,8 @@ public class DAOCampeonato {
                         + " inner join sgc_time_tim tim_mandante on jgs.tim_codigo_mandante = tim_mandante.tim_codigo"
                         + " inner join sgc_time_tim tim_visitante on jgs.tim_codigo_visitante = tim_visitante.tim_codigo"
                         + " inner join sgc_estadio_est estadio on jgs.est_codigo = estadio.est_codigo"
-                    + " where ((date(jgs.jgs_data_hora) - date( CURRENT_TIMESTAMP()) <= 7 and date(jgs.jgs_data_hora) - date(CURRENT_TIMESTAMP()) >= 0) "
-                    + " or ( date(CURRENT_TIMESTAMP()) - date(jgs.jgs_data_hora) <= 7 and date(CURRENT_TIMESTAMP() - date(jgs.jgs_data_hora) >= 0))) "
+                    + " where ((date(jgs.jgs_data_hora) - date( CURRENT_TIMESTAMP()) <= 7 and date(jgs.jgs_data_hora) - date(CURRENT_TIMESTAMP()) >= 0)) "
+                    + " or ((date(CURRENT_TIMESTAMP()) - date(jgs.jgs_data_hora) <= 7 and date(CURRENT_TIMESTAMP()) - date(jgs.jgs_data_hora) >= 0)) "
                     + " and jgs.cam_codigo = ?"
                     + " order by jgs.jgs_data_hora desc ";
                     
