@@ -19,14 +19,14 @@
 
                 <!-- logo -->
                 <div id="header_logo">
-                    <a href="../index.jsp" title="Página Inícial"><img src="../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
+                    <a href="index.jsp" title="Página Inícial"><img src="../img/sgco.jpg" width="415" height="135" alt="GOLAÇO" border="0" /></a>
                 </div>
 
                 <!-- menu -->
                 <div id="header_menu">
                     <ul>
                         <li><a href="index.jsp" class="selecionado" title="Trocar Módulo">Trocar Módulo</a></li>
-                        <li><a href="sair.jsp" title="">Sair (logout)</a></li>
+                        <li><a href="../index.jsp" title="">Sair (logout)</a></li>
                     </ul>
                 </div>
 
