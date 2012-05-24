@@ -4,10 +4,12 @@
  */
 package br.una.sgco.services;
 
+import br.una.sgco.bo.BOEstadio;
 import br.una.sgco.bo.BOJogador;
 import br.una.sgco.bo.BOJogo;
 import br.una.sgco.bo.BOTime;
 import br.una.sgco.framework.Email;
+import br.una.sgco.to.TOEstadio;
 import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.io.IOException;
@@ -59,6 +61,12 @@ public class ServletEnviarEmail extends HttpServlet {
             JSONObject json = BOJogo.obterUm(toJogo);
             int timMandante = json.getInt("timeMandante");
             int timVisitante = json.getInt("timeVisitante");
+            int idEstadio = json.getInt("estadio");
+            
+            TOEstadio toEstadio = new TOEstadio();
+            toEstadio.setCodigo(idEstadio);
+            JSONObject jsonLocal = BOEstadio.obterUm(toEstadio);
+            String estadio = jsonLocal.getString("nome");
             
             TOTime toTime = new TOTime();
             toTime.setCodigo(timMandante);
@@ -67,7 +75,9 @@ public class ServletEnviarEmail extends HttpServlet {
             
             toTime.setCodigo(timVisitante);
             jsonTime = BOTime.obterUm(toTime);
-            message += jsonTime.getString("nome") + " <br/>Dia e hora: " + data + "<br/><br/>";
+            message += jsonTime.getString("nome");
+            message += " <br/>Dia e hora: " + data + "<br/>";
+            message += " Local: " + estadio + "<br/><br/>";
 
             TOTime toTimeMandante = new TOTime();
             toTimeMandante.setCodigo(timMandante);
