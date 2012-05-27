@@ -305,6 +305,10 @@
         <servlet-name>ServletEnviarEmail</servlet-name>
         <servlet-class>br.una.sgco.services.ServletEnviarEmail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListarJogadoresConfirmados</servlet-name>
+        <servlet-class>br.una.sgco.peladinha.services.ServletListarJogadoresConfirmados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCadastroUsuario</servlet-name>
         <url-pattern>/ServletCadastroUsuario</url-pattern>
@@ -600,6 +604,10 @@
     <servlet-mapping>
         <servlet-name>ServletEnviarEmail</servlet-name>
         <url-pattern>/ServletEnviarEmail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarJogadoresConfirmados</servlet-name>
+        <url-pattern>/ServletListarJogadoresConfirmados</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

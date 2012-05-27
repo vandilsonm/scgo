@@ -112,5 +112,20 @@ public class BOJogador {
 
         return jo;
     }
+    
+    public static JSONArray listarJogadoresConfirmados(TOJogador toJogador) throws Exception {
+        Connection connection = null;
+        JSONArray jsonArrary;
+
+        try {
+            connection = Data.openConnection();
+            jsonArrary = DAOJogador.getJogadoresConfirmados(toJogador, connection);
+
+        } finally {
+            if (connection != null)
+                connection.close();
+        }
+        return jsonArrary;
+    }
 
 }

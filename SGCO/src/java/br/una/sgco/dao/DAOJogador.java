@@ -6,6 +6,7 @@
 package br.una.sgco.dao;
 
 import br.una.sgco.framework.Data;
+import br.una.sgco.peladinha.to.TOPelada;
 import br.una.sgco.to.TOCampeonato;
 import br.una.sgco.to.TOJogador;
 import br.una.sgco.to.TOJogo;
@@ -154,5 +155,29 @@ public class DAOJogador {
 
         rs.close();
         return ja;
+    }
+    
+    public static JSONArray getJogadoresConfirmados(TOJogador toJogador, Connection connection) throws Exception {
+
+       String sql = " select jog.jog_nome as nome, jog.jog_celular as celular, jog.email as email"
+               + " from sgc_jogador_jog jog, sgc_jogadorjogo jj "
+               + " where jj.idjogador = jog.jog_codigo "
+               + " and jj.idJogo = ? and jj.confirmacao = true ";
+       
+       JSONArray jsonArray = new JSONArray();
+
+       ResultSet rs = Data.executeQuery(connection, sql, new Object[]{toJogador.getCodigo()});
+
+       while (rs.next()) {
+            JSONObject jsonObejct = new JSONObject();
+            //jsonObejct.put("id", rs.getInt("id"));
+            jsonObejct.put("nome", rs.getString("nome"));
+            jsonObejct.put("celular", rs.getString("celular"));
+            jsonObejct.put("email", rs.getString("email"));
+            jsonArray.put(jsonObejct);
+        }
+
+        rs.close();
+        return jsonArray;
     }
 }
