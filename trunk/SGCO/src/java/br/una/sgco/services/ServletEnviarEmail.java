@@ -14,8 +14,6 @@ import br.una.sgco.to.TOJogo;
 import br.una.sgco.to.TOTime;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;

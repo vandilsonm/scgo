@@ -131,7 +131,8 @@ Jogos.prototype = {
 
         var html = "<tr><th>Time Mandante</th><th>Time Visitante</th><th>Data/hora</th>";
         html += "<th class=\"alingCenter\">Editar</th>";
-        html += "<th class=\"alingCenter\">Excluir</th></tr>";
+        html += "<th class=\"alingCenter\">Excluir</th>";
+        html += "<th class=\"alingCenter\">Jogadores</th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
@@ -142,6 +143,7 @@ Jogos.prototype = {
             html += "<td>" + listaJogos[i].dataHora + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"list" + i + "\" class=\"inputBotao icone listar\"></a></td>";
             html += "</tr>";
 
             $('#adm_container_one_text_form').each(function(){
@@ -154,7 +156,39 @@ Jogos.prototype = {
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
             $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
+            $('#list' + i).bind('click', str, $.createDelegate(this, this._listarJogadoresItemOnClick));
         }
+    },
+    
+    _listarJogadoresItemOnClick: function (value) {
+        this._idSelecionado = value.data.id;
+        
+        var str = {
+            id: this._idSelecionado
+        }
+        this.executeBind('../../../ServletListarJogadoresConfirmados', str, 'GET', this._listarJogadoresOnSuccess);
+    },
+    
+    _listarJogadoresOnSuccess : function (value) {
+        var listarJogadoresPeladinha = eval(value);
+        
+        $('#spanTitulo').html('Jogadores confirmados');
+
+        var html = "<tr><th>Nome</th><th>Celular</th><th>E-mail</th></tr>";
+
+        $('#adm_container_one_text_form').html(html);
+
+        for (var i = 0; i < listarJogadoresPeladinha.length; i++ ) {
+            html = "";
+            html += "<tr><td>" + listarJogadoresPeladinha[i].nome + "</td>";
+            html += "<td>" + listarJogadoresPeladinha[i].celular + "</td>";
+            html += "<td>" + listarJogadoresPeladinha[i].email + "</td>";
+            html += "</tr>";
+
+            $('#adm_container_one_text_form').each(function(){
+                $(this).append(html);
+            });
+        }  
     },
 
     _alterarItemOnClick: function (value) {

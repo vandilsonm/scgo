@@ -19,9 +19,7 @@ public class BOJogadorJogo {
 
         try {
             c = Data.openConnection();
-
             DAOJogadorJogo.inserir(jogadorJogo, c);
-
         } finally {
             if (c != null)
                 c.close();
