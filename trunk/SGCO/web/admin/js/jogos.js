@@ -33,9 +33,9 @@ Jogos.prototype = {
 
             for (var i = 0; i < listaCampeonato.length; i++ ) {
                 htmlLinks += "<li><a href=\"meuCampeonato.jsp?id=" +
-                    listaCampeonato[i].codigo + "\">" +
-                    listaCampeonato[i].nome +
-                    "</a></li>";
+                listaCampeonato[i].codigo + "\">" +
+                listaCampeonato[i].nome +
+                "</a></li>";
             }
 
             htmlLinks += "</ul>";
@@ -82,12 +82,12 @@ Jogos.prototype = {
 
         for (var i = 0; i < listaArbitro.length; i++ ) {
             switch (listaArbitro[i].tipo) {
-                case 'JZ': 
+                case 'JZ':
                     $('#ddlJuiz').append('<option value="' +
                         listaArbitro[i].codigo + '">' +
                         listaArbitro[i].nome + '</option>');
                     break;
-                case 'BD': 
+                case 'BD':
                     $('#ddlBandeirinha1').append('<option value="' +
                         listaArbitro[i].codigo + '">' +
                         listaArbitro[i].nome + '</option>');
@@ -95,12 +95,13 @@ Jogos.prototype = {
                         listaArbitro[i].codigo + '">' +
                         listaArbitro[i].nome + '</option>');
                     break;
-                case 'JR': 
+                case 'JR':
                     $('#ddlJuizReserva').append('<option value="' +
                         listaArbitro[i].codigo + '">' +
                         listaArbitro[i].nome + '</option>');
                     break;
-                default: tipo = "Não especificado";
+                default:
+                    tipo = "Não especificado";
             }
         }
     },
@@ -149,10 +150,10 @@ Jogos.prototype = {
             html += "</tr>";
 
             $('#adm_container_one_text_form').each(function(){
-               $(this).append(html);
+                $(this).append(html);
             });
 
-             var str = {
+            var str = {
                 id: listaJogos[i].codigo,
                 index: i
             }
@@ -209,6 +210,7 @@ Jogos.prototype = {
 
     _alterarItemOnClick: function (value) {
         this._idSelecionado = value.data.id;
+        
         this.executeBind('form/jogos.jsp', '', 'GET', this._alterarOnSuccess);
     },
 
@@ -216,7 +218,7 @@ Jogos.prototype = {
         $('#spanTitulo').html('Alteração de Jogo');
         $('#adm_container_one_text_form').html(value);
         $('#btnCadastro').bind('click', '', $.createDelegate(this, this._btnCadastroAltOnClick));
-
+        
         var str = {
             id: this._idSelecionado
         }
@@ -252,6 +254,9 @@ Jogos.prototype = {
             if ($('#ddlTimeMandante').val() == $('#ddlTimeVisitante').val()) {
                 alert("O time visitante deve ser diferente do mandante.");
             }
+            if ($('#ddlBandeirinha1').val() == $('#ddlBandeirinha2').val()) {
+                alert("Os bandeirinhas devem ser diferentes.");
+            }
             else {
                 var str = {
                     estadio: $('#ddlEstadio').val(),
@@ -282,6 +287,10 @@ Jogos.prototype = {
         else {
             if ($('#ddlTimeMandante').val() == $('#ddlTimeVisitante').val()) {
                 alert("O time visitante deve ser diferente do mandante.");
+            }
+            
+            if ($('#ddlBandeirinha1').val() == $('#ddlBandeirinha2').val()) {
+                alert("Os bandeirinhas devem ser diferentes.");
             }
             else {
                 var str = {
