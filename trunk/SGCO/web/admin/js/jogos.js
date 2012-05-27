@@ -132,7 +132,8 @@ Jogos.prototype = {
         var html = "<tr><th>Time Mandante</th><th>Time Visitante</th><th>Data/hora</th>";
         html += "<th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th>";
-        html += "<th class=\"alingCenter\">Jogadores</th></tr>";
+        html += "<th class=\"alingCenter\">E-mail conf.</th>";
+        html += "<th class=\"alingCenter\">Jog. conf.</th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
@@ -143,6 +144,7 @@ Jogos.prototype = {
             html += "<td>" + listaJogos[i].dataHora + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"send" + i + "\" class=\"inputBotao icone enviar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"list" + i + "\" class=\"inputBotao icone listar\"></a></td>";
             html += "</tr>";
 
@@ -156,8 +158,22 @@ Jogos.prototype = {
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
             $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
+            $('#send' + i).bind('click', str, $.createDelegate(this, this._enviarEmailOnClick));
             $('#list' + i).bind('click', str, $.createDelegate(this, this._listarJogadoresItemOnClick));
         }
+    },
+    
+    _enviarEmailOnClick: function (value) {
+        this._idSelecionado = value.data.id;
+        
+        var str = {
+            idJogo: this._idSelecionado
+        }
+        this.executeBind('../../../ServletEnviarEmail', str, 'GET', this._enviarEmailOnClickOnSuccess);
+    },
+    
+    _enviarEmailOnClickOnSuccess : function (value){
+        alert(value);
     },
     
     _listarJogadoresItemOnClick: function (value) {
