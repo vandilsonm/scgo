@@ -47,7 +47,7 @@ public class ServletInserirJogadorJogo extends HttpServlet {
 
             out.print("Confirmação realizada com sucesso! ");
         } finally {            
-            out.close();
+            out.print("Você já confirmou sua presença anteriormente.");
         }
     }
 
