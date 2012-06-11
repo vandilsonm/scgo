@@ -133,8 +133,9 @@ Jogos.prototype = {
         var html = "<tr><th>Time Mandante</th><th>Time Visitante</th><th>Data/hora</th>";
         html += "<th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th>";
-        html += "<th class=\"alingCenter\">E-mail conf.</th>";
-        html += "<th class=\"alingCenter\">Jog. conf.</th></tr>";
+        html += "<th class=\"alingCenter\"><abbr title=\"Enviar e-mail confirmação\" style=\"border-bottom:1px dotted #000\">E-mail conf.</abbr></th>";
+        html += "<th class=\"alingCenter\"><abbr title=\"Jogadores confirmados\"  style=\"border-bottom:1px dotted #000\">Jog. conf.</abbr></th></tr>";
+       // html += "<th class=\"alingCenter\"><abbr title=\"Enviar twitter\"  style=\"border-bottom:1px dotted #000\">Twitter.</abbr></th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
@@ -145,8 +146,9 @@ Jogos.prototype = {
             html += "<td>" + listaJogos[i].dataHora + "</td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"alt" + i + "\" class=\"inputBotao icone editar\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
-            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"send" + i + "\" class=\"inputBotao icone enviar\"></a></td>";
-            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"list" + i + "\" class=\"inputBotao icone listar\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"mail" + i + "\" class=\"inputBotao icone mail\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"check" + i + "\" class=\"inputBotao icone check\"></a></td>";
+            //html += "<td class=\"alingCenter\"><a href=\"#\" id = \"twit" + i + "\" class=\"inputBotao icone twitter\"></a></td>";
             html += "</tr>";
 
             $('#adm_container_one_text_form').each(function(){
@@ -159,8 +161,9 @@ Jogos.prototype = {
             }
             $('#alt' + i).bind('click', str, $.createDelegate(this, this._alterarItemOnClick));
             $('#exc' + i).bind('click', str, $.createDelegate(this, this._excluirItemOnClick));
-            $('#send' + i).bind('click', str, $.createDelegate(this, this._enviarEmailOnClick));
-            $('#list' + i).bind('click', str, $.createDelegate(this, this._listarJogadoresItemOnClick));
+            $('#mail' + i).bind('click', str, $.createDelegate(this, this._enviarEmailOnClick));
+            $('#check' + i).bind('click', str, $.createDelegate(this, this._listarJogadoresItemOnClick));
+            $('#twit' + i).bind('click', str, $.createDelegate(this, this._enviarTwitter));
         }
     },
     
@@ -173,7 +176,20 @@ Jogos.prototype = {
         this.executeBind('../../../ServletEnviarEmail', str, 'GET', this._enviarEmailOnClickOnSuccess);
     },
     
+    _enviarTwitter: function (value) {
+        this._idSelecionado = value.data.id;
+        
+        var str = {
+            idJogo: this._idSelecionado
+        }
+        this.executeBind('../../../ServletEnviarTwitter', str, 'GET', this._enviarTwitterOnClickOnSuccess);
+    },
+    
     _enviarEmailOnClickOnSuccess : function (value){
+        alert(value);
+    },
+    
+    _enviarTwitterOnClickOnSuccess : function (value){
         alert(value);
     },
     
@@ -230,13 +246,13 @@ Jogos.prototype = {
 
     _alterarLoadOnSuccess: function(value) {
         var dados = eval("(" + value + ")");
-        $('#ddlTimeMandante').attr("value", dados.timeMandante);
-        $('#ddlTimeVisitante').attr("value", dados.timeVisitante);
+        $('#ddlTimeMandante [value='+dados.timeMandante+']').attr("selected", "selected");
+        $('#ddlTimeVisitante [value='+dados.timeVisitante+']').attr("selected", "selected");
         $('#txtDataHora').attr("value", dados.dataHora);
         $('#ddlJuiz').attr("value", dados.juiz);
         $('#ddlJuizReserva').attr("value", dados.juizReserva);
-        $('#ddlBandeirinha1').attr("value", dados.bandeirinha1);
-        $('#ddlBandeirinha2').attr("value", dados.bandeirinha2);
+        $('#ddlBandeirinha1 [value='+dados.bandeirinha1+']').attr("selected", "selected");
+        $('#ddlBandeirinha2 [value='+dados.bandeirinha2+']').attr("selected", "selected");
     },
 
     _btnCadastroOnClick: function() {

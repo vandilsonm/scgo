@@ -112,7 +112,7 @@ public class ServletEnviarEmail extends HttpServlet {
                 String email = jso.getString("Email");
                  
                 linkVis += "idTime=" + idTime + "&" + "idJogador=" + idJogador;
-                messageVis += "<a href="+ linkVis + ">Confirmar presença </a>";
+                messageVis += "<a href="+ linkVis + ">Clique aqui para confirmar sua presença </a>";
                 messageVis += "<br/><br/>Bom jogo!<br/>Equipe Golaço";
                 
                 Email semail = new Email();

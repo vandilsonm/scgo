@@ -39,6 +39,7 @@ public class ServletInsereJogador extends HttpServlet {
             jogador.setTipo(request.getParameter("tipo"));
             jogador.setCelular(request.getParameter("celular"));
             jogador.setEmail(request.getParameter("email"));
+            jogador.setTwitter(request.getParameter("twitter"));
             jogador.setStatus("A");
 
             TOTime time = new TOTime();

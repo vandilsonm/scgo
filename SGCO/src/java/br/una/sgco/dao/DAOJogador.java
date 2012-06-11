@@ -6,7 +6,6 @@
 package br.una.sgco.dao;
 
 import br.una.sgco.framework.Data;
-import br.una.sgco.peladinha.to.TOPelada;
 import br.una.sgco.to.TOCampeonato;
 import br.una.sgco.to.TOJogador;
 import br.una.sgco.to.TOJogo;
@@ -25,24 +24,24 @@ public class DAOJogador {
     public static void inserir (TOJogador jogador, Connection c) throws Exception {
 
         String sql = " insert into sgc_jogador_jog (jog_nome, jog_posicao, jog_status, "
-                    + " jog_tipo, tim_codigo, jog_celular, email)"
-                    + " values (?, ?, ?, ?, ?, ?, ?)";
+                    + " jog_tipo, tim_codigo, jog_celular, email, twitter)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Data.executeUpdate(c, sql, new Object[] {jogador.getNome(), jogador.getPosicao(),
                                 jogador.getStatus(), jogador.getTipo(), 
                                 jogador.getTime().getCodigo(), jogador.getCelular(),
-                                jogador.getEmail()});
+                                jogador.getEmail(), jogador.getTwitter()});
     }
 
     public static void alterar (TOJogador jogador, Connection c) throws Exception {
         String sql = " update sgc_jogador_jog set jog_nome = ?, jog_posicao = ?, "
-                + " jog_status = ?, jog_tipo = ?, jog_celular = ?, email = ? "
+                + " jog_status = ?, jog_tipo = ?, jog_celular = ?, email = ?, twitter = ? "
                 + " where jog_codigo = ? ";
 
         Data.executeUpdate(c, sql, new Object[] {jogador.getNome(), jogador.getPosicao(),
                                 jogador.getStatus(), jogador.getTipo(), 
                                 jogador.getCelular(), 
-                                jogador.getEmail(), jogador.getCodigo()});
+                                jogador.getEmail(), jogador.getTwitter(), jogador.getCodigo()});
     }
 
     public static void inativar (TOJogador jogador, Connection c) throws Exception {
@@ -54,7 +53,7 @@ public class DAOJogador {
 
     public static JSONArray  obterTodosTime(TOTime time, Connection c) throws Exception {
         String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular, "
-                    + " email from sgc_jogador_jog where tim_codigo = ? and jog_status = 'A' order by jog_nome ";
+                    + " email, twitter from sgc_jogador_jog where tim_codigo = ? and jog_status = 'A' order by jog_nome ";
 
         JSONArray ja = new JSONArray();
 
@@ -70,6 +69,7 @@ public class DAOJogador {
             jo.put("Time", rs.getInt("tim_codigo"));
             jo.put("Celular", rs.getString("jog_celular"));
             jo.put("Email", rs.getString("email"));
+            jo.put("Twitter", rs.getString("twitter"));
             ja.put(jo);
         }
 
@@ -78,7 +78,7 @@ public class DAOJogador {
     }
 
     public static JSONArray obterTodos(TOCampeonato campeonato, Connection c) throws Exception {
-        String sql = " select jog.jog_codigo, jog.jog_nome, jog.jog_posicao, "
+        String sql = " select jog.jog_codigo, jog.jog_nome, jog.jog_posicao, jog.twitter as twitter, "
                     + " jog.jog_status, jog.jog_tipo, jog.tim_codigo, tim.tim_nome, jog.jog_celular "
                     + " from sgc_jogador_jog jog inner join sgc_time_tim tim "
                     + " on jog.tim_codigo = tim.tim_codigo "
@@ -98,6 +98,7 @@ public class DAOJogador {
             jo.put("Tipo", rs.getString("jog_tipo"));
             jo.put("Time", rs.getString("tim_nome"));
             jo.put("Celular", rs.getString("jog_celular"));
+            jo.put("Twitter", rs.getString("twitter"));
             ja.put(jo);
         }
 
@@ -109,7 +110,7 @@ public class DAOJogador {
     public static JSONObject obterUm(TOJogador jogador, Connection c) throws Exception {
 
        String sql = " select jog_codigo, jog_nome, jog_posicao, jog_status, jog_tipo, tim_codigo, jog_celular, "
-                    + " email from sgc_jogador_jog where jog_codigo = ?";
+                    + " email, twitter from sgc_jogador_jog where jog_codigo = ?";
 
         JSONObject jo = new JSONObject();
 
@@ -124,6 +125,7 @@ public class DAOJogador {
             jo.put("time", rs.getInt("tim_codigo"));
             jo.put("celular", rs.getString("jog_celular"));
             jo.put("email", rs.getString("email"));
+            jo.put("twitter", rs.getString("twitter"));
         }
 
         rs.close();
@@ -132,8 +134,8 @@ public class DAOJogador {
     }
     
     public static JSONArray obterTodosJogo(TOJogo jogo, Connection c) throws Exception {
-        String sql = " select jog.jog_codigo, jog.jog_nome, tim.tim_codigo, jog.jog_celular "
-                + " from sgc_jogador_jog jog "
+        String sql = " select jog.jog_codigo, jog.jog_nome, tim.tim_codigo, jog.jog_celular, "
+                + " jog.twitter as twitter from sgc_jogador_jog jog "
                 + "   inner join sgc_time_tim tim on jog.tim_codigo = tim.tim_codigo "
                 + "   inner join sgc_jogos_jgs jgs "
                 + "     on jgs.tim_codigo_mandante = tim.tim_codigo "
@@ -150,6 +152,7 @@ public class DAOJogador {
             jo.put("nome", rs.getString("jog_nome"));
             jo.put("codigoTime", rs.getInt("tim_codigo"));
             jo.put("celular", rs.getString("jog_celular"));
+            jo.put("twitter", rs.getString("twitter"));
             ja.put(jo);
         }
 
@@ -159,7 +162,7 @@ public class DAOJogador {
     
     public static JSONArray getJogadoresConfirmados(TOJogador toJogador, Connection connection) throws Exception {
 
-       String sql = " select jog.jog_nome as nome, jog.jog_celular as celular, jog.email as email"
+       String sql = " select jog.jog_nome as nome, jog.jog_celular as celular, jog.email as email, jog.twitter as twitter "
                + " from sgc_jogador_jog jog, sgc_jogadorjogo jj "
                + " where jj.idjogador = jog.jog_codigo "
                + " and jj.idJogo = ? and jj.confirmacao = true ";
@@ -174,6 +177,7 @@ public class DAOJogador {
             jsonObejct.put("nome", rs.getString("nome"));
             jsonObejct.put("celular", rs.getString("celular"));
             jsonObejct.put("email", rs.getString("email"));
+            jsonObejct.put("twitter", rs.getString("twitter"));
             jsonArray.put(jsonObejct);
         }
 

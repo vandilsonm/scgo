@@ -18,6 +18,15 @@ public class TOJogador {
     private String _email;
     private TOTime _time;
     private String _celular;
+    private String twitter;
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
 
     public String getEmail() {
         return _email;

@@ -4,12 +4,8 @@
  */
 package br.una.sgco.services;
 
-import br.una.sgco.bo.BOJogadorJogo;
-import br.una.sgco.to.TOJogadorJogo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jana Louback
  */
-public class ServletInserirJogadorJogo extends HttpServlet {
+public class ServletEnviarTwitter extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -32,22 +28,13 @@ public class ServletInserirJogadorJogo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            TOJogadorJogo to = new TOJogadorJogo();
             
-            to.setIdJogador(Integer.parseInt(request.getParameter("idJogador")));
-            to.setIdJogo(Integer.parseInt(request.getParameter("idJogo")));
-            to.setIdTime(Integer.parseInt(request.getParameter("idTime")));
-            to.setConfirmacao(true);
-
-            BOJogadorJogo.inserir(to);
-
-            out.print("Confirmação realizada com sucesso! ");
-        } catch (Exception e) {            
-            out.print("Você já confirmou sua presença anteriormente.");
+        } finally {            
+            out.close();
         }
     }
 
@@ -64,11 +51,7 @@ public class ServletInserirJogadorJogo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServletInserirJogadorJogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -83,11 +66,7 @@ public class ServletInserirJogadorJogo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServletInserirJogadorJogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

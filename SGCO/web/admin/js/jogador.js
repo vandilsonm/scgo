@@ -133,6 +133,7 @@ Jogador.prototype = {
         $('#ddlTime').attr("value", dados.time);
         $('#txtCelular').attr("value", dados.celular);
         $('#txtEmail').attr("value", dados.email);
+        $('#txtTwitter').attr("value", dados.twitter);
 
         $('#ddlTime').attr("disabled", "disabled");
     },
@@ -159,7 +160,8 @@ Jogador.prototype = {
                 tipo: $('#ddlTipo').val(),
                 time: $('#ddlTime').val(),
                 celular: $('#txtCelular').val(),
-                email: $('#txtEmail').val()
+                email: $('#txtEmail').val(),
+                twitter: $('#txtTwitter').val()
             }
             this.executeBind('../ServletInsereJogador', str, 'GET', this._cadastroOnSuccess);
         }
@@ -176,6 +178,7 @@ Jogador.prototype = {
                 time: $('#ddlTime').val(),
                 celular: $('#txtCelular').val(),
                 email: $('#txtEmail').val(),
+                twitter: $('#txtTwitter').val(),
                 id: this._idSelecionado
             }
             this.executeBind('../ServletAlteraJogador', str, 'GET', this._cadastroOnSuccess);
