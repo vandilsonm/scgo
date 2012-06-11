@@ -455,6 +455,12 @@ a {
 .lista {
     background: url("../img/icons/lista.png") no-repeat 5px 50%;
 }
+.mail {
+    background: url("../img/icons/mail.png") no-repeat 5px 50%;
+}
+.check {
+    background: url("../img/icons/check.png") no-repeat 5px 50%;
+}
 /* botoes */
 .inputBotao {
     border:solid 1px #666;

@@ -309,6 +309,10 @@
         <servlet-name>ServletListarJogadoresConfirmados</servlet-name>
         <servlet-class>br.una.sgco.peladinha.services.ServletListarJogadoresConfirmados</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEnviarTwitter</servlet-name>
+        <servlet-class>br.una.sgco.services.ServletEnviarTwitter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCadastroUsuario</servlet-name>
         <url-pattern>/ServletCadastroUsuario</url-pattern>
@@ -608,6 +612,10 @@
     <servlet-mapping>
         <servlet-name>ServletListarJogadoresConfirmados</servlet-name>
         <url-pattern>/ServletListarJogadoresConfirmados</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnviarTwitter</servlet-name>
+        <url-pattern>/ServletEnviarTwitter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
