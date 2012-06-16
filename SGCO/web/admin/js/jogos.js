@@ -134,8 +134,8 @@ Jogos.prototype = {
         html += "<th class=\"alingCenter\">Editar</th>";
         html += "<th class=\"alingCenter\">Excluir</th>";
         html += "<th class=\"alingCenter\"><abbr title=\"Enviar e-mail confirmação\" style=\"border-bottom:1px dotted #000\">E-mail conf.</abbr></th>";
-        html += "<th class=\"alingCenter\"><abbr title=\"Jogadores confirmados\"  style=\"border-bottom:1px dotted #000\">Jog. conf.</abbr></th></tr>";
-       // html += "<th class=\"alingCenter\"><abbr title=\"Enviar twitter\"  style=\"border-bottom:1px dotted #000\">Twitter.</abbr></th></tr>";
+        html += "<th class=\"alingCenter\"><abbr title=\"Jogadores confirmados\"  style=\"border-bottom:1px dotted #000\">Jog. conf.</abbr></th>";
+        html += "<th class=\"alingCenter\"><abbr title=\"Enviar twitter\"  style=\"border-bottom:1px dotted #000\">Twitter.</abbr></th></tr>";
 
         $('#adm_container_one_text_form').html(html);
 
@@ -148,7 +148,7 @@ Jogos.prototype = {
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"mail" + i + "\" class=\"inputBotao icone mail\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"check" + i + "\" class=\"inputBotao icone check\"></a></td>";
-            //html += "<td class=\"alingCenter\"><a href=\"#\" id = \"twit" + i + "\" class=\"inputBotao icone twitter\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"twit" + i + "\" class=\"inputBotao icone twitter\"></a></td>";
             html += "</tr>";
 
             $('#adm_container_one_text_form').each(function(){
