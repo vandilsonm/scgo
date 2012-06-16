@@ -35,7 +35,7 @@
                     <ul class="breadcrumb">
                         <li><a href="../index.jsp" title="Painel Administrativo">Painel Administrativo</a></li>
                         <li>&raquo;</li>
-                        <li><a href="estadio.jsp" title="Estádio">Estádio</a></li>
+                        <li><a href="local.jsp" title="Estádio">Local</a></li>
                     </ul>
                 </div>
             </div>
