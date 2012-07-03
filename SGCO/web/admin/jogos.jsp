@@ -8,10 +8,10 @@
         <link href="../css/style.css" rel="stylesheet" type="text/css" />
         <link href="../css/style-css3.css" rel="stylesheet" type="text/css" />
     </head>
-
+    
     <body>
-
-        <!-- centralizando o layout -->
+        <input type="hidden" id="idRoot" value="<%= request.getParameter("id") %>"/>
+            <!-- centralizando o layout -->
         <div id="centralized">
 
             <!-- topo do site / logo / menu principal -->

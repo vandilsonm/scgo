@@ -461,6 +461,10 @@ a {
 .check {
     background: url("../img/icons/check.png") no-repeat 5px 50%;
 }
+.twitter {
+    background: url("../img/icons/twitter.png") no-repeat 5px 50%;
+}
+
 /* botoes */
 .inputBotao {
     border:solid 1px #666;
