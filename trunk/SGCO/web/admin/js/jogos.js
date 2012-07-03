@@ -141,6 +141,7 @@ Jogos.prototype = {
 
         for (var i = 0; i < listaJogos.length; i++ ) {
             html = "";
+            var msg = listaJogos[i].timeMandante +" x "+listaJogos[i].timeVisitante +" às "+listaJogos[i].dataHora;
             html += "<tr><td>" + listaJogos[i].timeMandante + "</td>";
             html += "<td>" + listaJogos[i].timeVisitante + "</td>";
             html += "<td>" + listaJogos[i].dataHora + "</td>";
@@ -148,7 +149,7 @@ Jogos.prototype = {
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"exc" + i + "\" class=\"inputBotao icone excluir\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"mail" + i + "\" class=\"inputBotao icone mail\"></a></td>";
             html += "<td class=\"alingCenter\"><a href=\"#\" id = \"check" + i + "\" class=\"inputBotao icone check\"></a></td>";
-            html += "<td class=\"alingCenter\"><a href=\"#\" id = \"twit" + i + "\" class=\"inputBotao icone twitter\"></a></td>";
+            html += "<td class=\"alingCenter\"><a href=\"../../../ServletEnviarTwitter?msg="+msg+"&id="+$('#idRoot').val()+"\"  class=\"inputBotao icone twitter\"></a></td>";
             html += "</tr>";
 
             $('#adm_container_one_text_form').each(function(){
