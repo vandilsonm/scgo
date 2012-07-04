@@ -52,7 +52,7 @@
                         
                         <div id="adm_container_one_text">
 
-                            <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo1</a>
+                            <a href="javascript:void(0)" id="btnNovo" class="fAlignRight inputBotao icone novo">Novo</a>
                             <a href="javascript:void(0)" id="btnLista" class="fAlignRight inputBotao icone lista">Lista</a>
                             <a href="index.jsp" class="fAlignRight inputBotao icone voltar" style="margin-right: 50px;">Voltar</a>
                             <h2>Gerenciando: <span class="corDestaque">Minhas Peladinhas</span> // <span class="corDestaque">Local</span></h2>
